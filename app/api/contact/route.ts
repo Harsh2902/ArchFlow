@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { z } from "zod";
+import { renderContactEmail } from "@/lib/email/contact-email";
+
+export const runtime = "nodejs";
 
 const ContactSchema = z.object({
   name: z.string().min(2).max(120),
@@ -9,6 +13,10 @@ const ContactSchema = z.object({
   projectType: z.string().min(2).max(120),
   message: z.string().min(10).max(4000)
 });
+
+const FROM = "ArchFlow Website <notifications@archflow.co.in>";
+const TO_PRIMARY = "harsh@archflow.co.in";
+const CC = ["tanishq@archflow.co.in"];
 
 export async function POST(request: Request) {
   let payload: unknown;
@@ -29,12 +37,55 @@ export async function POST(request: Request) {
     );
   }
 
-  // TODO: connect Resend (or similar) to forward this to harsh@archflow.co.in.
-  // For now we log to the server console so the dev can confirm receipt.
-  console.log("[contact] new enquiry", {
+  const enquiry = {
     ...parsed.data,
     receivedAt: new Date().toISOString()
-  });
+  };
 
-  return NextResponse.json({ ok: true });
+  // Always log so we have a runtime audit trail even if email fails.
+  console.log("[contact] new enquiry", enquiry);
+
+  const apiKey = process.env.RESEND_API_KEY;
+
+  // No key wired up — local dev or a misconfigured deploy. Don't fail
+  // the user; the lead is still logged above and they get a success
+  // toast. Surface a server-side warning instead.
+  if (!apiKey) {
+    console.warn(
+      "[contact] RESEND_API_KEY missing — skipping email send. " +
+        "Lead is logged but no email was delivered."
+    );
+    return NextResponse.json({ ok: true, delivered: false });
+  }
+
+  try {
+    const resend = new Resend(apiKey);
+    const { subject, html, text } = renderContactEmail(enquiry);
+
+    const result = await resend.emails.send({
+      from: FROM,
+      to: [TO_PRIMARY],
+      cc: CC,
+      replyTo: enquiry.email,
+      subject,
+      html,
+      text,
+      headers: {
+        "X-Entity-Ref-ID": `archflow-contact-${Date.now()}`
+      }
+    });
+
+    if (result.error) {
+      console.error("[contact] resend send error", result.error);
+      // We don't want the user to see "failed" — their lead IS logged.
+      // Return ok but mark delivered=false so we can monitor.
+      return NextResponse.json({ ok: true, delivered: false });
+    }
+
+    console.log("[contact] email sent", { id: result.data?.id });
+    return NextResponse.json({ ok: true, delivered: true });
+  } catch (err) {
+    console.error("[contact] unexpected error sending email", err);
+    return NextResponse.json({ ok: true, delivered: false });
+  }
 }
