@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { renderContactEmail } from "@/lib/email/contact-email";
+import { logLeadToSheet } from "@/lib/sheets/log-lead";
 
 export const runtime = "nodejs";
 
@@ -48,46 +49,54 @@ export async function POST(request: Request) {
   console.log("[contact] new enquiry", enquiry);
 
   const apiKey = process.env.RESEND_API_KEY;
+  let emailDelivered = false;
+  let resendId: string | null = null;
 
-  // No key wired up — local dev or a misconfigured deploy. Don't fail
-  // the user; the lead is still logged above and they get a success
-  // toast. Surface a server-side warning instead.
-  if (!apiKey) {
+  if (apiKey) {
+    try {
+      const resend = new Resend(apiKey);
+      const { subject, html, text } = renderContactEmail(enquiry);
+
+      const result = await resend.emails.send({
+        from: FROM,
+        to: [TO_PRIMARY],
+        ...(CC.length > 0 ? { cc: CC } : {}),
+        replyTo: enquiry.email,
+        subject,
+        html,
+        text,
+        headers: {
+          "X-Entity-Ref-ID": `archflow-contact-${Date.now()}`
+        }
+      });
+
+      if (result.error) {
+        console.error("[contact] resend send error", result.error);
+      } else {
+        emailDelivered = true;
+        resendId = result.data?.id ?? null;
+        console.log("[contact] email sent", { id: resendId });
+      }
+    } catch (err) {
+      console.error("[contact] unexpected error sending email", err);
+    }
+  } else {
     console.warn(
       "[contact] RESEND_API_KEY missing — skipping email send. " +
         "Lead is logged but no email was delivered."
     );
-    return NextResponse.json({ ok: true, delivered: false });
   }
 
-  try {
-    const resend = new Resend(apiKey);
-    const { subject, html, text } = renderContactEmail(enquiry);
+  // Always attempt to log the lead to the sheet — even if email failed.
+  // The sheet is the durable record; email is for urgency.
+  const sheetResult = await logLeadToSheet(enquiry, {
+    emailDelivered,
+    resendId
+  });
 
-    const result = await resend.emails.send({
-      from: FROM,
-      to: [TO_PRIMARY],
-      ...(CC.length > 0 ? { cc: CC } : {}),
-      replyTo: enquiry.email,
-      subject,
-      html,
-      text,
-      headers: {
-        "X-Entity-Ref-ID": `archflow-contact-${Date.now()}`
-      }
-    });
-
-    if (result.error) {
-      console.error("[contact] resend send error", result.error);
-      // We don't want the user to see "failed" — their lead IS logged.
-      // Return ok but mark delivered=false so we can monitor.
-      return NextResponse.json({ ok: true, delivered: false });
-    }
-
-    console.log("[contact] email sent", { id: result.data?.id });
-    return NextResponse.json({ ok: true, delivered: true });
-  } catch (err) {
-    console.error("[contact] unexpected error sending email", err);
-    return NextResponse.json({ ok: true, delivered: false });
-  }
+  return NextResponse.json({
+    ok: true,
+    delivered: emailDelivered,
+    logged: sheetResult.ok
+  });
 }
