@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode (toggle target). Canonical is dark. */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 160 84% 39%;
+  }
+
+  .dark {
+    /* slate-950 baseline */
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 222 47% 4%;
+    --secondary: 217 33% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 222 47% 4%;
+    --border: 217 33% 16%;
+    --input: 217 33% 16%;
+    --ring: 160 84% 39%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis handles this */
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgb(16 185 129 / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-20;
+  }
+
+  .section-y {
+    @apply py-16 sm:py-20 lg:py-[120px];
+  }
+
+  .eyebrow {
+    @apply inline-block text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.1em] text-emerald-500;
+  }
+
+  .heading-display {
+    @apply font-display font-normal tracking-tightest leading-[1.05];
+  }
+
+  .heading-section {
+    @apply font-sans font-semibold tracking-tighter2 leading-[1.1];
+  }
+
+  .surface {
+    @apply rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm;
+  }
+
+  .surface-hover {
+    @apply transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04];
+  }
+}
+
+/* Mesh gradient backdrop for hero */
+.mesh-bg {
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(at 18% 22%, rgba(16, 185, 129, 0.18) 0px, transparent 50%),
+    radial-gradient(at 80% 10%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+    radial-gradient(at 70% 80%, rgba(16, 185, 129, 0.12) 0px, transparent 55%),
+    radial-gradient(at 10% 90%, rgba(99, 102, 241, 0.10) 0px, transparent 55%);
+}
+
+.gradient-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(16, 185, 129, 0.25) 50%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+.shadow-glow {
+  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.15),
+    0 8px 32px -8px rgb(16 185 129 / 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
