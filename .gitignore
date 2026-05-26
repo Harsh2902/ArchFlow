@@ -10,3 +10,7 @@ build
 
 # Claude Code local state
 .claude/
+
+# TypeScript build cache
+*.tsbuildinfo
+next-env.d.ts.timestamp-*
