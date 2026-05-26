@@ -10,6 +10,7 @@ import {
   AccordionTrigger
 } from "@/components/ui/accordion";
 import { site } from "@/lib/site";
+import { founders } from "@/lib/founders";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -65,69 +66,84 @@ export default function ContactPage() {
 
           <Reveal delay={0.1} className="space-y-6">
             <div className="surface p-6 sm:p-8">
-              <p className="eyebrow">Direct</p>
+              <p className="eyebrow">Talk to a founder directly</p>
               <h2 className="mt-4 heading-display text-3xl sm:text-4xl">
-                Prefer email or a call?
+                Skip the form. Reach us.
               </h2>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Two founders, no gatekeepers. Pick whoever fits — or message
+                both.
+              </p>
 
-              <ul className="mt-6 space-y-4 text-sm">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="text-xs uppercase tracking-eyebrow text-muted-foreground">
-                      Email
-                    </p>
-                    <a
-                      href={`mailto:${site.email}`}
-                      className="mt-1 block text-foreground hover:text-emerald-400 transition-colors"
-                    >
-                      {site.email}
-                    </a>
+              <div className="mt-6 space-y-4">
+                {founders.map((f) => (
+                  <div
+                    key={f.slug}
+                    className="rounded-xl border border-white/5 bg-background/40 p-5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold tracking-tight">
+                          {f.name}
+                        </p>
+                        <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                          {f.role}
+                        </p>
+                      </div>
+                      <span
+                        aria-hidden
+                        className={`grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br ${f.accent} font-display text-base text-foreground/80`}
+                      >
+                        {f.initials}
+                      </span>
+                    </div>
+                    <div className="mt-4 space-y-2 text-sm">
+                      <a
+                        href={`mailto:${f.email}`}
+                        className="flex items-center gap-2 text-foreground/90 hover:text-emerald-400 transition-colors"
+                      >
+                        <Mail className="h-3.5 w-3.5 text-emerald-400" />
+                        <span>{f.email}</span>
+                      </a>
+                      <a
+                        href={`tel:${f.phone.replace(/\s+/g, "")}`}
+                        className="flex items-center gap-2 text-foreground/90 hover:text-emerald-400 transition-colors"
+                      >
+                        <Phone className="h-3.5 w-3.5 text-emerald-400" />
+                        <span>{f.phone}</span>
+                      </a>
+                    </div>
                   </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
-                    <Phone className="h-4 w-4" />
-                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 grid gap-3 border-t border-white/5 pt-6 text-sm sm:grid-cols-2">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
                   <div>
-                    <p className="text-xs uppercase tracking-eyebrow text-muted-foreground">
-                      Phone
-                    </p>
-                    <p className="mt-1 text-foreground">{site.phone}</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
-                    <MapPin className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <p className="text-xs uppercase tracking-eyebrow text-muted-foreground">
+                    <p className="text-[11px] uppercase tracking-eyebrow text-muted-foreground">
                       Based in
                     </p>
-                    <p className="mt-1 text-foreground">{site.address}</p>
+                    <p className="mt-0.5 text-foreground/90">{site.address}</p>
                   </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
-                    <Linkedin className="h-4 w-4" />
-                  </span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Linkedin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
                   <div>
-                    <p className="text-xs uppercase tracking-eyebrow text-muted-foreground">
+                    <p className="text-[11px] uppercase tracking-eyebrow text-muted-foreground">
                       LinkedIn
                     </p>
                     <a
                       href={site.social.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 block text-foreground hover:text-emerald-400 transition-colors"
+                      className="mt-0.5 block text-foreground/90 hover:text-emerald-400 transition-colors"
                     >
                       /company/archflow
                     </a>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
 
             <div className="surface p-6 sm:p-8">

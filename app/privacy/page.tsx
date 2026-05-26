@@ -55,7 +55,7 @@ export default function PrivacyPage() {
             <p>
               You can request access to, correction of, or deletion of any
               personal information we hold about you by writing to
-              hello@archflow.co.in. We will respond within a reasonable time and in
+              harsh@archflow.co.in. We will respond within a reasonable time and in
               line with applicable Indian data protection law.
             </p>
           </Block>

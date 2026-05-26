@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     );
   }
 
-  // TODO: connect Resend (or similar) to forward this to hello@archflow.co.in.
+  // TODO: connect Resend (or similar) to forward this to harsh@archflow.co.in.
   // For now we log to the server console so the dev can confirm receipt.
   console.log("[contact] new enquiry", {
     ...parsed.data,

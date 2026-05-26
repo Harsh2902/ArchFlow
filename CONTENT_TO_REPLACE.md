@@ -7,8 +7,9 @@ Every placeholder, by page and section. Search the codebase for the string
 
 ## Site-wide (`lib/site.ts`)
 
-- **Phone number** — currently `+91 98XXX XXXXX`. Replace with the real
-  contact number for the founders or a dedicated business line.
+- **Phone number** — primary number is `+91 79880 19331` (Harsh).
+  Tanishq's number `+91 70871 74974` is on the Contact page founder
+  cards. Both are real and confirmed.
 - **Address** — currently `Chandigarh, India`. Replace with the full
   registered/office address when ready.
 - **Social URLs** — `linkedin.com/company/archflow` and `x.com/archflow`
@@ -106,9 +107,12 @@ Every placeholder, by page and section. Search the codebase for the string
 
 ## /contact (`app/contact/page.tsx`)
 
-- **Email** (`hello@archflow.co.in`) — confirm the inbox exists and is
-  monitored.
-- **Phone** — pulled from `lib/site.ts`; same placeholder.
+- **Email** — `harsh@archflow.co.in` is the primary inbox.
+  `tanishq@archflow.co.in` is Tanishq's. Confirm both inboxes exist
+  and are monitored before launch (set up via Google Workspace / Zoho
+  Mail).
+- **Phone** — Harsh `+91 79880 19331`, Tanishq `+91 70871 74974`. Both
+  real.
 - **Calendly embed** — the right-column card has a placeholder div
   marked `{/* TODO: paste Calendly embed */}`. Replace with the real
   inline embed snippet.
@@ -121,7 +125,8 @@ Every placeholder, by page and section. Search the codebase for the string
   `components/forms/contact-form.tsx` and `app/api/contact/route.ts`.
 - **Resend / email forwarding** — `app/api/contact/route.ts` currently
   logs to console only. Wire up Resend (or SendGrid / SMTP) to forward
-  enquiries to `hello@archflow.co.in`.
+  enquiries to `harsh@archflow.co.in` (and optionally CC
+  `tanishq@archflow.co.in`).
 
 ---
 

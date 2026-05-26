@@ -4,8 +4,8 @@ export const site = {
   description:
     "ArchFlow designs and builds custom MIS and workflow platforms for India's manufacturers, fabricators, and project-based businesses.",
   url: "https://archflow.co.in",
-  email: "hello@archflow.co.in",
-  phone: "+91 98XXX XXXXX",
+  email: "harsh@archflow.co.in",
+  phone: "+91 79880 19331",
   address: "Chandigarh, India",
   social: {
     linkedin: "https://linkedin.com/company/archflow",

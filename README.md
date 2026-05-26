@@ -118,7 +118,7 @@ in `app/api/contact/route.ts`). To wire up email forwarding:
 
 1. Add a `RESEND_API_KEY` to `.env.local`.
 2. Replace the `console.log` block in the route handler with a Resend
-   send to `hello@archflow.co.in`.
+   send to `harsh@archflow.co.in`.
 
 The frontend form (`components/forms/contact-form.tsx`) handles loading,
 success, and error states with Sonner toasts.

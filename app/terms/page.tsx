@@ -58,7 +58,7 @@ export default function TermsPage() {
           </Block>
           <Block heading="Contact">
             <p>
-              Questions about these terms? Write to hello@archflow.co.in.
+              Questions about these terms? Write to harsh@archflow.co.in.
             </p>
           </Block>
         </div>

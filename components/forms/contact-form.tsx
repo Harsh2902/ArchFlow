@@ -68,7 +68,7 @@ export function ContactForm() {
       reset();
       toast.success("Message received. We'll be in touch within 24 hours.");
     } catch (err) {
-      toast.error("Something went wrong. Please email hello@archflow.co.in.");
+      toast.error("Something went wrong. Please email harsh@archflow.co.in.");
     }
   }
 
@@ -97,10 +97,10 @@ export function ContactForm() {
               We&apos;ll be in touch within 24 hours. In the meantime, feel free
               to email{" "}
               <a
-                href="mailto:hello@archflow.co.in"
+                href="mailto:harsh@archflow.co.in"
                 className="text-emerald-400 hover:underline"
               >
-                hello@archflow.co.in
+                harsh@archflow.co.in
               </a>
               .
             </p>
@@ -157,7 +157,7 @@ export function ContactForm() {
                   id="phone"
                   type="tel"
                   autoComplete="tel"
-                  placeholder="+91 98XXX XXXXX"
+                  placeholder="+91 98765 43210"
                   {...register("phone")}
                 />
               </Field>
