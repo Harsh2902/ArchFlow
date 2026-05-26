@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import { NoiseOverlay } from "@/components/ambient/noise";
+import { CustomCursor } from "@/components/ambient/custom-cursor";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -73,6 +75,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LenisProvider>
+            <NoiseOverlay />
+            <CustomCursor />
             <Nav />
             <main id="main" className="min-h-screen pt-16">
               {children}

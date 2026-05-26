@@ -3,22 +3,26 @@
 import { motion } from "framer-motion";
 import { FileSpreadsheet, LayoutDashboard, Building2 } from "lucide-react";
 import { Reveal, Stagger, staggerItem } from "@/components/motion/reveal";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 const CARDS = [
   {
     icon: FileSpreadsheet,
     title: "Excel chaos",
-    body: "Quotes lost in inboxes. Versions sprawl across 14 sheets. Nobody knows what's the source of truth past 50 employees."
+    body: "Quotes lost in inboxes. Versions sprawl across 14 sheets. Nobody knows what's the source of truth past 50 employees.",
+    tag: "Spreadsheets"
   },
   {
     icon: LayoutDashboard,
     title: "Generic CRMs",
-    body: "Salesforce and HubSpot were built for software sellers. They have no idea what a glazing job, a BOM, or a site dispatch is."
+    body: "Salesforce and HubSpot were built for software sellers. They have no idea what a glazing job, a BOM, or a site dispatch is.",
+    tag: "Off-the-shelf"
   },
   {
     icon: Building2,
     title: "Enterprise ERPs",
-    body: "SAP, Oracle, Microsoft Dynamics — ₹50L+ to start, 18 months to deploy, and you still have to bend your workflow to fit theirs."
+    body: "SAP, Oracle, Microsoft Dynamics — ₹50L+ to start, 18 months to deploy, and you still have to bend your workflow to fit theirs.",
+    tag: "Enterprise ERP"
   }
 ];
 
@@ -33,7 +37,10 @@ export function Problem() {
               id="problem-heading"
               className="heading-section text-[34px] sm:text-[44px] lg:text-[56px]"
             >
-              Most businesses are running on systems that don&apos;t fit them.
+              Most businesses are running on systems that{" "}
+              <span className="italic font-display text-muted-foreground">
+                don&apos;t fit them.
+              </span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -50,22 +57,23 @@ export function Problem() {
           {CARDS.map((c) => {
             const Icon = c.icon;
             return (
-              <motion.div
-                key={c.title}
-                variants={staggerItem}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 260, damping: 24 }}
-                className="surface surface-hover p-6 lg:p-8"
-              >
-                <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold tracking-tight">
-                  {c.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {c.body}
-                </p>
+              <motion.div key={c.title} variants={staggerItem} className="h-full">
+                <SpotlightCard className="group flex h-full flex-col p-6 lg:p-8">
+                  <div className="flex items-start justify-between">
+                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-emerald-400">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] uppercase tracking-eyebrow text-muted-foreground">
+                      {c.tag}
+                    </span>
+                  </div>
+                  <h3 className="mt-6 text-lg font-semibold tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {c.body}
+                  </p>
+                </SpotlightCard>
               </motion.div>
             );
           })}

@@ -129,3 +129,116 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Custom cursor — hide native arrow on non-form elements when on */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-on,
+  html.custom-cursor-on * {
+    cursor: none !important;
+  }
+  html.custom-cursor-on input,
+  html.custom-cursor-on textarea,
+  html.custom-cursor-on select {
+    cursor: text !important;
+  }
+}
+
+/* Animated underline for inline links */
+.link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform-origin: right center;
+  transform: scaleX(0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+/* Sliding arrow inside a link/button */
+.arrow-slide {
+  display: inline-flex;
+  overflow: hidden;
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.arrow-slide > svg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.arrow-slide > svg:last-child {
+  transform: translate(-120%, 120%);
+}
+.group:hover .arrow-slide > svg:first-child,
+.peer:hover .arrow-slide > svg:first-child {
+  transform: translate(120%, -120%);
+}
+.group:hover .arrow-slide > svg:last-child,
+.peer:hover .arrow-slide > svg:last-child {
+  transform: translate(0, 0);
+}
+
+/* Spotlight surface — a card with a cursor-following highlight */
+.spotlight-surface {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(16, 185, 129, 0.08),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.spotlight-surface:hover::before {
+  opacity: 1;
+}
+
+/* Shimmering border on hover for premium cards */
+.shimmer-border {
+  position: relative;
+}
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(16, 185, 129, 0.18) 50%,
+    rgba(255, 255, 255, 0.06)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.shimmer-border:hover::before {
+  opacity: 1;
+}
