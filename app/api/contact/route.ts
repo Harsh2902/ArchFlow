@@ -16,7 +16,9 @@ const ContactSchema = z.object({
 
 const FROM = "ArchFlow Website <notifications@archflow.co.in>";
 const TO_PRIMARY = "harsh@archflow.co.in";
-const CC = ["tanishq@archflow.co.in"];
+// Tanishq's mailbox not yet provisioned — keeping CC empty until it is,
+// otherwise a bouncing CC can cause the whole send to fail.
+const CC: string[] = [];
 
 export async function POST(request: Request) {
   let payload: unknown;
@@ -65,7 +67,7 @@ export async function POST(request: Request) {
     const result = await resend.emails.send({
       from: FROM,
       to: [TO_PRIMARY],
-      cc: CC,
+      ...(CC.length > 0 ? { cc: CC } : {}),
       replyTo: enquiry.email,
       subject,
       html,
