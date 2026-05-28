@@ -2,10 +2,15 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Slow-drifting animated color blobs. The kind of background you
  * stare at without realising why the site feels alive.
+ *
+ * On mobile / touch devices the blob count, size, blur, and animation
+ * are all dialled way down — four 720px blur(60px) elements animating
+ * forever will crash memory-constrained mobile Safari on scroll.
  *
  * Variants:
  * - "hero"  → biggest, most saturated, sits behind the hero
@@ -19,8 +24,9 @@ interface AuroraProps {
 
 export function Aurora({ variant = "soft", className }: AuroraProps) {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
 
-  const blobs =
+  const desktopBlobs =
     variant === "hero"
       ? [
           { color: "rgba(16, 185, 129, 0.35)", size: 720, x: "10%", y: "20%" },
@@ -36,6 +42,14 @@ export function Aurora({ variant = "soft", className }: AuroraProps) {
             { color: "rgba(16, 185, 129, 0.14)", size: 520, x: "15%", y: "25%" },
             { color: "rgba(59, 130, 246, 0.10)", size: 480, x: "85%", y: "75%" }
           ];
+
+  // Mobile: at most 2 blobs, capped size, lighter blur, never animated.
+  const blobs = isMobile
+    ? desktopBlobs.slice(0, 2).map((b) => ({ ...b, size: Math.min(b.size, 300) }))
+    : desktopBlobs;
+
+  const blurPx = isMobile ? 38 : 60;
+  const animateOff = reduce || isMobile;
 
   return (
     <div
@@ -56,10 +70,11 @@ export function Aurora({ variant = "soft", className }: AuroraProps) {
             top: b.y,
             transform: "translate(-50%, -50%)",
             background: `radial-gradient(circle, ${b.color} 0%, transparent 60%)`,
-            filter: "blur(60px)"
+            filter: `blur(${blurPx}px)`,
+            willChange: animateOff ? undefined : "transform"
           }}
           animate={
-            reduce
+            animateOff
               ? undefined
               : {
                   x: [0, 30, -20, 0],

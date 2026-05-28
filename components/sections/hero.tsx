@@ -16,11 +16,13 @@ import { GridPattern } from "@/components/ambient/grid-pattern";
 import { OSPreview } from "@/components/showcase/os-preview";
 import { HeroBackdrop } from "@/components/showcase/hero-backdrop";
 import { SplitText } from "@/components/motion/split-text";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 const HEADLINE = "Built for the businesses Excel can't keep up with.";
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -30,9 +32,14 @@ export function Hero() {
   // Differential parallax (FIX 10D). Positive Y = lags the scroll (moves
   // up slower), creating layered depth. Background lags most (~0.3x),
   // headline lags a little (~0.7x), foreground (subtitle/CTAs) is 1x.
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
-  const headlineY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 50]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, 50]);
   const bgOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+
+  // Scroll-driven transforms on the heavy ambient layer are disabled on
+  // mobile / reduced-motion — re-compositing blurred blobs every scroll
+  // frame is a primary cause of mobile Safari memory crashes.
+  const fx = !reduce && !isMobile;
 
   return (
     <section
@@ -40,17 +47,19 @@ export function Hero() {
       className="relative isolate flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-background"
       aria-labelledby="hero-heading"
     >
-      {/* Ambient + 3D backdrop layer (slowest parallax) */}
+      {/* Ambient + 3D backdrop layer (slowest parallax; static on mobile) */}
       <motion.div
-        style={{ y: bgY, opacity: bgOpacity }}
+        style={fx ? { y: bgY, opacity: bgOpacity } : undefined}
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <Aurora variant="hero" />
-        <GridPattern interactive />
+        <GridPattern interactive={fx} />
         {/* 3D arch sits on the right, behind the OS preview, desktop only */}
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] md:block">
-          <HeroBackdrop />
-        </div>
+        {fx && (
+          <div className="absolute inset-y-0 right-0 hidden w-[46%] md:block">
+            <HeroBackdrop />
+          </div>
+        )}
       </motion.div>
 
       {/* Subtle horizontal scanline at top */}
@@ -89,7 +98,7 @@ export function Hero() {
               reduced-motion (see SplitText + globals.css .split-char). */}
           <motion.h1
             id="hero-heading"
-            style={{ y: headlineY }}
+            style={fx ? { y: headlineY } : undefined}
             className="heading-display max-w-[18ch] text-[44px] sm:text-[64px] lg:text-[80px] xl:text-[92px]"
           >
             <SplitText

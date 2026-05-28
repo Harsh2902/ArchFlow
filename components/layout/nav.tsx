@@ -31,9 +31,11 @@ export function Nav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        // Lighter blur on mobile (heavy backdrop-blur during scroll adds
+        // GPU cost on iOS); full blur from md up.
         scrolled
-          ? "border-b border-white/5 bg-background/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-background/30 backdrop-blur-sm"
+          ? "border-b border-white/5 bg-background/90 backdrop-blur-md md:bg-background/80 md:backdrop-blur-xl"
+          : "border-b border-transparent bg-background/50 backdrop-blur-sm md:bg-background/30"
       )}
     >
       <div className="container-page flex h-16 items-center justify-between">
