@@ -148,6 +148,17 @@
   }
 }
 
+/* On mobile, pin headline characters visible (no reveal animation) so the
+   largest text paints on first frame — meaningfully improves mobile LCP
+   and removes main-thread animation cost. The reveal still plays on md+. */
+@media (max-width: 767px) {
+  .split-char {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* Pin every character visible, no motion */
   .split-char {

@@ -116,15 +116,22 @@ export function DashboardPranav() {
               Regions
             </p>
             <nav className="mt-1 space-y-0.5">
-              {["Chandigarh", "Punjab", "Haryana", "Himachal", "Delhi NCR"].map(
-                (r) => (
+              {/* Static counts — must be deterministic to avoid SSR/client
+                  hydration mismatch (was Math.random → React error #418). */}
+              {[
+                ["Chandigarh", 92],
+                ["Punjab", 74],
+                ["Haryana", 61],
+                ["Himachal", 38],
+                ["Delhi NCR", 47]
+              ].map(([r, count]) => (
                   <div
-                    key={r}
+                    key={r as string}
                     className="flex items-center justify-between rounded-md px-2 py-1 text-[11px] text-foreground/70"
                   >
                     <span>{r}</span>
                     <span className="text-muted-foreground">
-                      {Math.floor(20 + Math.random() * 90)}
+                      {count}
                     </span>
                   </div>
                 )

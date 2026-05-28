@@ -9,6 +9,7 @@ import {
   Loader2,
   Circle
 } from "lucide-react";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Live "ArchFlow OS" preview that sits in the hero. A mini dashboard
@@ -32,10 +33,14 @@ const STAGES: { key: Stage; label: string }[] = [
 
 export function OSPreview() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
   const [active, setActive] = useState(2);
 
   useEffect(() => {
-    if (reduce) return;
+    // Freeze the looping timeline on mobile / reduced-motion — a forever
+    // setInterval re-rendering 7 rows is a long main-thread task and a
+    // non-composited animation on phones. Static state still looks complete.
+    if (reduce || isMobile) return;
     const id = setInterval(() => {
       setActive((v) => (v + 1) % STAGES.length);
     }, 2400);

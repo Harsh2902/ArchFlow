@@ -12,20 +12,21 @@ interface SplitTextProps {
 }
 
 /**
- * Character-level reveal that is robust without JavaScript.
+ * Character-level reveal that is robust without JavaScript and valid for
+ * assistive tech.
  *
- * The animation is pure CSS (keyframe `char-rise` in globals.css with
- * per-character `animation-delay`), so:
- *   - With JS disabled, the CSS animation still auto-plays and the text
- *     ends fully visible with real spaces between words.
- *   - With `prefers-reduced-motion`, a media query pins every character
- *     visible and disables the animation.
- *   - Screen readers read the plain `aria-label` on the wrapper; the
- *     per-character spans are aria-hidden.
+ * Accessibility: the full sentence is exposed once via a visually-hidden
+ * `sr-only` node; the animated per-character spans are `aria-hidden`. We
+ * deliberately do NOT put `aria-label` on the wrapper — a plain <span>
+ * has the generic role, where aria-label is prohibited (Lighthouse flags
+ * it). Screen readers read the sr-only copy instead.
  *
- * Real space characters sit between word groups so spacing survives even
- * if styling fails. Word groups are inline-block so a word never breaks
- * across lines mid-character.
+ * Motion: the animation is pure CSS (.split-char keyframe in globals.css
+ * with per-character animation-delay), so it auto-plays even with JS
+ * disabled and ends fully visible with real spaces between words. On
+ * mobile and under prefers-reduced-motion the characters are pinned
+ * visible (see globals.css) so the headline paints instantly — better
+ * mobile LCP and no main-thread animation cost.
  */
 export function SplitText({
   text,
@@ -38,48 +39,52 @@ export function SplitText({
   let charCounter = 0;
 
   return (
-    <span className={cn("split-text", className)} aria-label={text}>
-      {words.map((word, wi) => {
-        const bare = word.replace(/[.,!?'"]/g, "");
-        const isHighlight = !!highlight && bare === highlight;
-        const chars = Array.from(word);
+    <span className={cn("split-text", className)}>
+      {/* Accessible name for the heading/element, read by screen readers */}
+      <span className="sr-only">{text}</span>
 
-        const wordGroup = (
-          <span
-            key={`w-${wi}`}
-            aria-hidden="true"
-            className={cn(
-              "inline-block whitespace-nowrap",
-              isHighlight && "font-display italic text-emerald-400"
-            )}
-          >
-            {chars.map((ch, ci) => {
-              const delay = startDelayMs + charCounter * staggerMs;
-              charCounter += 1;
-              return (
-                <span
-                  key={ci}
-                  className="split-char"
-                  style={{ animationDelay: `${delay}ms` }}
-                >
-                  {ch}
-                </span>
-              );
-            })}
-          </span>
-        );
+      {/* Decorative animated characters — hidden from assistive tech */}
+      <span aria-hidden="true">
+        {words.map((word, wi) => {
+          const bare = word.replace(/[.,!?'"]/g, "");
+          const isHighlight = !!highlight && bare === highlight;
+          const chars = Array.from(word);
 
-        // Account for the inter-word space in the stagger timing so the
-        // rhythm stays even across the whole line.
-        charCounter += 1;
+          const wordGroup = (
+            <span
+              key={`w-${wi}`}
+              className={cn(
+                "inline-block whitespace-nowrap",
+                isHighlight && "font-display italic text-emerald-400"
+              )}
+            >
+              {chars.map((ch, ci) => {
+                const delay = startDelayMs + charCounter * staggerMs;
+                charCounter += 1;
+                return (
+                  <span
+                    key={ci}
+                    className="split-char"
+                    style={{ animationDelay: `${delay}ms` }}
+                  >
+                    {ch}
+                  </span>
+                );
+              })}
+            </span>
+          );
 
-        return (
-          <span key={`grp-${wi}`}>
-            {wordGroup}
-            {wi < words.length - 1 ? " " : ""}
-          </span>
-        );
-      })}
+          // Account for the inter-word space in the stagger timing.
+          charCounter += 1;
+
+          return (
+            <span key={`grp-${wi}`}>
+              {wordGroup}
+              {wi < words.length - 1 ? " " : ""}
+            </span>
+          );
+        })}
+      </span>
     </span>
   );
 }
