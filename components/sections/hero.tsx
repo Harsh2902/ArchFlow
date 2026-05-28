@@ -66,14 +66,14 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
       <div className="container-page relative z-10 grid items-center gap-10 pt-12 pb-24 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pt-24 lg:pb-32">
-        {/* Left: copy */}
+        {/* Left: copy. Entrance uses the CSS .hero-rise class (not framer)
+            so the text is visible in the server HTML — critical for mobile
+            LCP, where the subhead is the largest contentful paint. */}
         <div>
           {/* Live status pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs backdrop-blur-sm"
+          <div
+            className="hero-rise mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs backdrop-blur-sm"
+            style={{ animationDelay: "0ms" }}
           >
             <span className="relative inline-flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
@@ -82,20 +82,15 @@ export function Hero() {
             <span className="text-foreground/80">Live deployment at Pranav Doors</span>
             <span className="text-muted-foreground">·</span>
             <span className="font-medium text-emerald-400">Chandigarh</span>
-          </motion.div>
+          </div>
 
           {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05, ease: "easeOut" }}
-            className="eyebrow mb-6"
-          >
+          <p className="hero-rise eyebrow mb-6" style={{ animationDelay: "60ms" }}>
             Custom Workflow Platforms
-          </motion.p>
+          </p>
 
-          {/* Headline — character-level reveal that survives no-JS and
-              reduced-motion (see SplitText + globals.css .split-char). */}
+          {/* Headline — character-level reveal (CSS, no-JS + reduced-motion
+              safe). Parallax y only applies on desktop via fx. */}
           <motion.h1
             id="hero-heading"
             style={fx ? { y: headlineY } : undefined}
@@ -109,25 +104,21 @@ export function Hero() {
             />
           </motion.h1>
 
-          {/* Subhead (1x — no parallax) */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: reduce ? 0 : 0.9 }}
-            className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:text-[19px]"
+          {/* Subhead — the mobile LCP element; rendered visible immediately */}
+          <p
+            className="hero-rise mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:text-[19px]"
+            style={{ animationDelay: "120ms" }}
           >
             ArchFlow designs and builds custom MIS and workflow platforms for
             India&apos;s manufacturers, fabricators, and project-based
             businesses. From enquiry to installation &mdash; one platform, your
             entire business.
-          </motion.p>
+          </p>
 
-          {/* CTAs (1x) */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: reduce ? 0 : 1.0 }}
-            className="mt-10 flex flex-wrap items-center gap-3"
+          {/* CTAs */}
+          <div
+            className="hero-rise mt-10 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: "180ms" }}
           >
             <Magnetic>
               <Button asChild size="lg" className="group">
@@ -148,14 +139,12 @@ export function Hero() {
                 </Link>
               </Button>
             </Magnetic>
-          </motion.div>
+          </div>
 
-          {/* Stats strip (1x) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: reduce ? 0 : 1.15 }}
-            className="mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-white/5 pt-6"
+          {/* Stats strip */}
+          <div
+            className="hero-rise mt-14 grid max-w-md grid-cols-3 gap-6 border-t border-white/5 pt-6"
+            style={{ animationDelay: "240ms" }}
           >
             {[
               { v: "10+", l: "Departments live" },
@@ -171,21 +160,13 @@ export function Hero() {
                 </p>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Right: live OS preview widget */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 0.9,
-            delay: reduce ? 0 : 0.4,
-            ease: [0.22, 1, 0.36, 1]
-          }}
-        >
+        <div className="hero-rise" style={{ animationDelay: "300ms" }}>
           <OSPreview />
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom gradient fade */}
