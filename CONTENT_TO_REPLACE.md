@@ -12,8 +12,10 @@ Every placeholder, by page and section. Search the codebase for the string
   cards. Both are real and confirmed.
 - **Address** — currently `Chandigarh, India`. Replace with the full
   registered/office address when ready.
-- **Social URLs** — `linkedin.com/company/archflow` and `x.com/archflow`
-  are placeholders. Confirm the real handles and update.
+- **Social links** — removed entirely (no LinkedIn / X accounts yet).
+  When accounts exist, re-add a `social` object to `lib/site.ts` and
+  the links to the footer + contact card, and add `sameAs` back to the
+  Organization schema in `components/seo/structured-data.tsx`.
 
 ---
 

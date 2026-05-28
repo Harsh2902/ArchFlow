@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { IstClock } from "@/components/layout/ist-clock";
 import { site } from "@/lib/site";
@@ -22,7 +21,7 @@ export function Footer() {
             <IstClock />
           </div>
 
-          <div className="space-y-4 md:col-span-2">
+          <div className="space-y-4 md:col-span-3">
             <p className="text-xs font-medium uppercase tracking-eyebrow text-muted-foreground">
               Site
             </p>
@@ -48,7 +47,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-4 md:col-span-3">
+          <div className="space-y-4 md:col-span-4">
             <p className="text-xs font-medium uppercase tracking-eyebrow text-muted-foreground">
               Contact
             </p>
@@ -66,35 +65,6 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-4 md:col-span-2">
-            <p className="text-xs font-medium uppercase tracking-eyebrow text-muted-foreground">
-              Social
-            </p>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href={site.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1 text-foreground/80 hover:text-emerald-400 transition-colors"
-                >
-                  <span className="link-underline">LinkedIn</span>
-                  <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={site.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1 text-foreground/80 hover:text-emerald-400 transition-colors"
-                >
-                  <span className="link-underline">X / Twitter</span>
-                  <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Massive wordmark */}

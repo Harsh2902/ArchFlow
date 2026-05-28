@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin, Linkedin, Calendar, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Button } from "@/components/ui/button";
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-6 grid gap-3 border-t border-white/5 pt-6 text-sm sm:grid-cols-2">
+              <div className="mt-6 border-t border-white/5 pt-6 text-sm">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
                   <div>
@@ -135,22 +135,6 @@ export default function ContactPage() {
                       Based in
                     </p>
                     <p className="mt-0.5 text-foreground/90">{site.address}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <Linkedin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
-                  <div>
-                    <p className="text-[11px] uppercase tracking-eyebrow text-muted-foreground">
-                      LinkedIn
-                    </p>
-                    <a
-                      href={site.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-0.5 block text-foreground/90 hover:text-emerald-400 transition-colors"
-                    >
-                      /company/archflow
-                    </a>
                   </div>
                 </div>
               </div>

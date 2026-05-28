@@ -26,8 +26,7 @@ export function pageOg(
     twitter: {
       card: "summary_large_image",
       title,
-      description,
-      creator: "@archflow"
+      description
     }
   };
 }

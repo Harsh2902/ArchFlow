@@ -7,10 +7,6 @@ export const site = {
   email: "harsh@archflow.co.in",
   phone: "+91 79880 19331",
   address: "Chandigarh, India",
-  social: {
-    linkedin: "https://linkedin.com/company/archflow",
-    twitter: "https://x.com/archflow"
-  },
   nav: [
     { label: "Work", href: "/work" },
     { label: "Services", href: "/services" },

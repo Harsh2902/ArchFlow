@@ -94,7 +94,7 @@ LinkedIn pages rank surprisingly well for branded searches and B2B decision-make
     - Both founders should **add the company as their current employer** on their personal profiles
     - Both founders should post about ArchFlow once a week. The personal profile reach is 50× the company page reach early on.
 
-Once the URL is created, update `lib/site.ts` → `social.linkedin` to the real URL and push.
+Once the URL is created, re-add a `social` object to `lib/site.ts` with the real LinkedIn URL, wire it into the footer + contact card, and add it to `sameAs` in the Organization schema (`components/seo/structured-data.tsx`), then push.
 
 ### 5. ⚡ Verify the OG image works (5 min)
 Once Vercel finishes deploying:

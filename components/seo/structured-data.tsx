@@ -65,7 +65,6 @@ export const organizationSchema = {
     { "@type": "AdministrativeArea", name: "Himachal Pradesh" },
     { "@type": "AdministrativeArea", name: "Delhi NCR" }
   ],
-  sameAs: [site.social.linkedin, site.social.twitter],
   knowsAbout: [
     "Custom ERP development",
     "MIS platform development",
