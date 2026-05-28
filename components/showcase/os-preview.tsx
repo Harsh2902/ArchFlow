@@ -131,10 +131,10 @@ export function OSPreview() {
                   <span
                     className={`text-xs ${
                       status === "pending"
-                        ? "text-muted-foreground/60"
+                        ? "text-muted-foreground"
                         : status === "active"
                           ? "text-foreground"
-                          : "text-foreground/80"
+                          : "text-foreground/90"
                     }`}
                   >
                     {s.label}

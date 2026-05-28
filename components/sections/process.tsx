@@ -137,19 +137,30 @@ function StepRow({
   const slice = 1 / STEPS.length;
   const start = index * slice;
   const end = (index + 1) * slice;
-  const opacity = useTransform(progress, [start, (start + end) / 2, end], [
-    0.35,
-    1,
-    0.35
-  ]);
+  const mid = (start + end) / 2;
+
+  // Drive the active highlight via background + border (not text opacity).
+  // Dimming text via opacity dropped the emerald number below the 4.5:1
+  // WCAG contrast floor; keeping text at full opacity fixes that while
+  // still conveying "active step" through the surface treatment.
+  const backgroundColor = useTransform(
+    progress,
+    [start, mid, end],
+    ["rgba(255,255,255,0.02)", "rgba(16,185,129,0.12)", "rgba(255,255,255,0.02)"]
+  );
+  const borderColor = useTransform(
+    progress,
+    [start, mid, end],
+    ["rgba(255,255,255,0.08)", "rgba(16,185,129,0.45)", "rgba(255,255,255,0.08)"]
+  );
 
   return (
     <motion.div
-      style={{ opacity }}
-      className="flex items-center gap-3 rounded-lg border border-white/10 bg-background/60 px-4 py-3"
+      style={{ backgroundColor, borderColor }}
+      className="flex items-center gap-3 rounded-lg border px-4 py-3"
     >
       <span className="font-display text-base text-emerald-400">{step.n}</span>
-      <span className="text-sm font-medium">{step.title}</span>
+      <span className="text-sm font-medium text-foreground">{step.title}</span>
     </motion.div>
   );
 }

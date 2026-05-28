@@ -203,11 +203,10 @@ function FlowNode({
 }) {
   const Icon = node.icon;
   const slice = 1 / NODES.length;
-  const opacity = useTransform(
-    progress,
-    [index * slice - 0.05, index * slice + 0.05],
-    [0.35, 1]
-  );
+  // No opacity-dimming on the node: fading the step number/label below
+  // full opacity dropped small muted text under the 4.5:1 WCAG contrast
+  // floor. The sequential "active" cue is carried entirely by the circle
+  // (border, background, glow, icon color), so the labels stay readable.
   const accent = useTransform(
     progress,
     [index * slice - 0.05, index * slice + 0.05],
@@ -239,10 +238,7 @@ function FlowNode({
 
   return (
     <div className="group relative flex flex-col items-center text-center">
-      <motion.div
-        style={{ opacity }}
-        className="relative flex h-32 flex-col items-center"
-      >
+      <div className="relative flex h-32 flex-col items-center">
         <div className="relative z-10">
           <motion.div
             style={{ borderColor, backgroundColor, boxShadow }}
@@ -263,7 +259,7 @@ function FlowNode({
         <p className="mt-1 text-sm font-semibold tracking-tight text-foreground">
           {node.label}
         </p>
-      </motion.div>
+      </div>
 
       <div className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 w-52 -translate-x-1/2 rounded-lg border border-white/10 bg-background/95 p-3 text-xs text-muted-foreground opacity-0 shadow-xl backdrop-blur transition-opacity duration-200 group-hover:opacity-100">
         {node.detail}
