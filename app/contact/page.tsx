@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin, Linkedin, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Calendar, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { ContactForm } from "@/components/forms/contact-form";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import {
   Accordion,
@@ -11,11 +12,19 @@ import {
 } from "@/components/ui/accordion";
 import { site } from "@/lib/site";
 import { founders } from "@/lib/founders";
+import { JsonLd, faqPageSchema } from "@/components/seo/structured-data";
+import { pageOg } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact ArchFlow — Talk to a founder",
   description:
-    "Talk to ArchFlow. We respond within 24 hours, Monday to Friday. Based in Chandigarh, working with businesses across India."
+    "Talk to ArchFlow directly. Email harsh@archflow.co.in, call +91 79880 19331, or use the form — responses within 24 hours, Mon-Fri. Based in Chandigarh, working across India.",
+  alternates: { canonical: "/contact" },
+  ...pageOg(
+    "Contact ArchFlow",
+    "Talk to ArchFlow. We respond within 24 hours, Mon to Fri. Based in Chandigarh, working with businesses across India.",
+    "/contact"
+  )
 };
 
 const FAQS = [
@@ -52,6 +61,7 @@ const FAQS = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={faqPageSchema(FAQS.map((f) => ({ q: f.q, a: f.a })))} />
       <PageHero
         eyebrow="Get in touch"
         title="Let's talk about your platform."
@@ -146,6 +156,7 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {/* TODO: Replace with Calendly inline embed when account is set up */}
             <div className="surface p-6 sm:p-8">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-emerald-400" />
@@ -154,17 +165,17 @@ export default function ContactPage() {
               <h3 className="mt-3 text-lg font-semibold">
                 Grab 30 minutes on the calendar
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                We&apos;ll walk through your operation and show you what we
-                built for Pranav Doors.
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                We&apos;ll share three slots in the next 48 hours after you
+                email us. Direct booking is coming soon.
               </p>
-              {/* TODO: paste Calendly embed */}
-              <div
-                aria-label="Calendly placeholder"
-                className="mt-4 grid h-32 place-items-center rounded-lg border border-dashed border-white/10 bg-white/[0.02] text-xs text-muted-foreground"
-              >
-                Calendly embed lands here
-              </div>
+              <Button asChild variant="secondary" size="sm" className="mt-5 group">
+                <a href={`mailto:${site.email}`}>
+                  <Mail className="h-3.5 w-3.5" />
+                  Email {site.email}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
             </div>
           </Reveal>
         </div>

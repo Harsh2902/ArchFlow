@@ -23,12 +23,21 @@ export function Reveal({
   const reduce = useReducedMotion();
   const MotionTag = motion[as];
 
+  // FIX 10E — section transitions use a spring with a subtle scale so
+  // content "settles" into place rather than just sliding.
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduce ? 0 : y },
+    hidden: {
+      opacity: 0,
+      y: reduce ? 0 : y,
+      scale: reduce ? 1 : 0.98
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }
+      scale: 1,
+      transition: reduce
+        ? { duration: 0.2, delay }
+        : { type: "spring", stiffness: 100, damping: 20, delay }
     }
   };
 
@@ -81,10 +90,11 @@ export function Stagger({
 }
 
 export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 24, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] }
+    scale: 1,
+    transition: { type: "spring", stiffness: 100, damping: 20 }
   }
 };

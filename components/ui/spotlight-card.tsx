@@ -35,10 +35,10 @@ export function SpotlightCard({
     <motion.div
       ref={ref}
       onMouseMove={onMove}
-      whileHover={{ y: -lift }}
-      transition={{ type: "spring", stiffness: 260, damping: 24 }}
+      whileHover={{ y: -lift, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className={cn(
-        "spotlight-surface shimmer-border relative h-full rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm transition-colors duration-300 hover:border-white/10 hover:bg-white/[0.04]",
+        "spotlight-surface shimmer-border relative h-full rounded-2xl border border-white/5 bg-white/[0.02] shadow-sm backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-emerald-500/5",
         className
       )}
     >

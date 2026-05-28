@@ -14,8 +14,10 @@ import { Magnetic } from "@/components/ui/magnetic-button";
 import { Aurora } from "@/components/ambient/aurora";
 import { GridPattern } from "@/components/ambient/grid-pattern";
 import { OSPreview } from "@/components/showcase/os-preview";
+import { HeroBackdrop } from "@/components/showcase/hero-backdrop";
+import { SplitText } from "@/components/motion/split-text";
 
-const HEADLINE = ["Built", "for", "the", "businesses", "Excel", "can't", "keep", "up", "with."];
+const HEADLINE = "Built for the businesses Excel can't keep up with.";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -24,8 +26,13 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"]
   });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Differential parallax (FIX 10D). Positive Y = lags the scroll (moves
+  // up slower), creating layered depth. Background lags most (~0.3x),
+  // headline lags a little (~0.7x), foreground (subtitle/CTAs) is 1x.
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 50]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
     <section
@@ -33,17 +40,23 @@ export function Hero() {
       className="relative isolate flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-background"
       aria-labelledby="hero-heading"
     >
-      {/* Ambient layers */}
-      <Aurora variant="hero" className="-z-10" />
-      <GridPattern className="-z-10" interactive />
+      {/* Ambient + 3D backdrop layer (slowest parallax) */}
+      <motion.div
+        style={{ y: bgY, opacity: bgOpacity }}
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <Aurora variant="hero" />
+        <GridPattern interactive />
+        {/* 3D arch sits on the right, behind the OS preview, desktop only */}
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] md:block">
+          <HeroBackdrop />
+        </div>
+      </motion.div>
 
       {/* Subtle horizontal scanline at top */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      <motion.div
-        style={{ y: heroY, opacity: heroOpacity }}
-        className="container-page relative z-10 grid items-center gap-10 pt-12 pb-24 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pt-24 lg:pb-32"
-      >
+      <div className="container-page relative z-10 grid items-center gap-10 pt-12 pb-24 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pt-24 lg:pb-32">
         {/* Left: copy */}
         <div>
           {/* Live status pill */}
@@ -72,37 +85,22 @@ export function Hero() {
             Custom Workflow Platforms
           </motion.p>
 
-          {/* Headline — word-by-word skew + fade */}
-          <h1
+          {/* Headline — character-level reveal that survives no-JS and
+              reduced-motion (see SplitText + globals.css .split-char). */}
+          <motion.h1
             id="hero-heading"
+            style={{ y: headlineY }}
             className="heading-display max-w-[18ch] text-[44px] sm:text-[64px] lg:text-[80px] xl:text-[92px]"
           >
-            {HEADLINE.map((word, i) => (
-              <span
-                key={`${word}-${i}`}
-                className="mr-[0.22em] inline-block overflow-hidden align-bottom"
-              >
-                <motion.span
-                  initial={{ y: "120%", rotate: reduce ? 0 : -6, opacity: 0 }}
-                  animate={{ y: 0, rotate: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.7,
-                    delay: reduce ? 0 : 0.15 + i * 0.055,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className="inline-block"
-                >
-                  {word === "Excel" ? (
-                    <span className="italic text-emerald-400">{word}</span>
-                  ) : (
-                    word
-                  )}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
+            <SplitText
+              text={HEADLINE}
+              highlight="Excel"
+              startDelayMs={150}
+              staggerMs={15}
+            />
+          </motion.h1>
 
-          {/* Subhead */}
+          {/* Subhead (1x — no parallax) */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +113,7 @@ export function Hero() {
             entire business.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs (1x) */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -143,7 +141,7 @@ export function Hero() {
             </Magnetic>
           </motion.div>
 
-          {/* Stats strip */}
+          {/* Stats strip (1x) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -179,7 +177,7 @@ export function Hero() {
         >
           <OSPreview />
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Bottom gradient fade */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 bg-gradient-to-b from-transparent to-background" />

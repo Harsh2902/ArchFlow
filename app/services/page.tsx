@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { pageOg } from "@/lib/og";
 import { PageHero } from "@/components/layout/page-hero";
 import { Process } from "@/components/sections/process";
 import { Reveal } from "@/components/motion/reveal";
@@ -8,9 +9,15 @@ import { Button } from "@/components/ui/button";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services — What we build",
+  title: "Services — Custom ERP, MIS, CRM & workflow platforms",
   description:
-    "Custom-built workflow platforms, MIS dashboards, CRMs, and operational systems for Indian industrial businesses."
+    "Custom-built quotation & MIS platforms, end-to-end workflow systems, industrial CRMs, production & dispatch coordination, multi-location operations, and leadership dashboards — all built around your operation.",
+  alternates: { canonical: "/services" },
+  ...pageOg(
+    "Services — What we build | ArchFlow",
+    "Custom-built workflow platforms, MIS dashboards, CRMs, and operational systems for Indian industrial businesses.",
+    "/services"
+  )
 };
 
 export default function ServicesPage() {

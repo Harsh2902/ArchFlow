@@ -3,7 +3,9 @@ import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Terms of use",
-  description: "Terms governing your use of the archflow.co.in website."
+  description: "Terms governing your use of the archflow.co.in website.",
+  alternates: { canonical: "/terms" },
+  robots: { index: false, follow: true }
 };
 
 export default function TermsPage() {

@@ -49,13 +49,22 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm transition-colors",
+                  "group relative rounded-md px-3 py-2 text-sm transition-colors",
                   active
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {item.label}
+                {/* FIX 10C — underline grows from left on hover with a
+                    spring-like overshoot easing; pinned for active route */}
+                <span
+                  aria-hidden
+                  className={cn(
+                    "ease-spring absolute inset-x-3 -bottom-0.5 h-px origin-left bg-emerald-400 transition-transform duration-300 group-hover:scale-x-100",
+                    active ? "scale-x-100" : "scale-x-0"
+                  )}
+                />
               </Link>
             );
           })}

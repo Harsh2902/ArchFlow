@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Aurora } from "@/components/ambient/aurora";
 import { GridPattern } from "@/components/ambient/grid-pattern";
+import { SplitText } from "@/components/motion/split-text";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -17,9 +18,6 @@ export function PageHero({
   subtitle,
   align = "left"
 }: PageHeroProps) {
-  const reduce = useReducedMotion();
-  const words = title.split(" ");
-
   return (
     <section className="relative isolate overflow-hidden border-b border-white/5 bg-background">
       <Aurora variant="soft" className="-z-10" />
@@ -48,25 +46,7 @@ export function PageHero({
             align === "center" ? "mx-auto max-w-4xl" : "max-w-4xl"
           }`}
         >
-          {words.map((w, i) => (
-            <span
-              key={`${w}-${i}`}
-              className="mr-[0.22em] inline-block overflow-hidden align-bottom"
-            >
-              <motion.span
-                initial={{ y: "120%", rotate: reduce ? 0 : -4, opacity: 0 }}
-                animate={{ y: 0, rotate: 0, opacity: 1 }}
-                transition={{
-                  duration: 0.7,
-                  delay: reduce ? 0 : 0.1 + i * 0.05,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                className="inline-block"
-              >
-                {w}
-              </motion.span>
-            </span>
-          ))}
+          <SplitText text={title} startDelayMs={100} staggerMs={14} />
         </h1>
 
         {subtitle && (

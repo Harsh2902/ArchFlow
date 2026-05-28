@@ -7,6 +7,11 @@ import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { NoiseOverlay } from "@/components/ambient/noise";
 import { CustomCursor } from "@/components/ambient/custom-cursor";
+import {
+  JsonLd,
+  organizationSchema,
+  websiteSchema
+} from "@/components/seo/structured-data";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,16 +36,18 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`
   },
   description: site.description,
-  keywords: [
-    "custom MIS",
-    "workflow platform",
-    "manufacturing software India",
-    "fabrication ERP",
-    "industrial software India",
-    "custom CRM",
-    "production management"
+  applicationName: site.name,
+  authors: [
+    { name: "Harsh Dhankhar" },
+    { name: "Tanishq Trehan" }
   ],
-  authors: [{ name: "ArchFlow" }],
+  creator: "ArchFlow",
+  publisher: "ArchFlow",
+  category: "Technology",
+  classification: "B2B SaaS · Custom Software Development",
+  // NOTE: meta keywords intentionally omitted — Google has ignored them
+  // since 2009 and they offer no SEO value.
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -52,7 +59,23 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
-    description: site.description
+    description: site.description,
+    creator: "@archflow"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
+  verification: {
+    // Once you verify in Google Search Console, paste the verification
+    // string here. Format: { google: "abc123..." }
   }
 };
 
@@ -68,6 +91,8 @@ export default function RootLayout({
       className={`${inter.variable} ${instrumentSerif.variable}`}
     >
       <body className="font-sans antialiased">
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

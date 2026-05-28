@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/og";
 import { Hero } from "@/components/sections/hero";
 import { Problem } from "@/components/sections/problem";
 import { FlowDiagram } from "@/components/sections/flow-diagram";
@@ -10,9 +11,16 @@ import { Testimonial } from "@/components/sections/testimonial";
 import { FinalCTA } from "@/components/sections/final-cta";
 
 export const metadata: Metadata = {
-  title: "ArchFlow — Custom workflow platforms for Indian industry",
+  title:
+    "ArchFlow — Custom workflow & MIS platforms for Indian manufacturers",
   description:
-    "Custom MIS and workflow platforms for manufacturers, fabricators, and project-based businesses. From enquiry to installation — one platform, your entire business."
+    "ArchFlow builds custom MIS, ERP-alternative, and workflow platforms for Indian manufacturers, fabricators, fenestration companies, PEB, and modular interior businesses. Live deployment at Pranav Doors. Ship in weeks, not years.",
+  alternates: { canonical: "/" },
+  ...pageOg(
+    "ArchFlow — Custom workflow platforms for Indian industry",
+    "Custom MIS and workflow platforms for manufacturers, fabricators, and project-based businesses.",
+    "/"
+  )
 };
 
 export default function HomePage() {

@@ -246,7 +246,9 @@ function FlowNode({
         <div className="relative z-10">
           <motion.div
             style={{ borderColor, backgroundColor, boxShadow }}
-            className="grid h-14 w-14 place-items-center rounded-full border backdrop-blur transition-transform group-hover:scale-105"
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="grid h-14 w-14 place-items-center rounded-full border backdrop-blur"
           >
             <motion.div style={{ color: iconColor }}>
               <Icon className="h-5 w-5" />

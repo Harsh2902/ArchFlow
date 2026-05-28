@@ -1,90 +1,74 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useSpring } from "framer-motion";
 
 /**
- * Custom cursor — a small dot with a trailing ring that grows over
- * interactive elements. Uses mix-blend-mode: difference so it inverts
- * over any background.
+ * Desktop-only custom cursor: a small emerald dot (8px) that follows
+ * the pointer with a slight spring lag and grows to 32px over
+ * interactive elements.
  *
- * Disabled on touch devices and on prefers-reduced-motion.
+ * Safe by construction:
+ *   - pointer-events-none → never blocks clicks, text selection, or scroll
+ *   - rendered null on touch devices and prefers-reduced-motion
+ *   - the native cursor is only hidden (via the .custom-cursor-on class
+ *     in globals.css) while this is mounted, and restored on unmount
  */
 export function CustomCursor() {
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
-  const [isPointer, setIsPointer] = useState(false);
-  const [isCoarse, setIsCoarse] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [active, setActive] = useState(false);
 
-  // smooth springs for trailing ring
-  const ringX = useSpring(-40, { stiffness: 220, damping: 28, mass: 0.4 });
-  const ringY = useSpring(-40, { stiffness: 220, damping: 28, mass: 0.4 });
-  // dot tracks 1:1 (no spring) for crispness
-  const dotRef = useRef<HTMLDivElement>(null);
+  // Slight-lag follow.
+  const x = useSpring(-100, { stiffness: 500, damping: 40, mass: 0.5 });
+  const y = useSpring(-100, { stiffness: 500, damping: 40, mass: 0.5 });
 
   useEffect(() => {
     setMounted(true);
     if (typeof window === "undefined") return;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
-    setIsCoarse(coarse);
-    if (coarse || reduce) return;
+    if (coarse || reduce) {
+      setDisabled(true);
+      return;
+    }
 
     const onMove = (e: MouseEvent) => {
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
-      }
-      ringX.set(e.clientX - 18);
-      ringY.set(e.clientY - 18);
-
+      x.set(e.clientX);
+      y.set(e.clientY);
       const target = e.target as HTMLElement | null;
-      if (!target) return;
-      const interactive =
-        !!target.closest(
-          "a, button, [role='button'], input, textarea, select, [data-cursor='pointer']"
-        );
-      setIsPointer(interactive);
+      setActive(
+        !!target?.closest(
+          "a, button, [role='button'], input, textarea, select, label, [data-cursor='pointer']"
+        )
+      );
     };
 
-    const onLeave = () => setIsPointer(false);
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseleave", onLeave);
     document.documentElement.classList.add("custom-cursor-on");
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseleave", onLeave);
       document.documentElement.classList.remove("custom-cursor-on");
     };
-  }, [reduce, ringX, ringY]);
+  }, [reduce, x, y]);
 
-  if (!mounted || isCoarse || reduce) return null;
+  if (!mounted || disabled) return null;
 
   return (
-    <>
-      {/* trailing ring */}
+    <motion.div
+      aria-hidden
+      style={{ x, y }}
+      className="pointer-events-none fixed left-0 top-0 z-[9999] mix-blend-difference"
+    >
       <motion.div
-        aria-hidden
-        style={{ x: ringX, y: ringY }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] mix-blend-difference"
-      >
-        <motion.div
-          animate={{
-            width: isPointer ? 56 : 36,
-            height: isPointer ? 56 : 36,
-            borderColor: isPointer
-              ? "rgba(16,185,129,0.9)"
-              : "rgba(255,255,255,0.6)"
-          }}
-          transition={{ type: "spring", stiffness: 240, damping: 22 }}
-          className="rounded-full border bg-transparent"
-        />
-      </motion.div>
-
-      {/* center dot */}
-      <div
-        ref={dotRef}
-        aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-1.5 w-1.5 rounded-full bg-white mix-blend-difference"
+        animate={{
+          width: active ? 32 : 8,
+          height: active ? 32 : 8,
+          opacity: active ? 0.5 : 1
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="-translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400"
       />
-    </>
+    </motion.div>
   );
 }

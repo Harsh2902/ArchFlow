@@ -3,7 +3,9 @@ import { PageHero } from "@/components/layout/page-hero";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: "How ArchFlow handles your data and what we do with it."
+  description: "How ArchFlow handles your data and what we do with it.",
+  alternates: { canonical: "/privacy" },
+  robots: { index: false, follow: true }
 };
 
 export default function PrivacyPage() {

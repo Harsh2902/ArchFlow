@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { pageOg } from "@/lib/og";
 import { PageHero } from "@/components/layout/page-hero";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { founders } from "@/lib/founders";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About ArchFlow — Founders, story, principles",
   description:
-    "ArchFlow is a 2-founder company building custom workflow platforms for Indian industrial businesses. Engineering depth meets industry depth."
+    "ArchFlow is a 2-founder company building custom workflow and ERP platforms for Indian industrial businesses. Founded by Harsh Dhankhar (engineering) and Tanishq Trehan (industry). Based in Chandigarh.",
+  alternates: { canonical: "/about" },
+  ...pageOg(
+    "About ArchFlow",
+    "ArchFlow is a 2-founder company building custom workflow platforms for Indian industrial businesses. Engineering depth meets industry depth.",
+    "/about"
+  )
 };
 
 const VALUES = [

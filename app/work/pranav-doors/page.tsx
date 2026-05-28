@@ -5,11 +5,24 @@ import { PageHero } from "@/components/layout/page-hero";
 import { Reveal, Stagger } from "@/components/motion/reveal";
 import { StatCounter } from "@/components/motion/stat-counter";
 import { Button } from "@/components/ui/button";
+import {
+  JsonLd,
+  articleSchema,
+  breadcrumbsSchema
+} from "@/components/seo/structured-data";
+import { site } from "@/lib/site";
+import { pageOg } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Pranav Doors & Windows — Case Study",
+  title: "Pranav Doors & Windows — Fenestration ERP case study",
   description:
-    "How Pranav Doors runs its full multi-state fenestration operation on ArchFlow — from enquiry to installation, across 10 departments and 5+ states."
+    "How Pranav Doors runs its full multi-state fenestration operation on a custom ArchFlow ERP — quotation, sales, production, dispatch, installation, service. 10+ departments, 5+ states, live since 2024.",
+  alternates: { canonical: "/work/pranav-doors" },
+  ...pageOg(
+    "Pranav Doors & Windows case study | ArchFlow",
+    "How Pranav Doors runs its full multi-state fenestration operation on ArchFlow — from enquiry to installation.",
+    "/work/pranav-doors"
+  )
 };
 
 const FEATURES = [
@@ -46,9 +59,70 @@ const STATS = [
   { value: 100, suffix: "%", label: "Quote-to-order traceability" }
 ];
 
+// PLACEHOLDER: confirm exact phase durations with the delivery team.
+const ROLLOUT = [
+  {
+    when: "Week 1",
+    title: "Discovery on the floor",
+    detail:
+      "Days with the operators — design desk, dispatch yard, site visits. We mapped the real workflow before writing a line of code."
+  },
+  {
+    when: "Weeks 2–3",
+    title: "Quotation module live",
+    detail:
+      "The revenue engine moved first: configurable BOM, versioned quotes, approval matrix — in production within a fortnight."
+  },
+  {
+    when: "Weeks 4–6",
+    title: "Sales pipeline live",
+    detail:
+      "Territory hierarchy across states, BDM routing, site-visit logging, and lost-reason analytics went live."
+  },
+  {
+    when: "Weeks 7–12",
+    title: "Production & dispatch coordination",
+    detail:
+      "Job cards on the shop floor, store linkage, vehicle scheduling, and site acknowledgement closed the loop."
+  },
+  {
+    when: "Months 4–8",
+    title: "Installation, service & AMC modules",
+    detail:
+      "Post-install checklists, snag capture, AMC tracking, and complaint resolution layered in as the team scaled."
+  },
+  {
+    when: "Ongoing",
+    title: "Leadership MIS dashboards, evolving",
+    detail:
+      "Real-time order book, dispatch, collections, and region-wise pipeline — refined continuously as the business grows."
+  }
+];
+
 export default function PranavCaseStudy() {
   return (
     <>
+      <JsonLd
+        data={[
+          articleSchema({
+            headline:
+              "Pranav Doors & Windows — full fenestration operation on ArchFlow",
+            description:
+              "How Pranav Doors & Windows runs its full multi-state fenestration operation on a custom ArchFlow ERP — 10+ departments, 5+ states, live since 2024.",
+            url: `${site.url}/work/pranav-doors`,
+            datePublished: "2024-09-01",
+            dateModified: "2026-05-26"
+          }),
+          breadcrumbsSchema([
+            { name: "Home", url: site.url },
+            { name: "Work", url: `${site.url}/work` },
+            {
+              name: "Pranav Doors & Windows",
+              url: `${site.url}/work/pranav-doors`
+            }
+          ])
+        ]}
+      />
       <PageHero
         eyebrow="Case Study · Live deployment"
         title="Pranav Doors & Windows — one platform, the entire fenestration business."
@@ -143,6 +217,53 @@ export default function PranavCaseStudy() {
               </Reveal>
             ))}
           </Stagger>
+        </div>
+      </section>
+
+      {/* Rollout timeline */}
+      <section className="section-y border-b border-white/5">
+        <div className="container-page">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow mb-5">Rollout timeline</p>
+            <h2 className="heading-section text-[28px] sm:text-[40px] lg:text-[52px]">
+              Phased rollout, never a big-bang deploy.
+            </h2>
+          </Reveal>
+
+          {/* PLACEHOLDER: refine phase descriptions with real dates/notes */}
+          <div className="relative mx-auto mt-14 max-w-2xl">
+            {/* connecting line */}
+            <div
+              aria-hidden
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500/50 via-white/10 to-transparent sm:left-[9px]"
+            />
+            <ol className="space-y-8">
+              {ROLLOUT.map((phase, i) => (
+                <Reveal as="div" key={phase.when} delay={i * 0.05}>
+                  <li className="relative flex gap-5 pl-8 sm:pl-10">
+                    {/* dot */}
+                    <span
+                      aria-hidden
+                      className="absolute left-0 top-1.5 grid h-3.5 w-3.5 place-items-center rounded-full border border-emerald-400/40 bg-background sm:h-[18px] sm:w-[18px]"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 sm:h-2 sm:w-2" />
+                    </span>
+                    <div>
+                      <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                        {phase.when}
+                      </p>
+                      <h3 className="mt-1 text-lg font-semibold tracking-tight">
+                        {phase.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        {phase.detail}
+                      </p>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
