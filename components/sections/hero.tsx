@@ -70,9 +70,10 @@ export function Hero() {
             so the text is visible in the server HTML — critical for mobile
             LCP, where the subhead is the largest contentful paint. */}
         <div>
-          {/* Live status pill */}
+          {/* Live status pill — w-fit keeps it content-width but block-level
+              so the eyebrow sits on its own line below it (not inline). */}
           <div
-            className="hero-rise mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs backdrop-blur-sm"
+            className="hero-rise mb-8 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs backdrop-blur-sm"
             style={{ animationDelay: "0ms" }}
           >
             <span className="relative inline-flex h-2 w-2">
