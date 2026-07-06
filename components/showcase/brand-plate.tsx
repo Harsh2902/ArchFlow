@@ -75,12 +75,12 @@ export function BrandPlate({ className }: { className?: string }) {
           className="relative flex items-center justify-center px-10 py-12 sm:px-14 sm:py-16"
         >
           <Image
-            src="/brand/logo-mark.png"
+            src="/brand/logo-mark-512.png"
             alt="The ArchFlow mark"
-            width={560}
-            height={560}
+            width={512}
+            height={512}
             priority
-            sizes="(max-width: 768px) 80vw, 520px"
+            sizes="(max-width: 768px) 80vw, 440px"
             className="h-auto w-full max-w-[440px] drop-shadow-[0_20px_60px_rgba(88,101,242,0.35)]"
           />
         </motion.div>

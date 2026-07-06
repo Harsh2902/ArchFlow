@@ -1,14 +1,35 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { pageOg } from "@/lib/og";
 import { ChapterRail } from "@/components/layout/chapter-rail";
 import { Hero } from "@/components/sections/hero";
 import { CapabilitiesMarquee } from "@/components/sections/capabilities-marquee";
 import { Problem } from "@/components/sections/problem";
-import { FlowDiagram } from "@/components/sections/flow-diagram";
-import { ServicesPreview } from "@/components/sections/services-preview";
-import { CaseStudyFeature } from "@/components/sections/case-study-feature";
-import { People } from "@/components/sections/people";
-import { FinalCTA } from "@/components/sections/final-cta";
+
+// Below-fold chapters are code-split (SSR HTML still ships — this only
+// splits the client JS) so phones hydrate the hero fast and pick up the
+// rest of the story as its chunks stream in.
+const FlowDiagram = dynamic(
+  () => import("@/components/sections/flow-diagram").then((m) => m.FlowDiagram)
+);
+const ServicesPreview = dynamic(
+  () =>
+    import("@/components/sections/services-preview").then(
+      (m) => m.ServicesPreview
+    )
+);
+const CaseStudyFeature = dynamic(
+  () =>
+    import("@/components/sections/case-study-feature").then(
+      (m) => m.CaseStudyFeature
+    )
+);
+const People = dynamic(
+  () => import("@/components/sections/people").then((m) => m.People)
+);
+const FinalCTA = dynamic(
+  () => import("@/components/sections/final-cta").then((m) => m.FinalCTA)
+);
 
 export const metadata: Metadata = {
   title:

@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
   type MotionValue
@@ -18,7 +17,6 @@ import {
   Headphones
 } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Chapter 03 — the flow, pinned. The screen holds while the seven
@@ -40,23 +38,24 @@ const NODES = [
 ];
 
 export function FlowDiagram() {
-  const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
-  const pinned = !reduce && !isMobile;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"]
   });
 
+  // CSS decides the layout (never a JS branch): phones get the stacked
+  // stage list in the server HTML — instant paint, no hydration flip.
   return (
     <section
       id="story-flow"
       aria-labelledby="flow-heading"
       className="relative border-t border-foreground/[0.06]"
     >
-      {pinned ? (
-        <div ref={ref} className="relative h-[420vh]">
+      <div
+        ref={ref}
+        className="relative hidden h-[420vh] lg:block lg:motion-reduce:hidden"
+      >
           <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
             <div className="container-page">
               <div className="text-center">
@@ -91,9 +90,10 @@ export function FlowDiagram() {
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="section-y">
+      </div>
+
+      {/* Stacked stage list — mobile always; lg only under reduced motion */}
+      <div className="section-y lg:hidden lg:motion-reduce:block">
           <div className="container-page">
             <div className="text-center">
               <p className="eyebrow justify-center">
@@ -131,8 +131,7 @@ export function FlowDiagram() {
               })}
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </section>
   );
 }

@@ -3,14 +3,13 @@
 import { useRef } from "react";
 import {
   motion,
-  useReducedMotion,
+
   useScroll,
   useTransform,
   type MotionValue
 } from "framer-motion";
 import { FileSpreadsheet, MessagesSquare, EyeOff, ArrowDown } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
-import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Chapter 02 — the problem, told as a pinned card deck. The screen
@@ -48,50 +47,52 @@ const ACTS = [
 ];
 
 export function Problem() {
-  const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
-  const pinned = !reduce && !isMobile;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"]
   });
 
+  // Both layouts ship in the HTML and CSS picks one — never a JS branch.
+  // Phones paint the stacked story on first byte (no hydration wait, no
+  // re-layout flip); lg+ gets the pinned deck. motion-reduce falls back
+  // to the stacked layout on any screen.
   return (
     <section id="story-problem" aria-labelledby="problem-heading">
-      {pinned ? (
-        /* ── Pinned deck (desktop) ── */
-        <div ref={ref} className="relative h-[340vh]">
-          <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
-            <Header />
-            {/* overflow-hidden: waiting cards stay hidden below the deck
-                window until their slice, then slide up over the previous */}
-            <div className="relative mt-10 h-[380px] w-full max-w-2xl overflow-hidden rounded-3xl">
-              {ACTS.map((a, i) => (
-                <DeckCard key={a.title} act={a} index={i} progress={scrollYProgress} />
-              ))}
-            </div>
-            <ExitLine progress={scrollYProgress} />
+      {/* ── Pinned deck (lg+, motion allowed) ── */}
+      <div
+        ref={ref}
+        className="relative hidden h-[340vh] lg:block lg:motion-reduce:hidden"
+      >
+        <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
+          <Header />
+          {/* overflow-hidden: waiting cards stay hidden below the deck
+              window until their slice, then slide up over the previous */}
+          <div className="relative mt-10 h-[380px] w-full max-w-2xl overflow-hidden rounded-3xl">
+            {ACTS.map((a, i) => (
+              <DeckCard key={a.title} act={a} index={i} progress={scrollYProgress} />
+            ))}
           </div>
+          <ExitLine progress={scrollYProgress} />
         </div>
-      ) : (
-        /* ── Stacked fallback (mobile / reduced motion) ── */
-        <div className="section-y">
-          <div className="container-page">
-            <Header />
-            <div className="mt-10 space-y-4">
-              {ACTS.map((a) => (
-                <Reveal key={a.title}>
-                  <StaticCard act={a} />
-                </Reveal>
-              ))}
-            </div>
-            <p className="mt-10 text-center text-sm font-semibold text-flow-400">
-              Then we rebuilt the whole thing. ↓
-            </p>
+      </div>
+
+      {/* ── Stacked story (mobile always; lg only under reduced motion) ── */}
+      <div className="section-y lg:hidden lg:motion-reduce:block">
+        <div className="container-page">
+          <Header />
+          <div className="mt-10 space-y-4">
+            {ACTS.map((a) => (
+              <Reveal key={a.title}>
+                <StaticCard act={a} />
+              </Reveal>
+            ))}
           </div>
+          <p className="mt-10 text-center text-sm font-semibold text-flow-400">
+            Then we rebuilt the whole thing. ↓
+          </p>
         </div>
-      )}
+      </div>
     </section>
   );
 }

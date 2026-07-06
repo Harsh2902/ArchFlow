@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import {
   motion,
-  useReducedMotion,
+
   useScroll,
   useTransform,
   type MotionValue
@@ -13,7 +13,6 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { StatCounter } from "@/components/motion/stat-counter";
 import { DashboardPranav } from "@/components/showcase/dashboard-pranav";
-import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Chapter 05 — the proof. A pinned scene: the Pranav deployment story
@@ -55,14 +54,14 @@ const STATS = [
 ];
 
 export function CaseStudyFeature() {
-  const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
-  const pinned = !reduce && !isMobile;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"]
   });
+
+  // CSS decides the layout (never a JS branch): phones get the static
+  // proof block in the server HTML — instant paint, no hydration flip.
 
   return (
     <section
@@ -76,8 +75,10 @@ export function CaseStudyFeature() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10 mesh-bg opacity-50" />
 
-      {pinned ? (
-        <div ref={ref} className="relative h-[340vh]">
+      <div
+        ref={ref}
+        className="relative hidden h-[340vh] lg:block lg:motion-reduce:hidden"
+      >
           <div className="sticky top-0 flex h-screen items-center overflow-hidden">
             <div className="container-page grid items-center gap-14 lg:grid-cols-[1fr_1.05fr]">
               <div>
@@ -114,9 +115,10 @@ export function CaseStudyFeature() {
               <DashboardFrame progress={scrollYProgress} />
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="section-y">
+      </div>
+
+      {/* Static proof — mobile always; lg only under reduced motion */}
+      <div className="section-y lg:hidden lg:motion-reduce:block">
           <div className="container-page">
             <p className="eyebrow">
               <span className="h-1 w-1 rounded-full bg-flow-400" />
@@ -151,8 +153,7 @@ export function CaseStudyFeature() {
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
-        </div>
-      )}
+      </div>
     </section>
   );
 }
