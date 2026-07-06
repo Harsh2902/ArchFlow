@@ -44,7 +44,11 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Aurora variant="hero" />
-        <GridPattern interactive={fx} />
+        {/* grid layer skipped on mobile — masked full-screen gradients are
+            pure paint cost on phones */}
+        <div className="hidden lg:block">
+          <GridPattern interactive={fx} />
+        </div>
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-flow-500/40 to-transparent" />
 

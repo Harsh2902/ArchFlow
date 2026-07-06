@@ -203,7 +203,7 @@ function KpiTile({
   const max = Math.max(...spark);
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.05 * index, duration: 0.5 }}
@@ -231,7 +231,7 @@ function KpiTile({
           points={spark
             .map((v, i) => `${(i / (spark.length - 1)) * 100},${28 - (v / max) * 24}`)
             .join(" ")}
-          initial={{ pathLength: 0, opacity: 0 }}
+          initial={false}
           whileInView={{ pathLength: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, delay: 0.2 + index * 0.1 }}
@@ -242,7 +242,7 @@ function KpiTile({
           points={`0,28 ${spark
             .map((v, i) => `${(i / (spark.length - 1)) * 100},${28 - (v / max) * 24}`)
             .join(" ")} 100,28`}
-          initial={{ opacity: 0 }}
+          initial={false}
           whileInView={{ opacity: 0.4 }}
           viewport={{ once: true }}
           transition={{ duration: 1.4, delay: 0.4 + index * 0.1 }}
@@ -284,7 +284,7 @@ function BarChart() {
         {data.map((d, i) => (
           <div key={d.label} className="flex flex-1 flex-col items-center gap-1.5">
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
+              initial={false}
               whileInView={{ height: `${(d.value / max) * 100}%`, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
@@ -316,7 +316,7 @@ function PipelineList() {
         {items.map((it, i) => (
           <motion.div
             key={it.client}
-            initial={{ opacity: 0, x: -6 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 + i * 0.06 }}

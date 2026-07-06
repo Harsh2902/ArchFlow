@@ -16,32 +16,27 @@ const Hero3D = dynamic(() => import("@/components/showcase/hero-3d"), {
  * The hero's right-side visual:
  *   desktop + fine pointer + motion OK → the true 3D mark
  *   mobile / touch / reduced motion    → the interactive brand plate
- * Both fade in softly.
+ *
+ * SSR-visible by design: the plate ships fully opaque in the server
+ * HTML so phones see it on first paint with zero JS. Only the 3D
+ * branch (client-only anyway) fades in on mount.
  */
 export function HeroVisual() {
   const reduce = useReducedMotion();
   const [allow3D, setAllow3D] = useState(false);
-  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!reduce) {
-      const fine = window.matchMedia("(pointer: fine)").matches;
-      const wide = window.matchMedia("(min-width: 1024px)").matches;
-      if (fine && wide) setAllow3D(true);
-    }
-    const t = setTimeout(() => setShown(true), 60);
-    return () => clearTimeout(t);
+    if (typeof window === "undefined" || reduce) return;
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const wide = window.matchMedia("(min-width: 1024px)").matches;
+    if (fine && wide) setAllow3D(true);
   }, [reduce]);
 
   return (
-    <div
-      className="relative h-full w-full transition-opacity duration-1000 ease-out"
-      style={{ opacity: shown ? 1 : 0 }}
-    >
+    <div className="relative h-full w-full">
       {allow3D ? (
-        <>
-          {/* glow pedestal behind the 3D mark */}
+        // Desktop only — mounts client-side, fades in via .page-enter
+        <div className="page-enter absolute inset-0">
           <div
             aria-hidden
             className="absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-flow-600/25 blur-[110px]"
@@ -49,7 +44,7 @@ export function HeroVisual() {
           <div className="absolute inset-0">
             <Hero3D />
           </div>
-        </>
+        </div>
       ) : (
         <div className="flex h-full w-full items-center justify-center py-6">
           <BrandPlate className="w-full max-w-md" />

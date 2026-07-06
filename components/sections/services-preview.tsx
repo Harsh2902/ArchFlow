@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -49,23 +48,13 @@ export function ServicesPreview() {
             </Reveal>
           </div>
 
-          {/* Cascading tiles */}
+          {/* Cascading tiles — Reveal keeps them SSR-visible (no opacity:0
+              in server HTML) while still animating on desktop scroll */}
           <div className="flex flex-col gap-4">
             {services.map((s, i) => {
               const Icon = s.icon;
               return (
-                <motion.div
-                  key={s.slug}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? 48 : 24, y: 24 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 90,
-                    damping: 18,
-                    delay: 0.04 * (i % 3)
-                  }}
-                >
+                <Reveal key={s.slug} delay={0.04 * (i % 3)} y={28}>
                   <Link
                     href={`/services#${s.slug}`}
                     className="block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-flow-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -90,7 +79,7 @@ export function ServicesPreview() {
                       <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-flow-400 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
                     </SpotlightCard>
                   </Link>
-                </motion.div>
+                </Reveal>
               );
             })}
           </div>
