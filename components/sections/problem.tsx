@@ -1,101 +1,208 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { X, Check } from "lucide-react";
-import { Reveal, Stagger, staggerItem } from "@/components/motion/reveal";
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue
+} from "framer-motion";
+import { FileSpreadsheet, MessagesSquare, EyeOff, ArrowDown } from "lucide-react";
+import { Reveal } from "@/components/motion/reveal";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
- * "The old way vs. running on ArchFlow" — a split comparison panel.
- * Left: the chaos every mid-market operator recognises. Right: the
- * same operation on one platform, glowing blue.
+ * Chapter 02 — the problem, told as a pinned card deck. The screen
+ * holds while three "acts" of operational chaos slide over each other;
+ * the exit line hands the story to chapter 03.
+ *
+ * Mobile / reduced-motion: plain stacked cards (no pinning).
  */
 
-const OLD_WAY = [
-  "Quotes lost across 14 Excel versions and three inboxes",
-  "Production status lives in one supervisor's head",
-  "WhatsApp forwards standing in for handoffs",
-  "Leadership waits a week for numbers from each branch",
-  "Generic CRM that has never heard of a BOM or a site dispatch"
-];
-
-const FLOW_WAY = [
-  "One quoting engine — versioned, approved, BOM-aware",
-  "Live production board from the shop floor itself",
-  "Explicit handoffs with an audit trail at every stage",
-  "Real-time MIS across every state and department",
-  "Built around your workflow — not a template's"
+const ACTS = [
+  {
+    icon: FileSpreadsheet,
+    act: "Act I",
+    title: "The Excel era",
+    body: "Quotes live in fourteen spreadsheet versions and three inboxes. Nobody can say which number the customer actually signed. Past 50 employees, every week adds another sheet — and another way to lose an order.",
+    accent: "from-red-500/15 to-transparent",
+    ring: "border-red-400/25"
+  },
+  {
+    icon: MessagesSquare,
+    act: "Act II",
+    title: "The WhatsApp workaround",
+    body: "Handoffs become forwarded messages. Production status lives in one supervisor's head and a 400-message group chat. When something slips, there is no trail — only memory and blame.",
+    accent: "from-amber-500/15 to-transparent",
+    ring: "border-amber-400/25"
+  },
+  {
+    icon: EyeOff,
+    act: "Act III",
+    title: "Leadership flies blind",
+    body: "The directors get numbers a week late, hand-compiled from every branch. Generic CRMs don't speak BOM or dispatch. Enterprise ERPs want ₹50L and 18 months. The business keeps growing anyway — on hope.",
+    accent: "from-flow-500/15 to-transparent",
+    ring: "border-flow-400/30"
+  }
 ];
 
 export function Problem() {
+  const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const pinned = !reduce && !isMobile;
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"]
+  });
+
   return (
-    <section aria-labelledby="problem-heading" className="section-y">
-      <div className="container-page">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow mb-5 justify-center">
-            <span className="h-1 w-1 rounded-full bg-flow-400" />
-            The problem
-          </p>
-          <h2
-            id="problem-heading"
-            className="heading-section text-[32px] sm:text-[42px] lg:text-[54px]"
-          >
-            <span className="text-metal">Most businesses run on systems </span>
-            <span className="text-flow">that don&apos;t fit them.</span>
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Generic CRMs treat a fenestration company the same as a software
-            startup. ERPs cost ₹50L+ and take 18 months. Excel breaks the moment
-            you cross 50 employees.
-          </p>
-        </Reveal>
-
-        <div className="mt-16 grid gap-5 lg:grid-cols-2">
-          {/* The old way */}
-          <Reveal>
-            <div className="relative h-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7 lg:p-9">
-              <p className="text-[11px] font-semibold uppercase tracking-eyebrow text-muted-foreground">
-                The old way
-              </p>
-              <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-foreground/80">
-                Excel, WhatsApp, and tribal knowledge
-              </h3>
-              <ul className="mt-6 space-y-4">
-                {OLD_WAY.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.03]">
-                      <X className="h-3 w-3 text-red-400/80" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+    <section id="story-problem" aria-labelledby="problem-heading">
+      {pinned ? (
+        /* ── Pinned deck (desktop) ── */
+        <div ref={ref} className="relative h-[340vh]">
+          <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
+            <Header />
+            <div className="relative mt-10 h-[380px] w-full max-w-2xl">
+              {ACTS.map((a, i) => (
+                <DeckCard key={a.title} act={a} index={i} progress={scrollYProgress} />
+              ))}
             </div>
-          </Reveal>
-
-          {/* The ArchFlow way */}
-          <Reveal delay={0.12}>
-            <div className="glow-flow relative h-full overflow-hidden rounded-2xl border border-flow-500/30 bg-gradient-to-b from-flow-500/[0.08] to-transparent p-7 lg:p-9">
-              <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-flow-500/20 blur-[80px]" />
-              <p className="text-[11px] font-semibold uppercase tracking-eyebrow text-flow-300">
-                Running on ArchFlow
-              </p>
-              <h3 className="mt-3 font-display text-xl font-bold tracking-tight">
-                One platform, your entire operation
-              </h3>
-              <ul className="mt-6 space-y-4">
-                {FLOW_WAY.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/85">
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-flow-500/40 bg-flow-500/15">
-                      <Check className="h-3 w-3 text-flow-300" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+            <ExitLine progress={scrollYProgress} />
+          </div>
         </div>
-      </div>
+      ) : (
+        /* ── Stacked fallback (mobile / reduced motion) ── */
+        <div className="section-y">
+          <div className="container-page">
+            <Header />
+            <div className="mt-10 space-y-4">
+              {ACTS.map((a) => (
+                <Reveal key={a.title}>
+                  <StaticCard act={a} />
+                </Reveal>
+              ))}
+            </div>
+            <p className="mt-10 text-center text-sm font-semibold text-flow-400">
+              Then we rebuilt the whole thing. ↓
+            </p>
+          </div>
+        </div>
+      )}
     </section>
+  );
+}
+
+function Header() {
+  return (
+    <div className="container-page text-center">
+      <p className="eyebrow justify-center">
+        <span className="h-1 w-1 rounded-full bg-flow-400" />
+        Chapter 02 · The problem
+      </p>
+      <h2
+        id="problem-heading"
+        className="heading-section mx-auto mt-4 max-w-3xl text-[30px] sm:text-[40px] lg:text-[50px]"
+      >
+        <span className="text-metal">Every growing operation hits </span>
+        <span className="text-flow">the same wall.</span>
+      </h2>
+    </div>
+  );
+}
+
+function DeckCard({
+  act,
+  index,
+  progress
+}: {
+  act: (typeof ACTS)[number];
+  index: number;
+  progress: MotionValue<number>;
+}) {
+  // Each card owns a slice of the pinned scroll. It slides up over the
+  // previous card; the previous shrinks and dims underneath.
+  const start = index * 0.3;
+  const y = useTransform(progress, [start, start + 0.22], ["112%", "0%"]);
+  const scale = useTransform(
+    progress,
+    [start + 0.3, start + 0.52],
+    [1, index < ACTS.length - 1 ? 0.93 : 1]
+  );
+  const dim = useTransform(
+    progress,
+    [start + 0.3, start + 0.52],
+    [1, index < ACTS.length - 1 ? 0.45 : 1]
+  );
+  const Icon = act.icon;
+
+  return (
+    <motion.div
+      style={{
+        y: index === 0 ? 0 : y,
+        scale,
+        opacity: dim,
+        zIndex: index
+      }}
+      className={`absolute inset-0 overflow-hidden rounded-3xl border ${act.ring} bg-card p-8 shadow-2xl lg:p-10`}
+    >
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${act.accent}`} />
+      <div className="relative">
+        <div className="flex items-center justify-between">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/[0.04]">
+            <Icon className="h-5 w-5 text-foreground/80" />
+          </span>
+          <span className="font-display text-sm font-bold uppercase tracking-eyebrow text-muted-foreground">
+            {act.act}
+          </span>
+        </div>
+        <h3 className="mt-7 font-display text-2xl font-extrabold tracking-tight lg:text-3xl">
+          {act.title}
+        </h3>
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
+          {act.body}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+function ExitLine({ progress }: { progress: MotionValue<number> }) {
+  const opacity = useTransform(progress, [0.88, 0.98], [0, 1]);
+  const y = useTransform(progress, [0.88, 0.98], [12, 0]);
+  return (
+    <motion.p
+      style={{ opacity, y }}
+      className="mt-10 flex items-center gap-2 text-sm font-semibold text-flow-400"
+    >
+      Then we rebuilt the whole thing
+      <ArrowDown className="h-3.5 w-3.5" />
+    </motion.p>
+  );
+}
+
+function StaticCard({ act }: { act: (typeof ACTS)[number] }) {
+  const Icon = act.icon;
+  return (
+    <div className={`relative overflow-hidden rounded-2xl border ${act.ring} bg-card p-6`}>
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${act.accent}`} />
+      <div className="relative">
+        <div className="flex items-center justify-between">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.04]">
+            <Icon className="h-4 w-4 text-foreground/80" />
+          </span>
+          <span className="font-display text-xs font-bold uppercase tracking-eyebrow text-muted-foreground">
+            {act.act}
+          </span>
+        </div>
+        <h3 className="mt-5 font-display text-xl font-extrabold tracking-tight">
+          {act.title}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          {act.body}
+        </p>
+      </div>
+    </div>
   );
 }

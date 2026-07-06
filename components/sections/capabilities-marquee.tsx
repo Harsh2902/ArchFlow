@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Mark } from "@/components/brand/mark";
 
 const CAPABILITIES = [
   "Quotation Engine",
@@ -22,7 +22,7 @@ export function CapabilitiesMarquee() {
   return (
     <section
       aria-label="Platform capabilities"
-      className="relative border-y border-white/[0.06] bg-background/60"
+      className="relative border-y border-foreground/[0.07] bg-background/60"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
@@ -34,13 +34,7 @@ export function CapabilitiesMarquee() {
               <span className="text-sm font-medium tracking-tight text-foreground/60">
                 {c}
               </span>
-              <Image
-                src="/brand/logo-mark-512.png"
-                alt=""
-                width={16}
-                height={16}
-                className="h-4 w-4 opacity-60"
-              />
+              <Mark size={15} className="text-foreground/40" />
             </div>
           ))}
         </div>

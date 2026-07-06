@@ -54,7 +54,7 @@ export function Nav() {
           className={cn(
             "mx-auto flex h-14 max-w-[1220px] items-center justify-between rounded-2xl border px-4 transition-all duration-300 sm:px-5",
             scrolled
-              ? "border-white/[0.08] bg-background/85 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.8)] backdrop-blur-md md:backdrop-blur-xl"
+              ? "border-foreground/[0.08] bg-background/85 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.8)] backdrop-blur-md md:backdrop-blur-xl"
               : "border-transparent bg-background/40 backdrop-blur-sm"
           )}
         >
@@ -118,14 +118,14 @@ export function Nav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mt-2 max-w-[1220px] overflow-hidden rounded-2xl border border-white/[0.08] bg-background/95 backdrop-blur-md md:hidden"
+              className="mx-auto mt-2 max-w-[1220px] overflow-hidden rounded-2xl border border-foreground/[0.08] bg-background/95 backdrop-blur-md md:hidden"
             >
               <div className="flex flex-col gap-1 p-4">
                 {site.nav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="rounded-lg px-3 py-3 text-base text-foreground hover:bg-white/[0.05]"
+                    className="rounded-lg px-3 py-3 text-base text-foreground hover:bg-foreground/[0.05]"
                   >
                     {item.label}
                   </Link>

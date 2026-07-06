@@ -60,16 +60,16 @@ export function DashboardPranav() {
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="spotlight-surface relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] shadow-2xl"
+        className="spotlight-surface relative overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.02] shadow-2xl"
       >
         {/* top bar */}
-        <div className="flex items-center justify-between border-b border-white/5 bg-background/40 px-4 py-2.5 backdrop-blur">
+        <div className="flex items-center justify-between border-b border-foreground/5 bg-background/40 px-4 py-2.5 backdrop-blur">
           <div className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
             <span className="h-2.5 w-2.5 rounded-full bg-flow-500/70" />
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-white/5 bg-white/[0.03] px-2.5 py-1 text-[10px] text-muted-foreground sm:flex">
+          <div className="hidden items-center gap-2 rounded-md border border-foreground/5 bg-foreground/[0.03] px-2.5 py-1 text-[10px] text-muted-foreground sm:flex">
             <Search className="h-2.5 w-2.5" />
             archflow.app / pranav · dashboard
           </div>
@@ -83,7 +83,7 @@ export function DashboardPranav() {
 
         <div className="grid grid-cols-12 gap-0">
           {/* sidebar */}
-          <aside className="col-span-3 border-r border-white/5 bg-background/30 p-3">
+          <aside className="col-span-3 border-r border-foreground/5 bg-background/30 p-3">
             <p className="px-2 py-1 text-[9px] uppercase tracking-eyebrow text-muted-foreground">
               Operations
             </p>
@@ -149,7 +149,7 @@ export function DashboardPranav() {
                 </p>
                 <p className="mt-0.5 font-display text-base">May 2026</p>
               </div>
-              <div className="flex items-center gap-1.5 rounded-md border border-white/5 bg-white/[0.03] px-2 py-1 text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-1.5 rounded-md border border-foreground/5 bg-foreground/[0.03] px-2 py-1 text-[10px] text-muted-foreground">
                 <Filter className="h-2.5 w-2.5" />
                 Last 30 days
               </div>
@@ -175,7 +175,7 @@ export function DashboardPranav() {
         </div>
 
         {/* status strip */}
-        <div className="flex items-center justify-between border-t border-white/5 bg-background/40 px-4 py-2 text-[10px] text-muted-foreground">
+        <div className="flex items-center justify-between border-t border-foreground/5 bg-background/40 px-4 py-2 text-[10px] text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             All systems operational · synced 2s ago
@@ -207,7 +207,7 @@ function KpiTile({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.05 * index, duration: 0.5 }}
-      className="rounded-lg border border-white/5 bg-white/[0.02] p-3"
+      className="rounded-lg border border-foreground/5 bg-foreground/[0.02] p-3"
     >
       <div className="flex items-start justify-between">
         <p className="text-[9px] uppercase tracking-eyebrow text-muted-foreground">
@@ -270,7 +270,7 @@ function BarChart() {
   const max = Math.max(...data.map((d) => d.value));
 
   return (
-    <div className="col-span-3 rounded-lg border border-white/5 bg-white/[0.02] p-3">
+    <div className="col-span-3 rounded-lg border border-foreground/5 bg-foreground/[0.02] p-3">
       <div className="flex items-center justify-between">
         <p className="text-[10px] uppercase tracking-eyebrow text-muted-foreground">
           Orders by day
@@ -308,7 +308,7 @@ function PipelineList() {
     { client: "Tata Realty", state: "Install", color: "purple" }
   ];
   return (
-    <div className="col-span-2 rounded-lg border border-white/5 bg-white/[0.02] p-3">
+    <div className="col-span-2 rounded-lg border border-foreground/5 bg-foreground/[0.02] p-3">
       <p className="text-[10px] uppercase tracking-eyebrow text-muted-foreground">
         Live pipeline
       </p>
@@ -320,7 +320,7 @@ function PipelineList() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 + i * 0.06 }}
-            className="flex items-center justify-between rounded-md border border-white/5 bg-white/[0.02] px-2 py-1.5"
+            className="flex items-center justify-between rounded-md border border-foreground/5 bg-foreground/[0.02] px-2 py-1.5"
           >
             <span className="text-[10px] text-foreground/85">{it.client}</span>
             <span

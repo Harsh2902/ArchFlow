@@ -47,7 +47,7 @@ export function Process() {
   return (
     <section
       aria-labelledby="process-heading"
-      className="section-y border-t border-white/5"
+      className="section-y border-t border-foreground/5"
     >
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -78,7 +78,7 @@ export function Process() {
                         <span className="font-display text-3xl text-flow-400/80">
                           {step.n}
                         </span>
-                        <span className="h-px flex-1 bg-white/10" />
+                        <span className="h-px flex-1 bg-foreground/10" />
                         <Icon className="h-5 w-5 text-flow-400" />
                       </div>
                       <h3 className="heading-section text-[28px] sm:text-[36px] lg:text-[44px]">
@@ -107,7 +107,7 @@ export function Process() {
 
 function ProcessVisual({ progress }: { progress: MotionValue<number> }) {
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-8">
+    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-br from-foreground/[0.04] to-transparent p-8">
       <div className="pointer-events-none absolute inset-0 mesh-bg opacity-50" />
       <div className="relative flex h-full flex-col justify-between">
         <div className="space-y-3">
@@ -116,7 +116,7 @@ function ProcessVisual({ progress }: { progress: MotionValue<number> }) {
           ))}
         </div>
         <div className="space-y-2 text-xs text-muted-foreground">
-          <div className="h-px bg-white/10" />
+          <div className="h-px bg-foreground/10" />
           <p className="uppercase tracking-eyebrow">
             Typical engagement &middot; 3–4 weeks
           </p>

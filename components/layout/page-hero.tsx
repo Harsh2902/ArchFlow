@@ -27,7 +27,7 @@ export function PageHero({
   const words = title.split(" ");
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/[0.06] bg-background">
+    <section className="relative isolate overflow-hidden border-b border-foreground/[0.06] bg-background">
       <Aurora variant="soft" className="-z-10" />
       <GridPattern className="-z-10" fade interactive={false} />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flow-500/30 to-transparent" />

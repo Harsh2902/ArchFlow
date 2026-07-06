@@ -15,11 +15,11 @@ const buttonVariants = cva(
           "bg-gradient-to-b from-flow-500 to-flow-700 text-white shadow-[0_0_0_1px_rgba(88,101,242,0.4),0_8px_24px_-6px_rgba(67,83,240,0.55)] hover:from-flow-400 hover:to-flow-600 hover:shadow-[0_0_0_1px_rgba(138,150,255,0.5),0_10px_32px_-6px_rgba(88,101,242,0.7)] active:scale-[0.98]",
         // Frosted glass
         secondary:
-          "border border-white/10 bg-white/[0.04] text-foreground backdrop-blur-sm hover:border-white/20 hover:bg-white/[0.07]",
+          "border border-foreground/10 bg-foreground/[0.04] text-foreground backdrop-blur-sm hover:border-foreground/20 hover:bg-foreground/[0.07]",
         ghost:
-          "text-foreground/70 hover:bg-white/[0.05] hover:text-foreground",
+          "text-foreground/70 hover:bg-foreground/[0.05] hover:text-foreground",
         outline:
-          "border border-white/10 bg-transparent text-foreground hover:border-flow-500/50 hover:text-flow-300"
+          "border border-foreground/10 bg-transparent text-foreground hover:border-flow-500/50 hover:text-flow-300"
       },
       size: {
         default: "h-11 px-5 py-2",

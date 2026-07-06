@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-background">
+    <footer className="relative overflow-hidden border-t border-foreground/[0.06] bg-background">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flow-500/40 to-transparent" />
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60 mesh-bg" />
 
@@ -66,20 +66,22 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Monumental wordmark — the real logo, glowing out of the dark */}
-        <div className="relative mt-16 flex justify-center overflow-hidden">
+        {/* Monumental wordmark — the real render on an intentional dark
+            plate, so the PNG's black canvas is framed (not floating) in
+            BOTH themes */}
+        <div className="relative mt-16 overflow-hidden rounded-3xl border border-foreground/10 bg-[#07080d] shadow-2xl">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_100%_at_50%_0%,rgba(88,101,242,0.14),transparent_65%)]" />
           <Image
             src="/brand/logo-full.png"
             alt="ArchFlow"
             width={940}
             height={415}
-            className="w-full max-w-3xl opacity-90"
+            className="mx-auto w-full max-w-3xl"
             sizes="(max-width: 768px) 100vw, 768px"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-background" />
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/[0.06] pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-foreground/[0.06] pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>
             &copy; {new Date().getFullYear()} ArchFlow. Made with care in
             Chandigarh.

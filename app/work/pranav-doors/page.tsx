@@ -129,7 +129,7 @@ export default function PranavCaseStudy() {
         subtitle="A multi-state fenestration company running quotation, sales, production, dispatch, installation, and service on a single custom-built ArchFlow instance."
       />
 
-      <section className="border-b border-white/5">
+      <section className="border-b border-foreground/5">
         <div className="container-page py-10">
           <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
             <Meta label="Client" value="Pranav Doors & Windows" />
@@ -141,7 +141,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* Challenge */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow mb-5">The challenge</p>
@@ -169,7 +169,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* Approach */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow mb-5">The approach</p>
@@ -196,7 +196,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* What we built */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-5">What we built</p>
@@ -221,7 +221,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* Rollout timeline */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-5">Rollout timeline</p>
@@ -235,7 +235,7 @@ export default function PranavCaseStudy() {
             {/* connecting line */}
             <div
               aria-hidden
-              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-flow-500/50 via-white/10 to-transparent sm:left-[9px]"
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-flow-500/50 via-foreground/10 to-transparent sm:left-[9px]"
             />
             <ol className="space-y-8">
               {ROLLOUT.map((phase, i) => (
@@ -268,7 +268,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* Results */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-5">The result</p>
@@ -293,7 +293,7 @@ export default function PranavCaseStudy() {
       </section>
 
       {/* Quote */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page mx-auto max-w-3xl text-center">
           <Quote className="mx-auto h-7 w-7 text-flow-400/60" aria-hidden />
           {/* PLACEHOLDER: replace with named, attributed testimonial */}

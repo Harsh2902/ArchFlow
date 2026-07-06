@@ -67,7 +67,7 @@ export function WorkGrid() {
                       {STATUS_LABEL[item.status]}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-eyebrow text-muted-foreground backdrop-blur">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-foreground/10 bg-background/70 px-2.5 py-1 text-[10px] uppercase tracking-eyebrow text-muted-foreground backdrop-blur">
                       <Lock className="h-3 w-3" />
                       {STATUS_LABEL[item.status]}
                     </span>

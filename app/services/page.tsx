@@ -42,7 +42,7 @@ export default function ServicesPage() {
                   <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-flow-400">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.03] text-flow-400">
                           <Icon className="h-5 w-5" />
                         </span>
                         <span className="font-display text-2xl text-muted-foreground">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
 
       <Process />
 
-      <section className="section-y border-t border-white/5">
+      <section className="section-y border-t border-foreground/5">
         <div className="container-page mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="eyebrow mb-5">Pricing</p>
@@ -123,7 +123,7 @@ export default function ServicesPage() {
 
 function Field({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-white/5 bg-background/40 p-4">
+    <div className="rounded-lg border border-foreground/5 bg-background/40 p-4">
       <p className="text-[11px] uppercase tracking-eyebrow text-muted-foreground">
         {label}
       </p>

@@ -43,9 +43,9 @@ export function GridPattern({
   }, [interactive]);
 
   const dots =
-    "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)";
+    "radial-gradient(circle, hsl(var(--foreground) / 0.10) 1px, transparent 1px)";
   const lines =
-    "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)";
+    "linear-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground) / 0.06) 1px, transparent 1px)";
 
   return (
     <div

@@ -89,7 +89,7 @@ export default function ContactPage() {
                 {founders.map((f) => (
                   <div
                     key={f.slug}
-                    className="rounded-xl border border-white/5 bg-background/40 p-5"
+                    className="rounded-xl border border-foreground/5 bg-background/40 p-5"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-6 border-t border-white/5 pt-6 text-sm">
+              <div className="mt-6 border-t border-foreground/5 pt-6 text-sm">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-flow-400" />
                   <div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
       {/* FAQ */}
       <section
         aria-labelledby="faq-heading"
-        className="section-y border-t border-white/5"
+        className="section-y border-t border-foreground/5"
       >
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">

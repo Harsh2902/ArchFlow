@@ -1,10 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Mark } from "@/components/brand/mark";
 import { cn } from "@/lib/utils";
 
 /**
- * Brand lockup: the real 3D logo mark + the two-tone wordmark
- * ("Arch" metallic white · "Flow" royal blue), matching logo-full.png.
+ * Brand lockup: theme-aware vector mark + two-tone wordmark
+ * ("Arch" foreground · "Flow" royal-blue gradient). The photoreal PNG
+ * (baked black canvas) is reserved for dark brand plates only.
  */
 export function Logo({ className }: { className?: string }) {
   return (
@@ -16,13 +17,9 @@ export function Logo({ className }: { className?: string }) {
         className
       )}
     >
-      <Image
-        src="/brand/logo-mark-512.png"
-        alt=""
-        width={34}
-        height={34}
-        priority
-        className="h-[34px] w-[34px] transition-transform duration-500 group-hover:scale-105"
+      <Mark
+        size={30}
+        className="text-foreground transition-transform duration-500 group-hover:scale-105"
       />
       <span className="font-display text-lg font-extrabold tracking-tight">
         <span className="text-foreground">Arch</span>

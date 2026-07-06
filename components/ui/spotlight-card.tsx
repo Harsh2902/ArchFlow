@@ -38,7 +38,7 @@ export function SpotlightCard({
       whileHover={{ y: -lift, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className={cn(
-        "spotlight-surface shimmer-border relative h-full rounded-2xl border border-white/5 bg-white/[0.02] shadow-sm backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-flow-500/5",
+        "spotlight-surface shimmer-border relative h-full rounded-2xl border border-foreground/5 bg-foreground/[0.02] shadow-sm backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-300 hover:border-foreground/10 hover:bg-foreground/[0.04] hover:shadow-xl hover:shadow-flow-500/5",
         className
       )}
     >

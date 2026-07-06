@@ -48,7 +48,7 @@ export default function AboutPage() {
       />
 
       {/* Story */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow mb-5">Our story</p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
       </section>
 
       {/* Founders */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-5">Founders</p>
@@ -128,7 +128,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow mb-5">How we work</p>
@@ -152,7 +152,7 @@ export default function AboutPage() {
       </section>
 
       {/* Location */}
-      <section className="section-y border-b border-white/5">
+      <section className="section-y border-b border-foreground/5">
         <div className="container-page">
           <Reveal className="surface mx-auto flex max-w-3xl flex-col items-center gap-4 p-10 text-center sm:p-12">
             <MapPin className="h-6 w-6 text-flow-400" />
