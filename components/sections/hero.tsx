@@ -13,13 +13,13 @@ import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic-button";
 import { Aurora } from "@/components/ambient/aurora";
 import { GridPattern } from "@/components/ambient/grid-pattern";
-import { BrandPlate } from "@/components/showcase/brand-plate";
+import { HeroVisual } from "@/components/showcase/hero-visual";
 import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
- * Chapter 01 — the opening frame. A centered monument: statement first,
- * then the brand plate rises beneath it with scroll parallax, as if the
- * company emerges out of the intro.
+ * Chapter 01 — the opening frame. Split stage: the statement on the
+ * left, the living 3D mark holding the right half of the screen.
+ * Fills the viewport exactly — no dead scroll below the fold.
  */
 export function Hero() {
   const reduce = useReducedMotion();
@@ -31,16 +31,15 @@ export function Hero() {
   });
 
   const fx = !reduce && !isMobile;
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const plateY = useTransform(scrollYProgress, [0, 1], [0, 70]);
-  const plateScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const visualY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
     <section
       ref={ref}
       id="story-company"
-      className="relative isolate overflow-hidden bg-background"
+      className="relative isolate flex min-h-screen items-center overflow-hidden bg-background"
       aria-labelledby="hero-heading"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -49,12 +48,9 @@ export function Hero() {
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-flow-500/40 to-transparent" />
 
-      <div className="container-page relative z-10 flex flex-col items-center pt-32 pb-16 text-center lg:pt-40 lg:pb-24">
-        {/* copy block — parallaxes up and fades as the story scrolls on */}
-        <motion.div
-          style={fx ? { y: copyY, opacity: copyOpacity } : undefined}
-          className="flex flex-col items-center"
-        >
+      <div className="container-page relative z-10 grid w-full items-center gap-10 pb-14 pt-28 lg:grid-cols-[1.02fr_0.98fr] lg:gap-4 lg:pb-16 lg:pt-24">
+        {/* ── Left: the statement ── */}
+        <motion.div style={fx ? { y: copyY, opacity: copyOpacity } : undefined}>
           <div
             className="hero-rise flex w-fit items-center gap-2 rounded-full border border-flow-500/30 bg-flow-500/[0.08] px-3.5 py-1.5 text-xs backdrop-blur-sm"
             style={{ animationDelay: "0ms" }}
@@ -72,7 +68,7 @@ export function Hero() {
 
           <h1
             id="hero-heading"
-            className="hero-rise heading-display mt-8 max-w-[15ch] text-[44px] sm:text-[64px] lg:text-[84px]"
+            className="hero-rise heading-display mt-7 max-w-[15ch] text-[42px] sm:text-[58px] lg:text-[64px] xl:text-[76px]"
             style={{ animationDelay: "70ms" }}
           >
             <span className="text-metal">Built for the businesses </span>
@@ -81,7 +77,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="hero-rise mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            className="hero-rise mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
             style={{ animationDelay: "140ms" }}
           >
             ArchFlow designs and builds custom MIS and workflow platforms for
@@ -91,7 +87,7 @@ export function Hero() {
           </p>
 
           <div
-            className="hero-rise mt-9 flex flex-wrap items-center justify-center gap-3"
+            className="hero-rise mt-8 flex flex-wrap items-center gap-3"
             style={{ animationDelay: "210ms" }}
           >
             <Magnetic>
@@ -114,40 +110,38 @@ export function Hero() {
               </Button>
             </Magnetic>
           </div>
+
+          <div
+            className="hero-rise mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-foreground/[0.08] pt-6"
+            style={{ animationDelay: "280ms" }}
+          >
+            {[
+              { v: "10+", l: "Departments live" },
+              { v: "5+", l: "States" },
+              { v: "<2w", l: "Per module" }
+            ].map((s) => (
+              <div key={s.l}>
+                <p className="font-display text-2xl font-extrabold sm:text-3xl">
+                  <span className="text-flow">{s.v}</span>
+                </p>
+                <p className="mt-1 text-[10px] uppercase tracking-eyebrow text-muted-foreground">
+                  {s.l}
+                </p>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* the plate rises beneath the statement */}
+        {/* ── Right: the mark, alive ── */}
         <motion.div
-          style={fx ? { y: plateY, scale: plateScale } : undefined}
-          className="hero-rise mt-16 w-full max-w-3xl lg:mt-20"
-
+          style={fx ? { y: visualY } : undefined}
+          className="hero-rise relative h-[340px] w-full sm:h-[420px] lg:h-[560px]"
         >
-          <BrandPlate />
+          <HeroVisual />
         </motion.div>
-
-        {/* stats line under the plate */}
-        <div
-          className="hero-rise mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
-          style={{ animationDelay: "350ms" }}
-        >
-          {[
-            { v: "10+", l: "Departments live" },
-            { v: "5+", l: "States coordinated" },
-            { v: "<2 weeks", l: "Per module shipped" }
-          ].map((s) => (
-            <div key={s.l} className="flex items-baseline gap-2.5">
-              <span className="font-display text-2xl font-extrabold sm:text-3xl">
-                <span className="text-flow">{s.v}</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-eyebrow text-muted-foreground">
-                {s.l}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 bg-gradient-to-b from-transparent to-background" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-20 bg-gradient-to-b from-transparent to-background" />
     </section>
   );
 }
