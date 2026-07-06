@@ -36,7 +36,7 @@ const MILESTONES = [
     body: "Versioned, BOM-aware quotations with approval flows. The revenue engine moved onto ArchFlow first — within a fortnight."
   },
   {
-    when: "Months 2–8",
+    when: "Weeks 3–4",
     title: "Department by department",
     body: "Sales, production, dispatch, installation, service — each module shipped, trained on-site, refined in real time. Never a big-bang deploy."
   },
