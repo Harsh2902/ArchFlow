@@ -64,7 +64,9 @@ export function Problem() {
         <div ref={ref} className="relative h-[340vh]">
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
             <Header />
-            <div className="relative mt-10 h-[380px] w-full max-w-2xl">
+            {/* overflow-hidden: waiting cards stay hidden below the deck
+                window until their slice, then slide up over the previous */}
+            <div className="relative mt-10 h-[380px] w-full max-w-2xl overflow-hidden rounded-3xl">
               {ACTS.map((a, i) => (
                 <DeckCard key={a.title} act={a} index={i} progress={scrollYProgress} />
               ))}

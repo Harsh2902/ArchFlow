@@ -68,7 +68,11 @@ export function CaseStudyFeature() {
     <section
       id="story-proof"
       aria-labelledby="case-heading"
-      className="relative overflow-hidden border-t border-foreground/[0.06]"
+      /* NOTE: no overflow-hidden here — an overflow-hidden ancestor breaks
+         position:sticky for the pinned scene inside (content scrolls away
+         and the scroll runway renders blank). Clipping lives on the sticky
+         child instead. */
+      className="relative border-t border-foreground/[0.06]"
     >
       <div className="pointer-events-none absolute inset-0 -z-10 mesh-bg opacity-50" />
 
