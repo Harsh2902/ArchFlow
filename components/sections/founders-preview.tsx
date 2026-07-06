@@ -20,8 +20,8 @@ export function FoundersPreview() {
             id="founders-heading"
             className="heading-section text-[34px] sm:text-[44px] lg:text-[56px]"
           >
-            Two founders.{" "}
-            <span className="italic font-display text-muted-foreground">
+            <span className="text-metal">Two founders. </span>
+            <span className="text-flow">
               Engineering depth meets industry depth.
             </span>
           </h2>
@@ -53,7 +53,7 @@ export function FoundersPreview() {
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
                 </div>
                 <div className="p-6 lg:p-8">
-                  <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                  <p className="text-xs uppercase tracking-eyebrow text-flow-400">
                     {f.role}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold tracking-tight">
@@ -71,7 +71,7 @@ export function FoundersPreview() {
         <Reveal className="mt-12 flex justify-center">
           <Link
             href="/about"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-flow-400 transition-colors hover:text-flow-300"
           >
             <span className="link-underline">More about us</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

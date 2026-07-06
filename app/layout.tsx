@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
@@ -21,11 +21,10 @@ const inter = Inter({
   display: "swap"
 });
 
-const instrumentSerif = Instrument_Serif({
+// Display face — bold geometric grotesque matching the wordmark.
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+  variable: "--font-display",
   display: "swap"
 });
 
@@ -87,7 +86,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${instrumentSerif.variable}`}
+      className={`${inter.variable} ${manrope.variable}`}
     >
       <body className="font-sans antialiased">
         <JsonLd data={organizationSchema} />
@@ -112,9 +111,9 @@ export default function RootLayout({
             theme="dark"
             toastOptions={{
               style: {
-                background: "hsl(217 33% 12%)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                color: "hsl(210 40% 98%)"
+                background: "hsl(230 25% 8%)",
+                border: "1px solid rgba(88,101,242,0.25)",
+                color: "hsl(216 25% 97%)"
               }
             }}
           />

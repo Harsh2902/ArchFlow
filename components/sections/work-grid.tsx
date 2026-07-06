@@ -59,10 +59,10 @@ export function WorkGrid() {
                 {/* Status badge */}
                 <div className="absolute right-4 top-4">
                   {isLinked ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase tracking-eyebrow text-emerald-300 backdrop-blur">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-flow-500/30 bg-flow-500/10 px-2.5 py-1 text-[10px] uppercase tracking-eyebrow text-flow-300 backdrop-blur">
                       <span className="relative inline-flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flow-400 opacity-60" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-flow-400" />
                       </span>
                       {STATUS_LABEL[item.status]}
                     </span>
@@ -82,7 +82,7 @@ export function WorkGrid() {
                 {/* Bottom gradient + reveal arrow */}
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/80 to-transparent" />
                 {isLinked && (
-                  <div className="absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/95 px-3 py-1.5 text-[11px] font-medium text-slate-950 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1">
+                  <div className="absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-full bg-flow-500/95 px-3 py-1.5 text-[11px] font-medium text-slate-950 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1">
                     View case study
                     <ArrowUpRight className="h-3 w-3" />
                   </div>
@@ -108,7 +108,7 @@ export function WorkGrid() {
           <Link
             key={item.slug}
             href={item.href!}
-            className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl"
+            className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-flow-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl"
           >
             {Card}
           </Link>

@@ -18,7 +18,7 @@ export const founders: Founder[] = [
     short: "Built ArchFlow's platform end-to-end.",
     long: "Harsh leads engineering at ArchFlow. He designed and built the platform end-to-end — from the data model that lets us spin up a new client's MIS in weeks, to the workflow engine running live at Pranav Doors today. Background in product engineering with a focus on systems built to be customised, not configured.",
     initials: "H",
-    accent: "from-emerald-400/30 to-emerald-600/10",
+    accent: "from-flow-400/30 to-flow-600/10",
     email: "harsh@archflow.co.in",
     phone: "+91 79880 19331"
   },

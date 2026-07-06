@@ -1,65 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Aurora } from "@/components/ambient/aurora";
 import { GridPattern } from "@/components/ambient/grid-pattern";
-import { SplitText } from "@/components/motion/split-text";
 
 interface PageHeroProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
+  /** word (matched loosely) to render in the flow-blue gradient */
+  highlight?: string;
 }
 
+/**
+ * Interior page hero — metallic display type over the blue light field.
+ * Entrances are the CSS .hero-rise pattern: visible in server HTML,
+ * animated at first paint, pinned visible on mobile/reduced-motion.
+ */
 export function PageHero({
   eyebrow,
   title,
   subtitle,
-  align = "left"
+  align = "left",
+  highlight
 }: PageHeroProps) {
-  return (
-    <section className="relative isolate overflow-hidden border-b border-white/5 bg-background">
-      <Aurora variant="soft" className="-z-10" />
-      <GridPattern className="-z-10" fade interactive />
+  const words = title.split(" ");
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+  return (
+    <section className="relative isolate overflow-hidden border-b border-white/[0.06] bg-background">
+      <Aurora variant="soft" className="-z-10" />
+      <GridPattern className="-z-10" fade interactive={false} />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flow-500/30 to-transparent" />
 
       <div
-        className={`container-page relative py-24 lg:py-32 ${
+        className={`container-page relative pt-32 pb-20 lg:pt-40 lg:pb-28 ${
           align === "center" ? "text-center" : ""
         }`}
       >
         {eyebrow && (
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="eyebrow mb-5"
-          >
+          <p className="hero-rise eyebrow mb-5" style={{ animationDelay: "0ms" }}>
+            <span className="h-1 w-1 rounded-full bg-flow-400" />
             {eyebrow}
-          </motion.p>
+          </p>
         )}
 
         <h1
-          className={`heading-display text-[40px] sm:text-[56px] lg:text-[80px] ${
+          className={`hero-rise heading-display text-[38px] sm:text-[52px] lg:text-[68px] ${
             align === "center" ? "mx-auto max-w-4xl" : "max-w-4xl"
           }`}
+          style={{ animationDelay: "70ms" }}
         >
-          <SplitText text={title} startDelayMs={100} staggerMs={14} />
+          {words.map((w, i) => {
+            const bare = w.replace(/[.,!?'"—]/g, "").toLowerCase();
+            const isHl =
+              !!highlight && bare.includes(highlight.toLowerCase());
+            return (
+              <span key={i} className={isHl ? "text-flow" : "text-metal"}>
+                {w}
+                {i < words.length - 1 ? " " : ""}
+              </span>
+            );
+          })}
         </h1>
 
         {subtitle && (
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className={`mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg ${
+          <p
+            className={`hero-rise mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg ${
               align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl"
             }`}
+            style={{ animationDelay: "140ms" }}
           >
             {subtitle}
-          </motion.p>
+          </p>
         )}
       </div>
     </section>

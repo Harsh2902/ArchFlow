@@ -110,7 +110,7 @@ export default function AboutPage() {
                     {/* PLACEHOLDER: replace with portrait photo */}
                   </div>
                   <div className="p-6 sm:p-8">
-                    <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                    <p className="text-xs uppercase tracking-eyebrow text-flow-400">
                       {f.role}
                     </p>
                     <h3 className="mt-2 text-2xl font-semibold tracking-tight">
@@ -155,7 +155,7 @@ export default function AboutPage() {
       <section className="section-y border-b border-white/5">
         <div className="container-page">
           <Reveal className="surface mx-auto flex max-w-3xl flex-col items-center gap-4 p-10 text-center sm:p-12">
-            <MapPin className="h-6 w-6 text-emerald-400" />
+            <MapPin className="h-6 w-6 text-flow-400" />
             <h2 className="heading-display text-[28px] sm:text-[36px]">
               Based in Chandigarh.
               <br />

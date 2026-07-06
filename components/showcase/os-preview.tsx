@@ -50,7 +50,7 @@ export function OSPreview() {
   return (
     <div className="relative">
       {/* glow */}
-      <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-br from-emerald-500/20 via-blue-500/10 to-transparent blur-2xl" />
+      <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-br from-flow-500/20 via-blue-500/10 to-transparent blur-2xl" />
 
       {/* device frame */}
       <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] shadow-2xl">
@@ -59,13 +59,13 @@ export function OSPreview() {
           <div className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-flow-500/70" />
           </div>
           <div className="hidden items-center gap-1.5 rounded-md border border-white/5 bg-white/[0.03] px-2 py-1 text-[10px] text-muted-foreground sm:flex">
-            <Sparkles className="h-2.5 w-2.5 text-emerald-400" />
+            <Sparkles className="h-2.5 w-2.5 text-flow-400" />
             archflow.app / pranav · ORD-2407-184
           </div>
-          <div className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[9px] uppercase tracking-eyebrow text-emerald-300">
+          <div className="rounded-full border border-flow-500/30 bg-flow-500/10 px-2 py-0.5 text-[9px] uppercase tracking-eyebrow text-flow-300">
             Live
           </div>
         </div>
@@ -107,11 +107,11 @@ export function OSPreview() {
                   animate={{
                     backgroundColor:
                       status === "active"
-                        ? "rgba(16,185,129,0.08)"
+                        ? "rgba(88,101,242,0.08)"
                         : "rgba(255,255,255,0.0)",
                     borderColor:
                       status === "active"
-                        ? "rgba(16,185,129,0.3)"
+                        ? "rgba(88,101,242,0.3)"
                         : "rgba(255,255,255,0.06)"
                   }}
                   transition={{ duration: 0.4 }}
@@ -119,10 +119,10 @@ export function OSPreview() {
                 >
                   <span className="shrink-0">
                     {status === "done" && (
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      <CheckCircle2 className="h-4 w-4 text-flow-400" />
                     )}
                     {status === "active" && (
-                      <Loader2 className="h-4 w-4 animate-spin text-emerald-400" />
+                      <Loader2 className="h-4 w-4 animate-spin text-flow-400" />
                     )}
                     {status === "pending" && (
                       <Circle className="h-4 w-4 text-muted-foreground/40" />
@@ -144,7 +144,7 @@ export function OSPreview() {
                       key={`label-${active}`}
                       initial={{ opacity: 0, x: -4 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="ml-auto text-[10px] uppercase tracking-eyebrow text-emerald-300"
+                      className="ml-auto text-[10px] uppercase tracking-eyebrow text-flow-300"
                     >
                       Now
                     </motion.span>
@@ -157,10 +157,10 @@ export function OSPreview() {
           {/* footer chips */}
           <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-4">
             <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
               Synced 2s ago
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-emerald-300">
+            <div className="flex items-center gap-1.5 text-[10px] text-flow-300">
               View order
               <ArrowRight className="h-3 w-3" />
             </div>
@@ -179,7 +179,7 @@ export function OSPreview() {
           Dispatch today
         </p>
         <p className="mt-1 font-display text-2xl">11 orders</p>
-        <div className="mt-2 flex items-center gap-1 text-[10px] text-emerald-400">
+        <div className="mt-2 flex items-center gap-1 text-[10px] text-flow-400">
           <ArrowRight className="h-2.5 w-2.5 -rotate-45" />
           +24% vs avg
         </div>

@@ -88,7 +88,7 @@ export function ContactForm() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 220, damping: 18, delay: 0.1 }}
-              className="grid h-16 w-16 place-items-center rounded-full bg-emerald-500/10 text-emerald-400"
+              className="grid h-16 w-16 place-items-center rounded-full bg-flow-500/10 text-flow-400"
             >
               <Check className="h-8 w-8" />
             </motion.div>
@@ -98,7 +98,7 @@ export function ContactForm() {
               to email{" "}
               <a
                 href="mailto:harsh@archflow.co.in"
-                className="text-emerald-400 hover:underline"
+                className="text-flow-400 hover:underline"
               >
                 harsh@archflow.co.in
               </a>
@@ -171,7 +171,7 @@ export function ContactForm() {
               <select
                 id="projectType"
                 {...register("projectType")}
-                className="flex h-11 w-full appearance-none rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 focus-visible:border-emerald-500/40"
+                className="flex h-11 w-full appearance-none rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-flow-500/40 focus-visible:border-flow-500/40"
                 defaultValue=""
               >
                 <option value="" disabled className="bg-background">

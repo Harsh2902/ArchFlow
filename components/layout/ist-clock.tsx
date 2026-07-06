@@ -28,8 +28,8 @@ export function IstClock() {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-eyebrow text-muted-foreground">
       <span className="relative inline-flex h-1.5 w-1.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flow-400 opacity-50" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-flow-400" />
       </span>
       Chandigarh{time ? ` · ${time} IST` : ""}
     </span>

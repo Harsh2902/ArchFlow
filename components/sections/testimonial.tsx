@@ -48,7 +48,7 @@ export function Testimonial() {
                 w === "real-time" ||
                 w === "visibility" ||
                 w === "rebuilt" ? (
-                  <em className="not-italic text-emerald-400">{w}</em>
+                  <em className="not-italic text-flow-400">{w}</em>
                 ) : (
                   w
                 )}
@@ -58,7 +58,7 @@ export function Testimonial() {
           <div className="mt-10 flex items-center justify-center gap-3 text-sm">
             <span
               aria-hidden
-              className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-emerald-400/30 to-emerald-600/10 font-display text-base text-foreground/70"
+              className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-flow-400/30 to-flow-600/10 font-display text-base text-foreground/70"
             >
               PD
             </span>

@@ -1,26 +1,23 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 
-// The Three.js scene is code-split and never server-rendered. The loading
-// fallback is `null` (not a visible arch) so there is no bright flash
-// while the chunk downloads — the scene simply fades in once ready.
+// The Three.js scene is code-split and never server-rendered. No visible
+// loading fallback — the mark fades in once the chunk is ready.
 const Hero3D = dynamic(() => import("@/components/showcase/hero-3d"), {
   ssr: false,
   loading: () => null
 });
 
 /**
- * Decides what renders behind/beside the hero headline:
- *   - desktop + fine pointer + motion allowed + in view → the 3D arch
- *   - reduced motion                                     → static SVG arch
- *   - mobile (<768px)                                    → not mounted
- *     (the `hidden md:block` wrapper in the hero handles that)
- *
- * The whole layer fades from 0 → 0.6 opacity over ~1s after mount, so the
- * arch gently materialises in the background rather than popping in.
+ * The hero's logo showcase:
+ *   - desktop + fine pointer + motion allowed → the real 3D mark
+ *   - mobile / reduced motion                 → the actual logo PNG
+ *     with a soft blue glow (zero GPU cost, identical brand)
+ * Fades in gently either way — no pop.
  */
 export function HeroBackdrop() {
   const reduce = useReducedMotion();
@@ -36,8 +33,7 @@ export function HeroBackdrop() {
       const wideEnough = window.matchMedia("(min-width: 768px)").matches;
       if (finePointer && wideEnough) setAllow3D(true);
     }
-    // Begin the fade-in on the next tick so the transition actually runs.
-    const t = setTimeout(() => setShown(true), 80);
+    const t = setTimeout(() => setShown(true), 60);
     return () => clearTimeout(t);
   }, [reduce]);
 
@@ -45,37 +41,26 @@ export function HeroBackdrop() {
     <div
       ref={ref}
       aria-hidden
-      className="absolute inset-0 transition-opacity duration-1000 ease-out"
-      style={{ opacity: shown ? 0.6 : 0 }}
+      className="relative h-full w-full transition-opacity duration-1000 ease-out"
+      style={{ opacity: shown ? 1 : 0 }}
     >
-      {allow3D && inView ? <Hero3D /> : <StaticArch />}
-    </div>
-  );
-}
+      {/* Blue glow pedestal behind the mark */}
+      <div className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-flow-600/25 blur-[100px]" />
 
-/** Subtle motion-free fallback — a faint arch outline. */
-function StaticArch() {
-  return (
-    <div className="flex h-full w-full items-center justify-center">
-      <svg
-        viewBox="0 0 200 200"
-        className="h-3/4 w-3/4 opacity-50"
-        fill="none"
-        aria-hidden
-      >
-        <defs>
-          <linearGradient id="arch-stroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#475569" />
-            <stop offset="100%" stopColor="#10b981" stopOpacity="0.7" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M40 165 V95 A60 60 0 0 1 160 95 V165"
-          stroke="url(#arch-stroke)"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-      </svg>
+      {allow3D && inView ? (
+        <Hero3D />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center">
+          <Image
+            src="/brand/logo-mark-512.png"
+            alt=""
+            width={420}
+            height={420}
+            priority
+            className="h-auto w-[70%] max-w-[420px] drop-shadow-[0_0_60px_rgba(88,101,242,0.45)]"
+          />
+        </div>
+      )}
     </div>
   );
 }

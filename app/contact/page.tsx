@@ -96,7 +96,7 @@ export default function ContactPage() {
                         <p className="text-sm font-semibold tracking-tight">
                           {f.name}
                         </p>
-                        <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                        <p className="text-xs uppercase tracking-eyebrow text-flow-400">
                           {f.role}
                         </p>
                       </div>
@@ -110,16 +110,16 @@ export default function ContactPage() {
                     <div className="mt-4 space-y-2 text-sm">
                       <a
                         href={`mailto:${f.email}`}
-                        className="flex items-center gap-2 text-foreground/90 hover:text-emerald-400 transition-colors"
+                        className="flex items-center gap-2 text-foreground/90 hover:text-flow-400 transition-colors"
                       >
-                        <Mail className="h-3.5 w-3.5 text-emerald-400" />
+                        <Mail className="h-3.5 w-3.5 text-flow-400" />
                         <span>{f.email}</span>
                       </a>
                       <a
                         href={`tel:${f.phone.replace(/\s+/g, "")}`}
-                        className="flex items-center gap-2 text-foreground/90 hover:text-emerald-400 transition-colors"
+                        className="flex items-center gap-2 text-foreground/90 hover:text-flow-400 transition-colors"
                       >
-                        <Phone className="h-3.5 w-3.5 text-emerald-400" />
+                        <Phone className="h-3.5 w-3.5 text-flow-400" />
                         <span>{f.phone}</span>
                       </a>
                     </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
 
               <div className="mt-6 border-t border-white/5 pt-6 text-sm">
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-flow-400" />
                   <div>
                     <p className="text-[11px] uppercase tracking-eyebrow text-muted-foreground">
                       Based in
@@ -143,7 +143,7 @@ export default function ContactPage() {
             {/* TODO: Replace with Calendly inline embed when account is set up */}
             <div className="surface p-6 sm:p-8">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-emerald-400" />
+                <Calendar className="h-4 w-4 text-flow-400" />
                 <p className="eyebrow !mb-0">Book directly</p>
               </div>
               <h3 className="mt-3 text-lg font-semibold">

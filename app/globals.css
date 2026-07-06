@@ -2,43 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────
+   ArchFlow design system v2 — derived from the brand mark:
+   rich black canvas · metallic silver-white · royal-blue flow gradient
+   ──────────────────────────────────────────────────────────────────── */
+
 @layer base {
   :root {
     /* Light mode (toggle target). Canonical is dark. */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 220 30% 98%;
+    --foreground: 228 33% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --primary: 160 84% 39%;
+    --card-foreground: 228 33% 8%;
+    --primary: 235 86% 62%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 160 84% 39%;
+    --secondary: 226 30% 94%;
+    --secondary-foreground: 228 33% 8%;
+    --muted: 226 30% 94%;
+    --muted-foreground: 226 12% 42%;
+    --accent: 235 86% 62%;
     --accent-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 160 84% 39%;
+    --border: 226 20% 88%;
+    --input: 226 20% 88%;
+    --ring: 235 86% 62%;
   }
 
   .dark {
-    /* slate-950 baseline */
-    --background: 222 47% 4%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 6%;
-    --card-foreground: 210 40% 98%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 222 47% 4%;
-    --secondary: 217 33% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 160 84% 39%;
-    --accent-foreground: 222 47% 4%;
-    --border: 217 33% 16%;
-    --input: 217 33% 16%;
-    --ring: 160 84% 39%;
+    /* Rich black with a blue undertone — sampled from the logo canvas */
+    --background: 228 33% 3%;
+    --foreground: 216 25% 97%;
+    --card: 228 30% 5%;
+    --card-foreground: 216 25% 97%;
+    --primary: 235 86% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 25% 10%;
+    --secondary-foreground: 216 25% 97%;
+    --muted: 230 25% 10%;
+    --muted-foreground: 222 18% 68%;
+    --accent: 235 86% 65%;
+    --accent-foreground: 0 0% 100%;
+    --border: 229 24% 13%;
+    --input: 229 24% 13%;
+    --ring: 235 86% 65%;
   }
 
   * {
@@ -52,14 +57,14 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    font-feature-settings: "rlig" 1, "calt" 1;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: rgb(16 185 129 / 0.3);
+    background-color: rgb(88 101 242 / 0.35);
     color: hsl(var(--foreground));
   }
 }
@@ -74,34 +79,75 @@
   }
 
   .eyebrow {
-    @apply inline-block text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.1em] text-emerald-500;
+    @apply inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold uppercase tracking-eyebrow text-flow-400;
   }
 
   .heading-display {
-    @apply font-display font-normal tracking-tightest leading-[1.05];
+    @apply font-display font-extrabold tracking-tightest leading-[1.02];
   }
 
   .heading-section {
-    @apply font-sans font-semibold tracking-tighter2 leading-[1.1];
+    @apply font-display font-bold tracking-tighter2 leading-[1.08];
   }
 
   .surface {
-    @apply rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm;
+    @apply rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm;
   }
 
   .surface-hover {
-    @apply transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04];
+    @apply transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04];
+  }
+
+  .glass {
+    @apply border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl;
   }
 }
 
-/* Mesh gradient backdrop for hero */
+/* ── Brand text treatments ──────────────────────────────────────────── */
+
+/* Metallic silver — like the "Arch" in the wordmark / the Λ mark */
+.text-metal {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #eef1f6 38%,
+    #c7cdd9 62%,
+    #939cae 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Royal-blue flow gradient — like the "Flow" in the wordmark */
+.text-flow {
+  background-image: linear-gradient(
+    120deg,
+    #aab4ff 0%,
+    #6d7dff 40%,
+    #4353f0 75%,
+    #3340d4 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft blue halo behind key elements */
+.glow-flow {
+  box-shadow:
+    0 0 0 1px rgb(88 101 242 / 0.25),
+    0 8px 40px -8px rgb(88 101 242 / 0.45);
+}
+
+/* Ambient blue mesh — replaces the old emerald mesh everywhere */
 .mesh-bg {
   background-color: hsl(var(--background));
   background-image:
-    radial-gradient(at 18% 22%, rgba(16, 185, 129, 0.18) 0px, transparent 50%),
-    radial-gradient(at 80% 10%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 70% 80%, rgba(16, 185, 129, 0.12) 0px, transparent 55%),
-    radial-gradient(at 10% 90%, rgba(99, 102, 241, 0.10) 0px, transparent 55%);
+    radial-gradient(at 20% 18%, rgba(88, 101, 242, 0.16) 0px, transparent 50%),
+    radial-gradient(at 82% 12%, rgba(67, 83, 240, 0.10) 0px, transparent 50%),
+    radial-gradient(at 68% 85%, rgba(138, 150, 255, 0.08) 0px, transparent 55%),
+    radial-gradient(at 8% 88%, rgba(51, 64, 212, 0.10) 0px, transparent 55%);
 }
 
 .gradient-divider {
@@ -111,35 +157,63 @@
     90deg,
     transparent 0%,
     rgba(255, 255, 255, 0.08) 20%,
-    rgba(16, 185, 129, 0.25) 50%,
+    rgba(88, 101, 242, 0.4) 50%,
     rgba(255, 255, 255, 0.08) 80%,
     transparent 100%
   );
 }
 
 .shadow-glow {
-  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.15),
-    0 8px 32px -8px rgb(16 185 129 / 0.25);
+  box-shadow:
+    0 0 0 1px rgb(88 101 242 / 0.18),
+    0 8px 32px -8px rgb(88 101 242 / 0.35);
 }
 
-/* Spring-like overshoot easing for CSS transitions (nav underline etc.) */
+/* ── Page transitions (app/template.tsx re-mounts per navigation) ───── */
+.page-enter {
+  animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* ── Marquee (capabilities strip) ───────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── Spring-like overshoot easing for CSS transitions ───────────────── */
 .ease-spring {
   transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Hero entrance — CSS, not framer-motion, so the content is present and
-   visible in the server HTML rather than hidden at opacity:0 until JS
-   hydrates. On desktop the animation auto-plays at first paint (no JS
-   wait). On mobile / reduced-motion the elements are pinned visible so
-   the largest text paints on the first frame → fast mobile LCP. */
+/* ── Hero entrance — CSS, not framer, so content is visible in server
+      HTML (mobile LCP paints on first frame; desktop animates on load) */
 .hero-rise {
   opacity: 0;
-  animation: hero-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -161,16 +235,14 @@
   }
 }
 
-/* Character-level headline reveal (SplitText).
-   Pure CSS so it survives JS being disabled — the animation auto-plays
-   on load and the text ends fully visible with real spaces. */
+/* ── Character-level headline reveal (SplitText) — pure CSS so it
+      survives JS-disabled; pinned visible on mobile for instant LCP ── */
 .split-char {
   display: inline-block;
   opacity: 0;
   will-change: transform, opacity;
   animation: char-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-
 @keyframes char-rise {
   from {
     opacity: 0;
@@ -181,10 +253,6 @@
     transform: translateY(0);
   }
 }
-
-/* On mobile, pin headline characters visible (no reveal animation) so the
-   largest text paints on first frame — meaningfully improves mobile LCP
-   and removes main-thread animation cost. The reveal still plays on md+. */
 @media (max-width: 767px) {
   .split-char {
     opacity: 1;
@@ -194,7 +262,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Pin every character visible, no motion */
   .split-char {
     opacity: 1 !important;
     transform: none !important;
@@ -209,7 +276,7 @@
   }
 }
 
-/* Custom cursor — hide native arrow on non-form elements when on */
+/* ── Custom cursor — hide native arrow while ours is mounted ────────── */
 @media (hover: hover) and (pointer: fine) {
   html.custom-cursor-on,
   html.custom-cursor-on * {
@@ -222,7 +289,7 @@
   }
 }
 
-/* Animated underline for inline links */
+/* ── Animated underline for inline links ────────────────────────────── */
 .link-underline {
   position: relative;
   display: inline-flex;
@@ -246,7 +313,7 @@
   transform: scaleX(1);
 }
 
-/* Sliding arrow inside a link/button */
+/* ── Sliding arrow inside a link/button ─────────────────────────────── */
 .arrow-slide {
   display: inline-flex;
   overflow: hidden;
@@ -271,7 +338,7 @@
   transform: translate(0, 0);
 }
 
-/* Spotlight surface — a card with a cursor-following highlight */
+/* ── Spotlight surface — cursor-following blue highlight ────────────── */
 .spotlight-surface {
   position: relative;
   overflow: hidden;
@@ -282,7 +349,7 @@
   inset: 0;
   background: radial-gradient(
     600px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(16, 185, 129, 0.08),
+    rgba(88, 101, 242, 0.1),
     transparent 40%
   );
   opacity: 0;
@@ -293,7 +360,7 @@
   opacity: 1;
 }
 
-/* Shimmering border on hover for premium cards */
+/* ── Shimmering border on hover for premium cards ───────────────────── */
 .shimmer-border {
   position: relative;
 }
@@ -305,9 +372,9 @@
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(16, 185, 129, 0.18) 50%,
-    rgba(255, 255, 255, 0.06)
+    rgba(255, 255, 255, 0.08),
+    rgba(88, 101, 242, 0.35) 50%,
+    rgba(255, 255, 255, 0.08)
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,

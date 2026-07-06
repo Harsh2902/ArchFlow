@@ -16,7 +16,7 @@ export function FinalCTA() {
       className="relative isolate section-y overflow-hidden border-t border-white/5"
     >
       <Aurora variant="edge" className="-z-10" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flow-500/40 to-transparent" />
 
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-4xl text-center">
@@ -28,8 +28,10 @@ export function FinalCTA() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="heading-display text-[40px] sm:text-[60px] lg:text-[88px]"
           >
-            Is your business ready for software that{" "}
-            <span className="italic font-display text-emerald-400">fits it?</span>
+            <span className="text-metal">
+              Is your business ready for software that{" "}
+            </span>
+            <span className="text-flow">fits it?</span>
           </motion.h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Let&apos;s talk. We&apos;ll show you what we built for Pranav and
@@ -56,7 +58,7 @@ export function FinalCTA() {
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-eyebrow text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <span className="h-1 w-1 rounded-full bg-emerald-400" />
+              <span className="h-1 w-1 rounded-full bg-flow-400" />
               Responses within 24 hours
             </span>
             <span className="text-white/15">·</span>

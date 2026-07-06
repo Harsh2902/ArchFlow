@@ -235,7 +235,7 @@ export default function PranavCaseStudy() {
             {/* connecting line */}
             <div
               aria-hidden
-              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500/50 via-white/10 to-transparent sm:left-[9px]"
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-flow-500/50 via-white/10 to-transparent sm:left-[9px]"
             />
             <ol className="space-y-8">
               {ROLLOUT.map((phase, i) => (
@@ -244,12 +244,12 @@ export default function PranavCaseStudy() {
                     {/* dot */}
                     <span
                       aria-hidden
-                      className="absolute left-0 top-1.5 grid h-3.5 w-3.5 place-items-center rounded-full border border-emerald-400/40 bg-background sm:h-[18px] sm:w-[18px]"
+                      className="absolute left-0 top-1.5 grid h-3.5 w-3.5 place-items-center rounded-full border border-flow-400/40 bg-background sm:h-[18px] sm:w-[18px]"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 sm:h-2 sm:w-2" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-flow-400 sm:h-2 sm:w-2" />
                     </span>
                     <div>
-                      <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                      <p className="text-xs uppercase tracking-eyebrow text-flow-400">
                         {phase.when}
                       </p>
                       <h3 className="mt-1 text-lg font-semibold tracking-tight">
@@ -279,7 +279,7 @@ export default function PranavCaseStudy() {
           <Stagger className="mt-14 grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
             {STATS.map((s) => (
               <Reveal key={s.label} className="text-center">
-                <p className="font-display text-4xl text-emerald-400 sm:text-5xl lg:text-6xl">
+                <p className="font-display text-4xl text-flow-400 sm:text-5xl lg:text-6xl">
                   <StatCounter to={s.value} suffix={s.suffix} />
                 </p>
                 <p className="mt-3 text-xs uppercase tracking-eyebrow text-muted-foreground">
@@ -295,7 +295,7 @@ export default function PranavCaseStudy() {
       {/* Quote */}
       <section className="section-y border-b border-white/5">
         <div className="container-page mx-auto max-w-3xl text-center">
-          <Quote className="mx-auto h-7 w-7 text-emerald-400/60" aria-hidden />
+          <Quote className="mx-auto h-7 w-7 text-flow-400/60" aria-hidden />
           {/* PLACEHOLDER: replace with named, attributed testimonial */}
           <Reveal>
             <blockquote className="heading-display mt-6 text-[24px] leading-[1.25] sm:text-[32px] lg:text-[40px]">

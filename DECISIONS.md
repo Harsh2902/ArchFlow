@@ -155,3 +155,39 @@ to `whileHover={{ scale: 1.02 }}` in:
 - `components/sections/services-preview.tsx`
 - `components/sections/founders-preview.tsx`
 - `components/sections/work-grid.tsx`
+
+---
+
+## Full brand redesign (July 2026) — logo-driven
+
+The founders' final logo (silver Λ mark + royal-blue flow ribbon on rich
+black) replaced the original emerald/serif system. Decisions made:
+
+- **Palette**: new `flow` blue scale (#a5b0ff → #232a9e) as the brand
+  accent; background deepened to a blue-black (#05060a). The `emerald`
+  Tailwind scale is intentionally REMAPPED to the same blues as a
+  safety net so no legacy class can ever render green.
+- **Type**: Instrument Serif retired. Display face is now Manrope
+  (bold geometric grotesque matching the wordmark), body stays Inter.
+  All `italic` accents removed (Manrope has no true italic).
+- **Signature treatments**: `.text-metal` (silver gradient like "Arch")
+  and `.text-flow` (blue gradient like "Flow") clip-text utilities used
+  across every headline.
+- **3D hero**: the arch torus was replaced with the actual brand mark
+  modeled as extruded geometry (Λ peak + flow ribbon + fragment),
+  metal/gloss via three's bundled RoomEnvironment (no network). Gentle
+  sway + mouse parallax, never a full spin. Mobile/reduced-motion get
+  the real logo PNG with a glow instead.
+- **Assets**: logo PNGs live in public/brand/ (mark, mark-512, full);
+  favicons are now the real mark (app/icon.png 64px, apple-icon 180px —
+  generated via System.Drawing, replacing the ImageResponse icons).
+- **Chrome**: floating glass capsule nav + flow-gradient scroll-progress
+  hairline; footer features the full wordmark image; app/template.tsx
+  adds a CSS page-transition (disabled on mobile/reduced-motion).
+- **Home**: new capabilities marquee (mark as separator glyph); Problem
+  became an "old way vs ArchFlow" comparison panel; Services became a
+  bento grid; OS-preview widget removed from the hero in favour of the
+  3D mark (file kept for future reuse).
+- All perf/a11y guarantees preserved: hero-rise SSR-visible entrances
+  (mobile LCP), mobile gates on heavy ambient layers (iOS crash fix),
+  4.5:1 contrast (flow-300/400 for small text on black).

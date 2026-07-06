@@ -55,8 +55,8 @@ export function renderContactEmail(p: ContactPayload) {
   <meta charset="utf-8" />
   <title>New ArchFlow enquiry</title>
 </head>
-<body style="margin:0;padding:0;background:#020617;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif;color:#e2e8f0;">
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#020617;padding:40px 16px;">
+<body style="margin:0;padding:0;background:#05060a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif;color:#e2e8f0;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#05060a;padding:40px 16px;">
     <tr>
       <td align="center">
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;">
@@ -66,10 +66,10 @@ export function renderContactEmail(p: ContactPayload) {
               <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td>
-                    <span style="display:inline-block;background:#10b981;color:#020617;width:28px;height:28px;border-radius:8px;text-align:center;line-height:28px;font-weight:700;font-size:14px;vertical-align:middle;">A</span>
+                    <span style="display:inline-block;background:#5865f2;color:#05060a;width:28px;height:28px;border-radius:8px;text-align:center;line-height:28px;font-weight:700;font-size:14px;vertical-align:middle;">A</span>
                     <span style="margin-left:10px;font-size:15px;font-weight:600;color:#f8fafc;vertical-align:middle;">ArchFlow</span>
                   </td>
-                  <td align="right" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#10b981;">
+                  <td align="right" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5865f2;">
                     New enquiry
                   </td>
                 </tr>
@@ -104,7 +104,7 @@ export function renderContactEmail(p: ContactPayload) {
                   <td style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06);">
                     <p style="margin:0;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;">Email</p>
                     <p style="margin:4px 0 0 0;font-size:15px;">
-                      <a href="mailto:${safe(p.email)}" style="color:#34d399;text-decoration:none;">${safe(p.email)}</a>
+                      <a href="mailto:${safe(p.email)}" style="color:#8a96ff;text-decoration:none;">${safe(p.email)}</a>
                     </p>
                   </td>
                 </tr>
@@ -112,7 +112,7 @@ export function renderContactEmail(p: ContactPayload) {
                   <td style="padding:16px 20px;">
                     <p style="margin:0;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;">Phone</p>
                     <p style="margin:4px 0 0 0;font-size:15px;">
-                      <a href="tel:${safe(p.phone.replace(/\s+/g, ""))}" style="color:#34d399;text-decoration:none;">${safe(p.phone)}</a>
+                      <a href="tel:${safe(p.phone.replace(/\s+/g, ""))}" style="color:#8a96ff;text-decoration:none;">${safe(p.phone)}</a>
                     </p>
                   </td>
                 </tr>
@@ -124,7 +124,7 @@ export function renderContactEmail(p: ContactPayload) {
           <tr>
             <td style="padding:8px 28px 24px 28px;">
               <p style="margin:0 0 8px 0;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;">Their message</p>
-              <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-left:3px solid #10b981;border-radius:8px;padding:16px 20px;color:#cbd5e1;font-size:14px;line-height:1.6;white-space:pre-wrap;">${safe(p.message)}</div>
+              <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-left:3px solid #5865f2;border-radius:8px;padding:16px 20px;color:#cbd5e1;font-size:14px;line-height:1.6;white-space:pre-wrap;">${safe(p.message)}</div>
             </td>
           </tr>
 
@@ -133,8 +133,8 @@ export function renderContactEmail(p: ContactPayload) {
             <td style="padding:8px 28px 32px 28px;">
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="background:#10b981;border-radius:8px;">
-                    <a href="mailto:${safe(p.email)}?subject=Re:%20Your%20enquiry%20to%20ArchFlow" style="display:inline-block;padding:12px 20px;color:#020617;text-decoration:none;font-size:14px;font-weight:600;">
+                  <td style="background:#5865f2;border-radius:8px;">
+                    <a href="mailto:${safe(p.email)}?subject=Re:%20Your%20enquiry%20to%20ArchFlow" style="display:inline-block;padding:12px 20px;color:#05060a;text-decoration:none;font-size:14px;font-weight:600;">
                       Reply to ${safe(p.name.split(" ")[0])} &rarr;
                     </a>
                   </td>

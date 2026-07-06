@@ -19,6 +19,6 @@ export const workItems: WorkItem[] = [
       "End-to-end platform from enquiry to installation. 10 departments, 5+ states, running daily.",
     status: "live",
     href: "/work/pranav-doors",
-    accent: "from-emerald-500/30 to-emerald-700/10"
+    accent: "from-flow-500/30 to-flow-700/10"
   }
 ];

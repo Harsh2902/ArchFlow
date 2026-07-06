@@ -1,35 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+/**
+ * Brand lockup: the real 3D logo mark + the two-tone wordmark
+ * ("Arch" metallic white · "Flow" royal blue), matching logo-full.png.
+ */
 export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
       aria-label="ArchFlow home"
       className={cn(
-        "group inline-flex items-center gap-2 text-foreground transition-opacity hover:opacity-90",
+        "group inline-flex items-center gap-2.5 transition-opacity hover:opacity-90",
         className
       )}
     >
-      <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-glow">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
-        >
-          <path
-            d="M2 13L8 2L14 13M5 9H11"
-            stroke="#020617"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <Image
+        src="/brand/logo-mark-512.png"
+        alt=""
+        width={34}
+        height={34}
+        priority
+        className="h-[34px] w-[34px] transition-transform duration-500 group-hover:scale-105"
+      />
+      <span className="font-display text-lg font-extrabold tracking-tight">
+        <span className="text-foreground">Arch</span>
+        <span className="text-flow">Flow</span>
       </span>
-      <span className="text-base font-semibold tracking-tight">ArchFlow</span>
     </Link>
   );
 }

@@ -53,7 +53,7 @@ export function FlowDiagram() {
       className="relative isolate overflow-hidden border-t border-white/5 section-y"
     >
       <GridPattern className="-z-10" interactive={false} fade />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-flow-500/30 to-transparent" />
 
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -62,10 +62,11 @@ export function FlowDiagram() {
             id="flow-heading"
             className="heading-section text-[34px] sm:text-[44px] lg:text-[56px]"
           >
-            One platform from{" "}
-            <span className="italic font-display text-emerald-400">enquiry</span>{" "}
-            to{" "}
-            <span className="italic font-display text-emerald-400">service</span>.
+            <span className="text-metal">One platform from </span>
+            <span className="text-flow">enquiry</span>
+            <span className="text-metal"> to </span>
+            <span className="text-flow">service</span>
+            <span className="text-metal">.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             No handoffs lost in WhatsApp. No status updates in Excel. Every stage
@@ -97,7 +98,7 @@ export function FlowDiagram() {
             return (
               <Reveal key={n.label} delay={i * 0.05}>
                 <div className="surface relative flex items-start gap-4 p-5">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-flow-500/30 bg-flow-500/10 text-flow-400">
                     <Icon className="h-4 w-4" />
                   </div>
                   <div>
@@ -120,19 +121,19 @@ export function FlowDiagram() {
         {/* Caption strip */}
         <Reveal className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-white/5 pt-8 text-center text-sm text-muted-foreground">
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             Single source of truth
           </span>
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             Mobile-first for the floor
           </span>
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             Audit trail at every handoff
           </span>
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             Modular — turn on what you need
           </span>
         </Reveal>
@@ -160,10 +161,10 @@ function FlowSVG({
     >
       <defs>
         <linearGradient id="flow-grad" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0%" stopColor="rgba(16,185,129,0.0)" />
-          <stop offset="20%" stopColor="rgba(16,185,129,0.6)" />
-          <stop offset="80%" stopColor="rgba(16,185,129,0.6)" />
-          <stop offset="100%" stopColor="rgba(16,185,129,0.0)" />
+          <stop offset="0%" stopColor="rgba(88,101,242,0.0)" />
+          <stop offset="20%" stopColor="rgba(88,101,242,0.6)" />
+          <stop offset="80%" stopColor="rgba(88,101,242,0.6)" />
+          <stop offset="100%" stopColor="rgba(88,101,242,0.0)" />
         </linearGradient>
       </defs>
 
@@ -215,25 +216,25 @@ function FlowNode({
   const borderColor = useTransform(
     accent,
     [0, 1],
-    ["rgba(255,255,255,0.08)", "rgba(16,185,129,0.5)"]
+    ["rgba(255,255,255,0.08)", "rgba(88,101,242,0.5)"]
   );
   const backgroundColor = useTransform(
     accent,
     [0, 1],
-    ["rgba(255,255,255,0.02)", "rgba(16,185,129,0.08)"]
+    ["rgba(255,255,255,0.02)", "rgba(88,101,242,0.08)"]
   );
   const boxShadow = useTransform(
     accent,
     [0, 1],
     [
-      "0 0 0 0 rgba(16,185,129,0)",
-      "0 0 30px -6px rgba(16,185,129,0.5)"
+      "0 0 0 0 rgba(88,101,242,0)",
+      "0 0 30px -6px rgba(88,101,242,0.5)"
     ]
   );
   const iconColor = useTransform(
     accent,
     [0, 1],
-    ["rgba(255,255,255,0.45)", "rgb(16,185,129)"]
+    ["rgba(255,255,255,0.45)", "rgb(88,101,242)"]
   );
 
   return (

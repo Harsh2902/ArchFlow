@@ -29,8 +29,11 @@ export function CaseStudyFeature() {
               id="case-heading"
               className="heading-section text-[32px] sm:text-[40px] lg:text-[52px]"
             >
-              Pranav Doors &amp; Windows runs its entire multi-state operation
-              on ArchFlow.
+              <span className="text-metal">
+                Pranav Doors &amp; Windows runs its entire multi-state
+                operation on{" "}
+              </span>
+              <span className="text-flow">ArchFlow.</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               From the moment an enquiry comes in, through quotation,
@@ -43,7 +46,7 @@ export function CaseStudyFeature() {
             <dl className="mt-10 grid grid-cols-3 gap-6 sm:gap-8">
               {STATS.map((s) => (
                 <div key={s.label}>
-                  <dd className="font-display text-3xl text-emerald-400 sm:text-4xl lg:text-5xl">
+                  <dd className="font-display text-3xl text-flow-400 sm:text-4xl lg:text-5xl">
                     <StatCounter to={s.value} suffix={s.suffix} />
                   </dd>
                   <dt className="mt-2 text-xs uppercase tracking-eyebrow text-muted-foreground">
@@ -55,7 +58,7 @@ export function CaseStudyFeature() {
 
             <Link
               href="/work/pranav-doors"
-              className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+              className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium text-flow-400 transition-colors hover:text-flow-300"
             >
               Read the full case study
               <ArrowRight className="h-3.5 w-3.5" />

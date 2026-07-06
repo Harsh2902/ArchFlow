@@ -1,5 +1,26 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * ArchFlow brand system — derived from the logo:
+ * rich black canvas, metallic silver-white, royal-blue "flow" gradient.
+ *
+ * `flow` is the brand blue scale. `emerald` is intentionally remapped to
+ * the same blues as a hard safety net: no legacy emerald class can ever
+ * render green again.
+ */
+const flow = {
+  50: "#eef0ff",
+  100: "#e0e4ff",
+  200: "#c4cbff",
+  300: "#a5b0ff",
+  400: "#8a96ff",
+  500: "#5865f2",
+  600: "#4353f0",
+  700: "#3340d4",
+  800: "#2b35c4",
+  900: "#232a9e"
+};
+
 const config: Config = {
   darkMode: ["class"],
   content: [
@@ -20,7 +41,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-instrument-serif)", "Georgia", "serif"]
+        display: ["var(--font-display)", "var(--font-inter)", "sans-serif"]
       },
       colors: {
         border: "hsl(var(--border))",
@@ -48,10 +69,14 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
         },
+        flow,
+        // Legacy-class safety net — emerald classes now render brand blue.
         emerald: {
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669"
+          300: flow[300],
+          400: flow[400],
+          500: flow[500],
+          600: flow[600],
+          700: flow[700]
         }
       },
       borderRadius: {
@@ -60,11 +85,15 @@ const config: Config = {
         "2xl": "1rem"
       },
       letterSpacing: {
-        tightest: "-0.04em",
-        tighter2: "-0.02em",
-        eyebrow: "0.1em"
+        tightest: "-0.045em",
+        tighter2: "-0.025em",
+        eyebrow: "0.14em"
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" }
@@ -75,6 +104,7 @@ const config: Config = {
         }
       },
       animation: {
+        marquee: "marquee 36s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out"
       }

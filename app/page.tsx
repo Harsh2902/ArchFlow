@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageOg } from "@/lib/og";
 import { Hero } from "@/components/sections/hero";
+import { CapabilitiesMarquee } from "@/components/sections/capabilities-marquee";
 import { Problem } from "@/components/sections/problem";
 import { FlowDiagram } from "@/components/sections/flow-diagram";
 import { Process } from "@/components/sections/process";
@@ -27,6 +28,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <CapabilitiesMarquee />
       <Problem />
       <FlowDiagram />
       <Process />

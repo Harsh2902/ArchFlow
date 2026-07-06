@@ -56,7 +56,8 @@ export function Process() {
             id="process-heading"
             className="heading-section text-[34px] sm:text-[44px] lg:text-[56px]"
           >
-            From whiteboard to live deployment in weeks, not years.
+            <span className="text-metal">From whiteboard to live deployment </span>
+            <span className="text-flow">in weeks, not years.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             A four-step build cadence, refined across deployments.
@@ -74,11 +75,11 @@ export function Process() {
                   <Reveal key={step.n}>
                     <div className="max-w-xl">
                       <div className="mb-4 flex items-center gap-3">
-                        <span className="font-display text-3xl text-emerald-400/80">
+                        <span className="font-display text-3xl text-flow-400/80">
                           {step.n}
                         </span>
                         <span className="h-px flex-1 bg-white/10" />
-                        <Icon className="h-5 w-5 text-emerald-400" />
+                        <Icon className="h-5 w-5 text-flow-400" />
                       </div>
                       <h3 className="heading-section text-[28px] sm:text-[36px] lg:text-[44px]">
                         {step.title}
@@ -146,12 +147,12 @@ function StepRow({
   const backgroundColor = useTransform(
     progress,
     [start, mid, end],
-    ["rgba(255,255,255,0.02)", "rgba(16,185,129,0.12)", "rgba(255,255,255,0.02)"]
+    ["rgba(255,255,255,0.02)", "rgba(88,101,242,0.12)", "rgba(255,255,255,0.02)"]
   );
   const borderColor = useTransform(
     progress,
     [start, mid, end],
-    ["rgba(255,255,255,0.08)", "rgba(16,185,129,0.45)", "rgba(255,255,255,0.08)"]
+    ["rgba(255,255,255,0.08)", "rgba(88,101,242,0.45)", "rgba(255,255,255,0.08)"]
   );
 
   return (
@@ -159,7 +160,7 @@ function StepRow({
       style={{ backgroundColor, borderColor }}
       className="flex items-center gap-3 rounded-lg border px-4 py-3"
     >
-      <span className="font-display text-base text-emerald-400">{step.n}</span>
+      <span className="font-display text-base text-flow-400">{step.n}</span>
       <span className="text-sm font-medium text-foreground">{step.title}</span>
     </motion.div>
   );

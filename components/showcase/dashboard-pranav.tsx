@@ -53,7 +53,7 @@ export function DashboardPranav() {
   return (
     <div className="relative" style={{ perspective: 1200 }}>
       {/* outer glow */}
-      <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-br from-emerald-500/20 via-blue-500/10 to-transparent blur-2xl" />
+      <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-br from-flow-500/20 via-blue-500/10 to-transparent blur-2xl" />
 
       <motion.div
         ref={ref}
@@ -67,7 +67,7 @@ export function DashboardPranav() {
           <div className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+            <span className="h-2.5 w-2.5 rounded-full bg-flow-500/70" />
           </div>
           <div className="hidden items-center gap-2 rounded-md border border-white/5 bg-white/[0.03] px-2.5 py-1 text-[10px] text-muted-foreground sm:flex">
             <Search className="h-2.5 w-2.5" />
@@ -75,7 +75,7 @@ export function DashboardPranav() {
           </div>
           <div className="flex items-center gap-2">
             <Bell className="h-3 w-3 text-muted-foreground" />
-            <div className="grid h-6 w-6 place-items-center rounded-full bg-emerald-500/20 text-[10px] font-semibold text-emerald-300">
+            <div className="grid h-6 w-6 place-items-center rounded-full bg-flow-500/20 text-[10px] font-semibold text-flow-300">
               PD
             </div>
           </div>
@@ -101,7 +101,7 @@ export function DashboardPranav() {
                     key={n.l}
                     className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] transition ${
                       n.active
-                        ? "bg-emerald-500/10 text-emerald-300"
+                        ? "bg-flow-500/10 text-flow-300"
                         : "text-muted-foreground"
                     }`}
                   >
@@ -177,7 +177,7 @@ export function DashboardPranav() {
         {/* status strip */}
         <div className="flex items-center justify-between border-t border-white/5 bg-background/40 px-4 py-2 text-[10px] text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
             All systems operational · synced 2s ago
           </span>
           <span>v2.14.0</span>
@@ -213,7 +213,7 @@ function KpiTile({
         <p className="text-[9px] uppercase tracking-eyebrow text-muted-foreground">
           {label}
         </p>
-        <span className="flex items-center gap-0.5 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-medium text-emerald-300">
+        <span className="flex items-center gap-0.5 rounded-full bg-flow-500/10 px-1.5 py-0.5 text-[9px] font-medium text-flow-300">
           <ArrowUpRight className="h-2 w-2" />
           {delta}
         </span>
@@ -224,7 +224,7 @@ function KpiTile({
       <svg viewBox="0 0 100 28" className="mt-1.5 h-6 w-full">
         <motion.polyline
           fill="none"
-          stroke="rgb(16,185,129)"
+          stroke="rgb(88,101,242)"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -249,8 +249,8 @@ function KpiTile({
         />
         <defs>
           <linearGradient id="spark-fill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="rgba(16,185,129,0.4)" />
-            <stop offset="100%" stopColor="rgba(16,185,129,0)" />
+            <stop offset="0%" stopColor="rgba(88,101,242,0.4)" />
+            <stop offset="100%" stopColor="rgba(88,101,242,0)" />
           </linearGradient>
         </defs>
       </svg>
@@ -275,7 +275,7 @@ function BarChart() {
         <p className="text-[10px] uppercase tracking-eyebrow text-muted-foreground">
           Orders by day
         </p>
-        <div className="flex items-center gap-1 text-[9px] text-emerald-300">
+        <div className="flex items-center gap-1 text-[9px] text-flow-300">
           <TrendingUp className="h-2.5 w-2.5" />
           Trending up
         </div>
@@ -288,7 +288,7 @@ function BarChart() {
               whileInView={{ height: `${(d.value / max) * 100}%`, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full rounded-t-sm bg-gradient-to-t from-emerald-500/60 to-emerald-400/90"
+              className="w-full rounded-t-sm bg-gradient-to-t from-flow-500/60 to-flow-400/90"
             />
             <span className="text-[8px] uppercase tracking-eyebrow text-muted-foreground">
               {d.label}
@@ -326,7 +326,7 @@ function PipelineList() {
             <span
               className={`rounded-full px-1.5 py-0.5 text-[8px] uppercase tracking-eyebrow ${
                 it.color === "emerald"
-                  ? "bg-emerald-500/15 text-emerald-300"
+                  ? "bg-flow-500/15 text-flow-300"
                   : it.color === "blue"
                     ? "bg-blue-500/15 text-blue-300"
                     : it.color === "amber"

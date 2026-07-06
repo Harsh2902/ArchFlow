@@ -42,7 +42,7 @@ export default function ServicesPage() {
                   <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-400">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-flow-400">
                           <Icon className="h-5 w-5" />
                         </span>
                         <span className="font-display text-2xl text-muted-foreground">
@@ -59,7 +59,7 @@ export default function ServicesPage() {
 
                     <div className="space-y-6">
                       <div>
-                        <p className="text-xs uppercase tracking-eyebrow text-emerald-400">
+                        <p className="text-xs uppercase tracking-eyebrow text-flow-400">
                           What&apos;s included
                         </p>
                         <ul className="mt-3 space-y-2">
@@ -68,7 +68,7 @@ export default function ServicesPage() {
                               key={inc}
                               className="flex items-start gap-2.5 text-sm text-foreground/85"
                             >
-                              <Check className="mt-[3px] h-4 w-4 shrink-0 text-emerald-400" />
+                              <Check className="mt-[3px] h-4 w-4 shrink-0 text-flow-400" />
                               <span>{inc}</span>
                             </li>
                           ))}
