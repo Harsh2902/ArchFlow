@@ -60,6 +60,7 @@ const STATS = [
 ];
 
 // PLACEHOLDER: confirm exact phase durations with the delivery team.
+// Deployed to live in four weeks — the story the whole site tells.
 const ROLLOUT = [
   {
     when: "Week 1",
@@ -68,34 +69,28 @@ const ROLLOUT = [
       "Days with the operators — design desk, dispatch yard, site visits. We mapped the real workflow before writing a line of code."
   },
   {
-    when: "Weeks 2–3",
+    when: "Week 2",
     title: "Quotation module live",
     detail:
-      "The revenue engine moved first: configurable BOM, versioned quotes, approval matrix — in production within a fortnight."
+      "The revenue engine moved first: configurable BOM, versioned quotes, approval matrix — in production within days."
   },
   {
-    when: "Weeks 4–6",
+    when: "Week 3",
     title: "Sales pipeline live",
     detail:
       "Territory hierarchy across states, BDM routing, site-visit logging, and lost-reason analytics went live."
   },
   {
-    when: "Weeks 7–12",
-    title: "Production & dispatch coordination",
+    when: "Week 4",
+    title: "Production, dispatch & installation live",
     detail:
-      "Job cards on the shop floor, store linkage, vehicle scheduling, and site acknowledgement closed the loop."
-  },
-  {
-    when: "Months 4–8",
-    title: "Installation, service & AMC modules",
-    detail:
-      "Post-install checklists, snag capture, AMC tracking, and complaint resolution layered in as the team scaled."
+      "Job cards on the shop floor, store linkage, vehicle scheduling, site acknowledgement, and installation checklists closed the loop — full deployment inside a month."
   },
   {
     when: "Ongoing",
-    title: "Leadership MIS dashboards, evolving",
+    title: "Service, AMC & leadership MIS, evolving",
     detail:
-      "Real-time order book, dispatch, collections, and region-wise pipeline — refined continuously as the business grows."
+      "AMC tracking, complaint resolution, real-time order book, collections, and region-wise pipeline — refined continuously as the business grows."
   }
 ];
 
@@ -179,16 +174,17 @@ export default function PranavCaseStudy() {
           </Reveal>
           <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             <p>
-              We spent the first weeks on the floor — at the design desk, on
+              We spent the first week on the floor — at the design desk, on
               site visits, inside the dispatch yard. Then we built the data
               model and workflows around exactly how Pranav already worked, not
               how a generic ERP wished they worked.
             </p>
             <p>
-              Rollout happened in stages. Quotation and sales first, so the
-              revenue engine moved on day one. Production and dispatch next, so
-              the floor stopped flying blind. Installation, service, and the
-              leadership MIS layered in over the following months.
+              Rollout happened in stages — all inside four weeks. Quotation
+              and sales first, so the revenue engine moved immediately.
+              Production and dispatch next, so the floor stopped flying blind.
+              Installation closed the loop by week four, with service, AMC,
+              and the leadership MIS evolving continuously ever since.
             </p>
             {/* PLACEHOLDER: replace with engagement timeline diagram */}
           </Reveal>
