@@ -13,10 +13,10 @@ export const workItems: WorkItem[] = [
   {
     slug: "pranav-doors",
     client: "Pranav Doors & Windows",
-    industry: "Fenestration · Multi-state operations",
+    industry: "Premium doors & windows · Manufacturing",
     year: "2024",
     summary:
-      "End-to-end platform from enquiry to installation. 10 departments, 5+ states, running daily.",
+      "From the first enquiry to the signed handover — 10 departments and 100+ employees working on one live platform.",
     status: "live",
     href: "/work/pranav-doors",
     accent: "from-flow-500/30 to-flow-700/10"

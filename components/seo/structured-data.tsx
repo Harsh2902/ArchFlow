@@ -39,7 +39,7 @@ export const organizationSchema = {
     {
       "@type": "Person",
       name: "Harsh Dhankhar",
-      jobTitle: "Founder, Engineering",
+      jobTitle: "Co-founder, Engineering",
       email: "harsh@archflow.co.in"
     },
     {

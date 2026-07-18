@@ -14,7 +14,7 @@ export const founders: Founder[] = [
   {
     slug: "harsh",
     name: "Harsh Dhankhar",
-    role: "Founder, Engineering",
+    role: "Co-founder, Engineering",
     short: "Built ArchFlow's platform end-to-end.",
     long: "Harsh leads engineering at ArchFlow. He designed and built the platform end-to-end — from the data model that lets us spin up a new client's MIS in weeks, to the workflow engine running live at Pranav Doors today. Background in product engineering with a focus on systems built to be customised, not configured.",
     initials: "H",
