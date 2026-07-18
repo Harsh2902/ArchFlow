@@ -28,11 +28,22 @@ export const organizationSchema = {
   "@id": `${site.url}/#organization`,
   name: "ArchFlow",
   legalName: "ArchFlow",
+  alternateName: ["ArchFlow India", "ArchFlow Chandigarh"],
   url: site.url,
-  logo: `${site.url}/icon`,
-  image: `${site.url}/opengraph-image`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${site.url}/brand/logo-mark-512.png`,
+    width: 512,
+    height: 512,
+    caption: "ArchFlow logo — silver apex mark with royal-blue flow ribbon"
+  },
+  image: [`${site.url}/opengraph-image`, `${site.url}/brand/logo-mark-512.png`],
   description:
     "ArchFlow designs and builds custom workflow and MIS platforms for India's manufacturers, fabricators, and project-based businesses. Custom-built, deployed in weeks, not years.",
+  // Explicitly separates this company from the similarly-named
+  // architecture-firm SaaS products — search engines were conflating them.
+  disambiguatingDescription:
+    "ArchFlow (archflow.co.in) is an independent Indian software company headquartered in Chandigarh that builds custom MIS and workflow platforms for manufacturers, fabricators, and project-based industrial businesses. It is not affiliated with, and should not be confused with, the architecture-practice software products marketed at archflow.ai or getarchflow.com.",
   slogan: "Custom workflow platforms for businesses that have outgrown Excel.",
   foundingDate: "2024",
   founders: [
@@ -51,6 +62,14 @@ export const organizationSchema = {
   ],
   email: site.email,
   telephone: site.phone,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: site.email,
+    telephone: site.phone,
+    areaServed: "IN",
+    availableLanguage: ["English", "Hindi"]
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Chandigarh",

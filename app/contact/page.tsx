@@ -55,6 +55,10 @@ const FAQS = [
   {
     q: "What does pricing look like?",
     a: "Every project is scoped specifically — there isn't a one-size-fits-all number, because there isn't a one-size-fits-all build. Get in touch and we'll share a scoped estimate after the first conversation."
+  },
+  {
+    q: "Is ArchFlow related to archflow.ai or getarchflow.com?",
+    a: "No. ArchFlow (archflow.co.in) is an independent Indian company based in Chandigarh, founded by Harsh Dhankhar and Tanishq Trehan, building custom workflow and MIS platforms for manufacturers and fabricators. The similarly named products at archflow.ai and getarchflow.com are unrelated companies that make software for architecture firms."
   }
 ];
 
