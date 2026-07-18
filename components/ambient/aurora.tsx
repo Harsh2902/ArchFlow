@@ -9,6 +9,11 @@ import { useIsMobile } from "@/lib/use-is-mobile";
  * brand. Mobile gets fewer, smaller, static blobs (heavy blurred layers
  * animating forever crash memory-constrained mobile Safari).
  *
+ * Geometry is decided by CSS (size cap, blur radius, blob count per
+ * breakpoint) so the server HTML already IS the final mobile paint —
+ * no post-hydration re-layout for Speed Index to count. JS only gates
+ * the drift animation, which is a desktop-only upgrade anyway.
+ *
  * Variants:
  * - "hero"  → biggest, most saturated
  * - "soft"  → calmer section ambience
@@ -23,7 +28,7 @@ export function Aurora({ variant = "soft", className }: AuroraProps) {
   const reduce = useReducedMotion();
   const isMobile = useIsMobile();
 
-  const desktopBlobs =
+  const blobs =
     variant === "hero"
       ? [
           { color: "rgba(88, 101, 242, 0.22)", size: 720, x: "16%", y: "22%" },
@@ -40,11 +45,6 @@ export function Aurora({ variant = "soft", className }: AuroraProps) {
             { color: "rgba(67, 83, 240, 0.08)", size: 480, x: "85%", y: "75%" }
           ];
 
-  const blobs = isMobile
-    ? desktopBlobs.slice(0, 2).map((b) => ({ ...b, size: Math.min(b.size, 300) }))
-    : desktopBlobs;
-
-  const blurPx = isMobile ? 38 : 60;
   const animateOff = reduce || isMobile;
 
   return (
@@ -58,16 +58,17 @@ export function Aurora({ variant = "soft", className }: AuroraProps) {
       {blobs.map((b, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full"
+          className={cn(
+            "absolute rounded-full blur-[38px] md:blur-[60px] md:will-change-transform",
+            "[width:min(var(--sz),300px)] [height:min(var(--sz),300px)] md:[width:var(--sz)] md:[height:var(--sz)]",
+            i >= 2 && "hidden md:block"
+          )}
           style={{
-            width: b.size,
-            height: b.size,
+            ["--sz" as string]: `${b.size}px`,
             left: b.x,
             top: b.y,
             transform: "translate(-50%, -50%)",
-            background: `radial-gradient(circle, ${b.color} 0%, transparent 60%)`,
-            filter: `blur(${blurPx}px)`,
-            willChange: animateOff ? undefined : "transform"
+            background: `radial-gradient(circle, ${b.color} 0%, transparent 60%)`
           }}
           animate={
             animateOff

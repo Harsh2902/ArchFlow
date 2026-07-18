@@ -338,7 +338,7 @@ export default function PranavCaseStudy() {
                       <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/[0.04]">
                         <Icon className="h-5 w-5 text-foreground/80" />
                       </span>
-                      <span className="font-display text-sm font-bold text-muted-foreground/80">
+                      <span className="font-display text-sm font-bold text-muted-foreground">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -423,8 +423,12 @@ export default function PranavCaseStudy() {
             />
             <ol className="space-y-7">
               {JOURNEY.map((step, i) => (
-                <Reveal as="div" key={step.title} delay={(i % 4) * 0.04}>
-                  <li className="relative flex gap-5 pl-9">
+                <Reveal
+                  as="li"
+                  key={step.title}
+                  delay={(i % 4) * 0.04}
+                  className="relative flex gap-5 pl-9"
+                >
                     <span
                       aria-hidden
                       className="absolute left-0 top-1 grid h-[18px] w-[18px] place-items-center rounded-full border border-flow-400/40 bg-background"
@@ -432,7 +436,7 @@ export default function PranavCaseStudy() {
                       <span className="h-2 w-2 rounded-full bg-flow-400" />
                     </span>
                     <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-eyebrow text-flow-400">
+                      <p className="text-[10px] font-semibold uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
                         Stage {String(i + 1).padStart(2, "0")}
                       </p>
                       <h3 className="mt-0.5 font-display text-lg font-bold tracking-tight">
@@ -442,7 +446,6 @@ export default function PranavCaseStudy() {
                         {step.body}
                       </p>
                     </div>
-                  </li>
                 </Reveal>
               ))}
             </ol>
@@ -525,8 +528,12 @@ export default function PranavCaseStudy() {
             />
             <ol className="space-y-8">
               {ROLLOUT.map((phase, i) => (
-                <Reveal as="div" key={phase.when} delay={i * 0.05}>
-                  <li className="relative flex gap-5 pl-9">
+                <Reveal
+                  as="li"
+                  key={phase.when}
+                  delay={i * 0.05}
+                  className="relative flex gap-5 pl-9"
+                >
                     <span
                       aria-hidden
                       className="absolute left-0 top-1.5 grid h-[18px] w-[18px] place-items-center rounded-full border border-flow-400/40 bg-background"
@@ -534,7 +541,7 @@ export default function PranavCaseStudy() {
                       <span className="h-2 w-2 rounded-full bg-flow-400" />
                     </span>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-eyebrow text-flow-400">
+                      <p className="text-xs font-semibold uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
                         {phase.when}
                       </p>
                       <h3 className="mt-1 font-display text-lg font-bold tracking-tight">
@@ -544,7 +551,6 @@ export default function PranavCaseStudy() {
                         {phase.detail}
                       </p>
                     </div>
-                  </li>
                 </Reveal>
               ))}
             </ol>

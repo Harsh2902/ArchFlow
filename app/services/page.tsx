@@ -59,7 +59,7 @@ export default function ServicesPage() {
 
                     <div className="space-y-6">
                       <div>
-                        <p className="text-xs uppercase tracking-eyebrow text-flow-400">
+                        <p className="text-xs uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
                           What&apos;s included
                         </p>
                         <ul className="mt-3 space-y-2">

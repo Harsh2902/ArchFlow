@@ -110,7 +110,7 @@ export default function AboutPage() {
                     {/* PLACEHOLDER: replace with portrait photo */}
                   </div>
                   <div className="p-6 sm:p-8">
-                    <p className="text-xs uppercase tracking-eyebrow text-flow-400">
+                    <p className="text-xs uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
                       {f.role}
                     </p>
                     <h3 className="mt-2 text-2xl font-semibold tracking-tight">

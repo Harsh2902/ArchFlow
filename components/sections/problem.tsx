@@ -88,7 +88,7 @@ export function Problem() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-10 text-center text-sm font-semibold text-flow-400">
+          <p className="mt-10 text-center text-sm font-semibold text-flow-600 dark:text-flow-400">
             Then we rebuilt the whole thing. ↓
           </p>
         </div>
@@ -177,7 +177,7 @@ function ExitLine({ progress }: { progress: MotionValue<number> }) {
   return (
     <motion.p
       style={{ opacity, y }}
-      className="mt-10 flex items-center gap-2 text-sm font-semibold text-flow-400"
+      className="mt-10 flex items-center gap-2 text-sm font-semibold text-flow-600 dark:text-flow-400"
     >
       Then we rebuilt the whole thing
       <ArrowDown className="h-3.5 w-3.5" />

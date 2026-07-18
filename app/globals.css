@@ -79,7 +79,9 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold uppercase tracking-eyebrow text-flow-400;
+    /* flow-400 is a dark-bg accent — on light it only hits 2.5:1, so
+       light mode steps down to flow-600 (5.4:1) */
+    @apply inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold uppercase tracking-eyebrow text-flow-600 dark:text-flow-400;
   }
 
   .heading-display {
@@ -131,18 +133,30 @@
   );
 }
 
-/* Royal-blue flow gradient — like the "Flow" in the wordmark */
+/* Royal-blue flow gradient — like the "Flow" in the wordmark.
+   Theme-split so every gradient stop clears 3:1 for display text:
+   light mode starts at flow-500 (pale #aab4ff would wash out on
+   white); dark mode ends at flow-600 (deep #3340d4 vanished on black). */
 .text-flow {
   background-image: linear-gradient(
     120deg,
-    #aab4ff 0%,
-    #6d7dff 40%,
-    #4353f0 75%,
+    #5865f2 0%,
+    #4353f0 55%,
     #3340d4 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.dark .text-flow {
+  background-image: linear-gradient(
+    120deg,
+    #aab4ff 0%,
+    #6d7dff 40%,
+    #5865f2 75%,
+    #4353f0 100%
+  );
 }
 
 /* Soft blue halo behind key elements */

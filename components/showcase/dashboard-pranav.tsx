@@ -60,7 +60,7 @@ export function DashboardPranav() {
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="spotlight-surface relative overflow-hidden rounded-2xl border border-foreground/10 bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.02] shadow-2xl"
+        className="spotlight-surface relative overflow-hidden rounded-2xl border border-foreground/10 bg-[#07080d] bg-gradient-to-b from-foreground/[0.06] to-foreground/[0.02] shadow-2xl"
       >
         {/* top bar */}
         <div className="flex items-center justify-between border-b border-foreground/5 bg-background/40 px-4 py-2.5 backdrop-blur">

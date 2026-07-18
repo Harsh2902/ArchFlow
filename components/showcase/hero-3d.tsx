@@ -158,7 +158,7 @@ function Mark() {
   );
 }
 
-export default function Hero3D({ onReady }: { onReady?: () => void }) {
+export default function Hero3D() {
   return (
     <Canvas
       dpr={[1, 1.75]}
@@ -166,7 +166,6 @@ export default function Hero3D({ onReady }: { onReady?: () => void }) {
       camera={{ position: [0, 0.05, 5.6], fov: 36 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
-      onCreated={() => onReady?.()}
     >
       <StudioEnvironment />
       {/* cool key + double blue rim, echoing the logo's glow */}

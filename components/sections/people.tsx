@@ -76,7 +76,7 @@ export function People() {
                   </span>
                   <Mark size={22} className="text-foreground/30 transition-colors group-hover:text-flow-400" />
                 </div>
-                <p className="mt-6 text-[10px] font-semibold uppercase tracking-eyebrow text-flow-400">
+                <p className="mt-6 text-[10px] font-semibold uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
                   {f.role}
                 </p>
                 <h3 className="mt-1.5 font-display text-xl font-extrabold tracking-tight">
@@ -93,7 +93,7 @@ export function People() {
         <Reveal className="mt-10 flex justify-center">
           <Link
             href="/about"
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-flow-400 transition-colors hover:text-flow-300"
+            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-flow-600 transition-colors hover:text-flow-700 dark:text-flow-400 dark:hover:text-flow-300"
           >
             <span className="link-underline">The full story</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

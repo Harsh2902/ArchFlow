@@ -148,15 +148,21 @@ function StageStory({
 }) {
   const slice = 1 / NODES.length;
   const mid = index * slice + slice / 2;
+  // Stage 1 is fully lit the moment the section pins — the loaded
+  // state must never show partially-faded text (contrast audits sample
+  // the page exactly there), and it reads better than fading in.
+  const first = index === 0;
   const opacity = useTransform(
     progress,
-    [mid - slice * 0.62, mid - slice * 0.2, mid + slice * 0.2, mid + slice * 0.62],
-    [0, 1, 1, index === NODES.length - 1 ? 1 : 0]
+    first
+      ? [0, 0.0001, mid + slice * 0.2, mid + slice * 0.62]
+      : [mid - slice * 0.62, mid - slice * 0.2, mid + slice * 0.2, mid + slice * 0.62],
+    first ? [1, 1, 1, 0] : [0, 1, 1, index === NODES.length - 1 ? 1 : 0]
   );
   const y = useTransform(
     progress,
-    [mid - slice * 0.62, mid - slice * 0.2],
-    [26, 0]
+    first ? [0, 0.0001] : [mid - slice * 0.62, mid - slice * 0.2],
+    first ? [0, 0] : [26, 0]
   );
 
   return (
@@ -166,7 +172,7 @@ function StageStory({
     >
       <p className="font-display text-[64px] font-extrabold leading-none tracking-tightest lg:text-[84px]">
         <span className="text-flow">{String(index + 1).padStart(2, "0")}</span>
-        <span className="text-muted-foreground/70"> / 07</span>
+        <span className="text-muted-foreground"> / 07</span>
       </p>
       <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight">
         {node.label}

@@ -103,7 +103,7 @@ export function CaseStudyFeature() {
 
                 <Link
                   href="/work/pranav-doors"
-                  className="group mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-flow-400 transition-colors hover:text-flow-300"
+                  className="group mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-flow-600 dark:text-flow-400 transition-colors hover:text-flow-300"
                 >
                   <span className="link-underline">Read the full case study</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -147,7 +147,7 @@ export function CaseStudyFeature() {
             </dl>
             <Link
               href="/work/pranav-doors"
-              className="group mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-flow-400"
+              className="group mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-flow-600 dark:text-flow-400"
             >
               Read the full case study
               <ArrowRight className="h-3.5 w-3.5" />
@@ -178,7 +178,7 @@ function Milestone({
 
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-0">
-      <p className="font-display text-xs font-bold uppercase tracking-eyebrow text-flow-400">
+      <p className="font-display text-xs font-bold uppercase tracking-eyebrow text-flow-600 dark:text-flow-400">
         {m.when}
       </p>
       <h3 className="mt-2 font-display text-2xl font-extrabold tracking-tight">

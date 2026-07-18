@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
-import { Toaster } from "sonner";
+import { preload } from "react-dom";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Nav } from "@/components/layout/nav";
@@ -15,17 +15,24 @@ import {
 import { site } from "@/lib/site";
 import "./globals.css";
 
+// display:"optional" — the font either makes the FIRST paint (fast
+// networks, warm cache: preload below almost always wins the race) or
+// sits this page-load out. No mid-load swap repaint means the LCP is
+// the first paint of the hero text, not a re-render queued behind
+// hydration — worth ~1.5s of measured mobile LCP. Slow first visits
+// render the metric-matched fallback; the font is cached for the next
+// navigation.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap"
+  display: "optional"
 });
 
 // Display face — bold geometric grotesque matching the wordmark.
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-display",
-  display: "swap"
+  display: "optional"
 });
 
 export const metadata: Metadata = {
@@ -82,6 +89,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // next/font marks these for preload (the ".p." suffix) but Next 14's
+  // app-router font manifest comes out empty, so the <link rel=preload>
+  // tags are never emitted — leaving fonts discovered only after the
+  // blocking CSS parses (~+1.4s on the mobile LCP, which is the hero
+  // h1's font-swap repaint). Preload them explicitly. The hashes are
+  // content-based and stable across builds; re-check them (ls
+  // .next/static/media/*.p.woff2) only after changing fonts or
+  // upgrading next/font.
+  preload("/_next/static/media/4c9affa5bc8f420e-s.p.woff2", {
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous"
+  }); // Manrope — every heading incl. the LCP h1
+  preload("/_next/static/media/e4af272ccee01ff0-s.p.woff2", {
+    as: "font",
+    type: "font/woff2",
+    crossOrigin: "anonymous"
+  }); // Inter — body text (the LCP element on /services is a <p>)
+
   return (
     <html
       lang="en"
@@ -106,17 +132,8 @@ export default function RootLayout({
             </main>
             <Footer />
           </LenisProvider>
-          <Toaster
-            position="bottom-right"
-            theme="dark"
-            toastOptions={{
-              style: {
-                background: "hsl(230 25% 8%)",
-                border: "1px solid rgba(88,101,242,0.25)",
-                color: "hsl(216 25% 97%)"
-              }
-            }}
-          />
+          {/* Toaster lives in the contact form — the only place that
+              fires toasts — so sonner stays out of the global bundle */}
         </ThemeProvider>
       </body>
     </html>

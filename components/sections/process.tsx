@@ -75,7 +75,7 @@ export function Process() {
                   <Reveal key={step.n}>
                     <div className="max-w-xl">
                       <div className="mb-4 flex items-center gap-3">
-                        <span className="font-display text-3xl text-flow-400/80">
+                        <span className="font-display text-3xl text-flow-600/80 dark:text-flow-400/80">
                           {step.n}
                         </span>
                         <span className="h-px flex-1 bg-foreground/10" />
@@ -160,7 +160,7 @@ function StepRow({
       style={{ backgroundColor, borderColor }}
       className="flex items-center gap-3 rounded-lg border px-4 py-3"
     >
-      <span className="font-display text-base text-flow-400">{step.n}</span>
+      <span className="font-display text-base text-flow-600 dark:text-flow-400">{step.n}</span>
       <span className="text-sm font-medium text-foreground">{step.title}</span>
     </motion.div>
   );

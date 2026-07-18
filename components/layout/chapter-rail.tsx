@@ -60,7 +60,7 @@ export function ChapterRail({ chapters }: { chapters: Chapter[] }) {
             <span
               className={`font-display text-[10px] font-bold uppercase tracking-eyebrow transition-all duration-500 ${
                 isActive
-                  ? "translate-x-0 text-flow-400 opacity-100"
+                  ? "translate-x-0 text-flow-600 opacity-100 dark:text-flow-400"
                   : "-translate-x-1 text-muted-foreground opacity-0 group-hover:translate-x-0 group-hover:opacity-70"
               }`}
             >

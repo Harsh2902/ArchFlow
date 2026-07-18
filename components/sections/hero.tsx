@@ -8,13 +8,12 @@ import {
   useTransform
 } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/ui/magnetic-button";
 import { Aurora } from "@/components/ambient/aurora";
 import { GridPattern } from "@/components/ambient/grid-pattern";
 import { HeroVisual } from "@/components/showcase/hero-visual";
-import { useIsMobile } from "@/lib/use-is-mobile";
 
 /**
  * Chapter 01 — the opening frame. Split stage: the statement on the
@@ -23,14 +22,26 @@ import { useIsMobile } from "@/lib/use-is-mobile";
  */
 export function Hero() {
   const reduce = useReducedMotion();
-  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
   });
 
-  const fx = !reduce && !isMobile;
+  // Parallax is an opt-IN upgrade after mount, desktop only. It must
+  // default OFF: with the old `!isMobile` gate, phones briefly computed
+  // fx=true during hydration, framer stamped inline styles on the copy
+  // wrapper, and that repaint of the h1 became the mobile LCP (+1s).
+  const [fx, setFx] = useState(false);
+  useEffect(() => {
+    if (reduce) return;
+    if (
+      window.matchMedia("(min-width: 1024px)").matches &&
+      window.matchMedia("(pointer: fine)").matches
+    ) {
+      setFx(true);
+    }
+  }, [reduce]);
   const copyY = useTransform(scrollYProgress, [0, 1], [0, -70]);
   const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 90]);
@@ -67,7 +78,7 @@ export function Hero() {
               Live at Pranav Doors &amp; Windows
             </span>
             <span className="text-muted-foreground">·</span>
-            <span className="font-semibold text-flow-400">Chandigarh</span>
+            <span className="font-semibold text-flow-600 dark:text-flow-400">Chandigarh</span>
           </div>
 
           <h1
@@ -136,10 +147,10 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* ── Right: the mark, alive ── */}
+        {/* ── Right: the mark, alive — desktop only ── */}
         <motion.div
           style={fx ? { y: visualY } : undefined}
-          className="hero-rise relative h-[340px] w-full sm:h-[420px] lg:h-[560px]"
+          className="hero-rise relative hidden w-full lg:block lg:h-[560px]"
         >
           <HeroVisual />
         </motion.div>

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -74,6 +74,19 @@ export function ContactForm() {
 
   return (
     <div className="surface p-6 sm:p-8">
+      {/* Mounted here (not in the root layout) so sonner ships only
+          with the contact page — the sole place toasts fire */}
+      <Toaster
+        position="bottom-right"
+        theme="dark"
+        toastOptions={{
+          style: {
+            background: "hsl(230 25% 8%)",
+            border: "1px solid rgba(88,101,242,0.25)",
+            color: "hsl(216 25% 97%)"
+          }
+        }}
+      />
       <AnimatePresence mode="wait">
         {submitted ? (
           <motion.div
@@ -98,7 +111,7 @@ export function ContactForm() {
               to email{" "}
               <a
                 href="mailto:harsh@archflow.co.in"
-                className="text-flow-400 hover:underline"
+                className="text-flow-600 hover:underline dark:text-flow-400"
               >
                 harsh@archflow.co.in
               </a>
@@ -235,7 +248,7 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       {children}
       {error && (
-        <p role="alert" className="text-xs text-red-400">
+        <p role="alert" className="text-xs text-red-700 dark:text-red-400">
           {error}
         </p>
       )}
