@@ -33,9 +33,19 @@ function useAnimUpgrade() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (!desktop || reduce) return;
-    // Upgrade only what the user hasn't seen yet.
-    const rect = el.getBoundingClientRect();
-    if (rect.top > window.innerHeight * 0.92) setAnim(true);
+    // Upgrade only what the user hasn't seen yet. Measured via a
+    // one-shot IntersectionObserver — dozens of Reveals mounting at
+    // once with getBoundingClientRect caused a forced-reflow storm.
+    const io = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry && !entry.isIntersecting) setAnim(true);
+        io.disconnect();
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return { ref, anim };

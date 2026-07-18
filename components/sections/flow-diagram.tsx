@@ -166,7 +166,7 @@ function StageStory({
     >
       <p className="font-display text-[64px] font-extrabold leading-none tracking-tightest lg:text-[84px]">
         <span className="text-flow">{String(index + 1).padStart(2, "0")}</span>
-        <span className="text-muted-foreground/40"> / 07</span>
+        <span className="text-muted-foreground/70"> / 07</span>
       </p>
       <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight">
         {node.label}

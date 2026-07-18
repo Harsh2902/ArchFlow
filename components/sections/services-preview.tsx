@@ -68,7 +68,7 @@ export function ServicesPreview() {
                           <h3 className="font-display text-lg font-bold tracking-tight">
                             {s.title}
                           </h3>
-                          <span className="font-display text-xs font-bold text-muted-foreground/50">
+                          <span className="font-display text-xs font-bold text-muted-foreground/80">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                         </div>

@@ -54,7 +54,7 @@ export function Nav() {
           className={cn(
             "mx-auto flex h-14 max-w-[1220px] items-center justify-between rounded-2xl border px-4 transition-all duration-300 sm:px-5",
             scrolled
-              ? "border-foreground/[0.08] bg-background/85 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.8)] backdrop-blur-md md:backdrop-blur-xl"
+              ? "border-foreground/[0.08] bg-background/85 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.8)] backdrop-blur-md md:backdrop-blur-lg"
               : "border-transparent bg-background/40 backdrop-blur-sm"
           )}
         >

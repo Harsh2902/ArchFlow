@@ -338,7 +338,7 @@ export default function PranavCaseStudy() {
                       <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-foreground/10 bg-foreground/[0.04]">
                         <Icon className="h-5 w-5 text-foreground/80" />
                       </span>
-                      <span className="font-display text-sm font-bold text-muted-foreground/50">
+                      <span className="font-display text-sm font-bold text-muted-foreground/80">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>

@@ -2,6 +2,15 @@
 
 > ArchFlow designs and builds fully custom workflow and MIS (Management Information System) platforms for India's manufacturers, fabricators, and project-based businesses. Every deployment is custom-built to fit the client's departments, products, and reporting needs — not configured from a generic ERP template.
 
+## Key pages
+
+- [Home](https://archflow.co.in/): what ArchFlow builds and the company story
+- [Work](https://archflow.co.in/work): case studies and live deployments
+- [Pranav Doors & Windows case study](https://archflow.co.in/work/pranav-doors): the flagship deployment — 10 departments, 100+ employees, the full order lifecycle
+- [Services](https://archflow.co.in/services): the six platform types ArchFlow builds
+- [About](https://archflow.co.in/about): founders and principles
+- [Contact](https://archflow.co.in/contact): talk to a founder directly
+
 Founded in 2024 in Chandigarh, India by Harsh Dhankhar (Engineering) and Tanishq Trehan (Industry & Strategy, Director at Pranav Doors & Windows). Operates as a 2-founder studio building bespoke software for industrial businesses across India.
 
 ## What ArchFlow builds

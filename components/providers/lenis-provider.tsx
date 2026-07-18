@@ -19,9 +19,12 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     const wide = window.matchMedia("(min-width: 1024px)").matches;
     if (reduce || !finePointer || !wide) return;
 
+    // Snappy profile: higher lerp = tighter tracking of the wheel (the
+    // old 1.1s eased glide read as "slow scroll"); a slight wheel
+    // multiplier keeps travel-per-notch familiar.
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.16,
+      wheelMultiplier: 1.1,
       smoothWheel: true
     });
 

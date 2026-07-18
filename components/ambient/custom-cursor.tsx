@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useMotionValue } from "framer-motion";
 
 /**
  * Desktop-only custom cursor: a small emerald dot (8px) that follows
@@ -20,9 +20,10 @@ export function CustomCursor() {
   const [disabled, setDisabled] = useState(false);
   const [active, setActive] = useState(false);
 
-  // Slight-lag follow.
-  const x = useSpring(-100, { stiffness: 500, damping: 40, mass: 0.5 });
-  const y = useSpring(-100, { stiffness: 500, damping: 40, mass: 0.5 });
+  // Instant tracking — raw motion values, no spring on position.
+  // (A spring here made the cursor feel laggy; snappiness > smoothing.)
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
 
   useEffect(() => {
     setMounted(true);

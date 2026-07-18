@@ -22,9 +22,15 @@ export function Magnetic({ children, className, strength = 18 }: MagneticProps) 
   const sx = useSpring(x, { stiffness: 240, damping: 18, mass: 0.4 });
   const sy = useSpring(y, { stiffness: 240, damping: 18, mass: 0.4 });
 
+  // Rect cached on enter — measuring inside mousemove forces sync layout.
+  const rectRef = useRef<DOMRect | null>(null);
+
+  function onEnter() {
+    rectRef.current = ref.current?.getBoundingClientRect() ?? null;
+  }
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (reduce || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+    const rect = rectRef.current;
+    if (reduce || !rect) return;
     const relX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
     const relY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
     x.set(relX * strength);
@@ -39,6 +45,7 @@ export function Magnetic({ children, className, strength = 18 }: MagneticProps) 
     <motion.div
       ref={ref}
       style={{ x: sx, y: sy }}
+      onMouseEnter={onEnter}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={cn("inline-block", className)}

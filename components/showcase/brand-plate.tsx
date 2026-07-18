@@ -80,6 +80,7 @@ export function BrandPlate({ className }: { className?: string }) {
             width={512}
             height={512}
             priority
+            quality={65}
             sizes="(max-width: 768px) 80vw, 440px"
             className="h-auto w-full max-w-[440px] drop-shadow-[0_20px_60px_rgba(88,101,242,0.35)]"
           />
@@ -95,7 +96,7 @@ export function BrandPlate({ className }: { className?: string }) {
         )}
 
         {/* plate footer strip */}
-        <div className="relative flex items-center justify-between border-t border-white/[0.07] px-6 py-3.5 text-[10px] uppercase tracking-eyebrow text-white/45">
+        <div className="relative flex items-center justify-between border-t border-white/[0.07] px-6 py-3.5 text-[10px] uppercase tracking-eyebrow text-white/65">
           <span>ArchFlow · Custom Workflow Platforms</span>
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-flow-400" />
