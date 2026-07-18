@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
+import { solutions } from "@/lib/solutions";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/work", priority: 0.8, changeFrequency: "monthly" },
     { path: "/work/pranav-doors", priority: 0.8, changeFrequency: "monthly" },
     { path: "/services", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/solutions", priority: 0.9, changeFrequency: "monthly" },
+    ...solutions.map((s) => ({
+      path: `/solutions/${s.slug}`,
+      priority: 0.9,
+      changeFrequency: "monthly" as const
+    })),
     { path: "/about", priority: 0.6, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

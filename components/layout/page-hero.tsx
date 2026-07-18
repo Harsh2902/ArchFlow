@@ -10,6 +10,9 @@ interface PageHeroProps {
   align?: "left" | "center";
   /** word (matched loosely) to render in the flow-blue gradient */
   highlight?: string;
+  /** phrase appended after `title` and rendered entirely in flow blue —
+      use when the emphasis spans multiple words */
+  highlightTail?: string;
 }
 
 /**
@@ -22,7 +25,8 @@ export function PageHero({
   title,
   subtitle,
   align = "left",
-  highlight
+  highlight,
+  highlightTail
 }: PageHeroProps) {
   const words = title.split(" ");
 
@@ -52,17 +56,24 @@ export function PageHero({
           }`}
           style={{ animationDelay: "70ms" }}
         >
-          {words.map((w, i) => {
-            const bare = w.replace(/[.,!?'"—]/g, "").toLowerCase();
-            const isHl =
-              !!highlight && bare.includes(highlight.toLowerCase());
-            return (
-              <span key={i} className={isHl ? "text-flow" : "text-metal"}>
-                {w}
-                {i < words.length - 1 ? " " : ""}
-              </span>
-            );
-          })}
+          {highlightTail ? (
+            <>
+              <span className="text-metal">{title} </span>
+              <span className="text-flow">{highlightTail}</span>
+            </>
+          ) : (
+            words.map((w, i) => {
+              const bare = w.replace(/[.,!?'"—]/g, "").toLowerCase();
+              const isHl =
+                !!highlight && bare.includes(highlight.toLowerCase());
+              return (
+                <span key={i} className={isHl ? "text-flow" : "text-metal"}>
+                  {w}
+                  {i < words.length - 1 ? " " : ""}
+                </span>
+              );
+            })
+          )}
         </h1>
 
         {subtitle && (

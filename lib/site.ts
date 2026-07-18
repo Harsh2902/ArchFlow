@@ -9,6 +9,7 @@ export const site = {
   address: "Chandigarh, India",
   nav: [
     { label: "Work", href: "/work" },
+    { label: "Solutions", href: "/solutions" },
     { label: "Services", href: "/services" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" }
