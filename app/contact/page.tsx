@@ -18,11 +18,11 @@ import { pageOg } from "@/lib/og";
 export const metadata: Metadata = {
   title: "Contact ArchFlow — Talk to a founder",
   description:
-    "Talk to ArchFlow directly. Email harsh@archflow.co.in, call +91 79880 19331, or use the form — responses within 24 hours, Mon-Fri. Based in Chandigarh, working across India.",
+    "Talk to ArchFlow directly. Email harsh@archflow.co.in, call +91 79880 19331, or use the form — responses within 24 hours, Mon-Fri. Based in Mohali, Chandigarh tricity, working across India.",
   alternates: { canonical: "/contact" },
   ...pageOg(
     "Contact ArchFlow",
-    "Talk to ArchFlow. We respond within 24 hours, Mon to Fri. Based in Chandigarh, working with businesses across India.",
+    "Talk to ArchFlow. We respond within 24 hours, Mon to Fri. Based in Mohali, Chandigarh tricity, working with businesses across India.",
     "/contact"
   )
 };
@@ -33,8 +33,8 @@ const FAQS = [
     a: "Most modules ship in 1–2 weeks. A full multi-module engagement — quotation, sales, production, dispatch, MIS — typically lands in 3–4 weeks from kickoff. We deploy in stages so you see value from week one."
   },
   {
-    q: "Do you work with companies outside Chandigarh?",
-    a: "Yes. We're based in Chandigarh and work across the tricity in person, and remotely with clients anywhere in India. For larger engagements we travel on-site for discovery and rollout."
+    q: "Do you work with companies outside the Chandigarh tricity?",
+    a: "Yes. We're based in Sector 82, Mohali, and work across Chandigarh, Mohali, and Panchkula in person, and remotely with clients anywhere in India. For larger engagements we travel on-site for discovery and rollout."
   },
   {
     q: "What industries do you specialize in?",
@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: "Is ArchFlow related to archflow.ai or getarchflow.com?",
-    a: "No. ArchFlow (archflow.co.in) is an independent Indian company based in Chandigarh, founded by Harsh Dhankhar and Tanishq Trehan, building custom workflow and MIS platforms for manufacturers and fabricators. The similarly named products at archflow.ai and getarchflow.com are unrelated companies that make software for architecture firms."
+    a: "No. ArchFlow (archflow.co.in) is an independent Indian company based in Mohali in the Chandigarh tricity, founded by Harsh Dhankhar and Tanishq Trehan, building custom workflow and MIS platforms for manufacturers and fabricators. The similarly named products at archflow.ai and getarchflow.com are unrelated companies that make software for architecture firms."
   }
 ];
 

@@ -28,7 +28,7 @@ export const organizationSchema = {
   "@id": `${site.url}/#organization`,
   name: "ArchFlow",
   legalName: "ArchFlow",
-  alternateName: ["ArchFlow India", "ArchFlow Chandigarh"],
+  alternateName: ["ArchFlow India", "ArchFlow Mohali", "ArchFlow Chandigarh"],
   url: site.url,
   logo: {
     "@type": "ImageObject",
@@ -43,7 +43,7 @@ export const organizationSchema = {
   // Explicitly separates this company from the similarly-named
   // architecture-firm SaaS products — search engines were conflating them.
   disambiguatingDescription:
-    "ArchFlow (archflow.co.in) is an independent Indian software company headquartered in Chandigarh that builds custom MIS and workflow platforms for manufacturers, fabricators, and project-based industrial businesses. It is not affiliated with, and should not be confused with, the architecture-practice software products marketed at archflow.ai or getarchflow.com.",
+    "ArchFlow (archflow.co.in) is an independent Indian software company headquartered in Sector 82, Mohali, in the Chandigarh tricity. It builds custom MIS and workflow platforms for manufacturers, fabricators, and project-based industrial businesses. It is not affiliated with, and should not be confused with, the architecture-practice software products marketed at archflow.ai or getarchflow.com.",
   slogan: "Custom workflow platforms for businesses that have outgrown Excel.",
   foundingDate: "2024",
   founders: [
@@ -72,8 +72,9 @@ export const organizationSchema = {
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Chandigarh",
-    addressRegion: "Chandigarh",
+    streetAddress: "Sector 82",
+    addressLocality: "Mohali",
+    addressRegion: "Punjab",
     addressCountry: "IN"
   },
   areaServed: [

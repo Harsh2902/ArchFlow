@@ -165,9 +165,9 @@ Priority order comes from what actually appeared in the live SERPs.
    profile; also serves the custom-ERP agency query space.
 5. **Google Business Profile** — the single strongest local/entity signal,
    and for the Mohali/tricity queries the local pack sits ABOVE organic.
-   Category "Software company", Chandigarh address, logo, both founders'
-   phone/email, link to archflow.co.in. Ask early clients/partners for
-   reviews (real ones only).
+   Category "Software company", the real Sector 82 Mohali address, logo,
+   both founders' phone/email, link to archflow.co.in. Ask early
+   clients/partners for reviews (real ones only).
 6. **Google Search Console** — DONE (verified, sitemap submitted 18 Jul).
    Ongoing: request indexing on new pages as they ship — next up
    /custom-software-company-chandigarh and /solutions/custom-mis-software.
@@ -203,10 +203,15 @@ Priority order comes from what actually appeared in the live SERPs.
 ### NAP block — use this identical text everywhere
 
     ArchFlow
-    Chandigarh, India
+    Sector 82, Mohali, Punjab, India
     +91 79880 19331
     harsh@archflow.co.in
     https://archflow.co.in
+
+(HQ is Sector 82, Mohali — corrected 19 Jul 2026. Never list a Chandigarh
+address anywhere; NAP mismatches are the #1 local-ranking killer. Bonus:
+a Mohali address makes the GBP the natural local-pack winner for the
+"software company mohali" queries, where organic is directory-dominated.)
 
 ### Never do
 

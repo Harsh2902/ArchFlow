@@ -56,7 +56,7 @@ export function People() {
                   Pranav Doors &amp; Windows
                 </p>
                 <p className="text-[10px] uppercase tracking-eyebrow text-muted-foreground">
-                  Leadership team · Chandigarh
+                  Leadership team · Mohali
                 </p>
               </div>
             </div>

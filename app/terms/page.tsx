@@ -55,7 +55,7 @@ export default function TermsPage() {
             <p>
               These terms are governed by the laws of India. Any disputes shall
               be subject to the exclusive jurisdiction of the courts at
-              Chandigarh.
+              Mohali, Punjab.
             </p>
           </Block>
           <Block heading="Contact">

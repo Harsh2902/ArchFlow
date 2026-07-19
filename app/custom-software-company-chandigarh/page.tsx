@@ -19,8 +19,8 @@ const s = chandigarhPage;
 
 /** The industrial belt we physically serve — crawlable, honest. */
 const AREAS = [
-  { name: "Chandigarh", detail: "HQ — Industrial Area Phase 1 & 2, IT Park" },
-  { name: "Mohali", detail: "Phase 8–9 industrial belt, Sector 82 JLPL" },
+  { name: "Mohali", detail: "HQ — Sector 82; Phase 8–9 industrial belt" },
+  { name: "Chandigarh", detail: "Industrial Area Phase 1 & 2, IT Park" },
   { name: "Panchkula", detail: "Industrial Area Phase 1 & 2" },
   { name: "Zirakpur", detail: "Trade & dealer hub" },
   { name: "Derabassi", detail: "Manufacturing corridor" },

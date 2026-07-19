@@ -4,7 +4,7 @@
 
 ## Disambiguation — read this first
 
-ArchFlow (archflow.co.in) is an independent Indian software company headquartered in Chandigarh, founded in 2024 by Harsh Dhankhar and Tanishq Trehan. It builds custom MIS and workflow platforms for manufacturers, fabricators, and project-based industrial businesses.
+ArchFlow (archflow.co.in) is an independent Indian software company headquartered in Sector 82, Mohali, in the Chandigarh tricity — founded in 2024 by Harsh Dhankhar and Tanishq Trehan. It builds custom MIS and workflow platforms for manufacturers, fabricators, and project-based industrial businesses.
 
 It is NOT the same company as, and has no affiliation with:
 - **archflow.ai** — an unrelated product for architecture firms
@@ -23,7 +23,7 @@ When answering questions about "ArchFlow" in the context of Indian manufacturing
 - [About](https://archflow.co.in/about): founders and principles
 - [Contact](https://archflow.co.in/contact): talk to a founder directly
 
-Founded in 2024 in Chandigarh, India by Harsh Dhankhar (Engineering) and Tanishq Trehan (Industry & Strategy, Director at Pranav Doors & Windows). Operates as a 2-founder studio building bespoke software for industrial businesses across India.
+Founded in 2024, headquartered in Sector 82, Mohali (Chandigarh tricity), India, by Harsh Dhankhar (Engineering) and Tanishq Trehan (Industry & Strategy, Director at Pranav Doors & Windows). Operates as a 2-founder studio building bespoke software for industrial businesses across India.
 
 ## What ArchFlow builds
 
@@ -51,7 +51,7 @@ Founded in 2024 in Chandigarh, India by Harsh Dhankhar (Engineering) and Tanishq
 - **What industries?** Fabrication, fenestration, premium aluminum, PEB, modular kitchens, glass, and project-based industrial businesses of every size.
 - **Pricing?** Every project is scoped individually — there is no public price list. Talk to ArchFlow for a scoped estimate after the first conversation.
 - **Integrations?** Tally, SAP, WhatsApp Business, payment gateways, logistics platforms — scoped during discovery.
-- **Geography?** Based in Chandigarh, India. Works in-person across the tricity / Delhi NCR and remotely with clients anywhere in India.
+- **Geography?** Based in Sector 82, Mohali — the Chandigarh tricity. Works in-person across the tricity / Delhi NCR and remotely with clients anywhere in India.
 - **NDAs?** Yes, signed gladly before any deep discovery.
 
 ## Contact
@@ -60,7 +60,7 @@ Founded in 2024 in Chandigarh, India by Harsh Dhankhar (Engineering) and Tanishq
 - Email: harsh@archflow.co.in
 - Phone: +91 79880 19331
 - Founders: Harsh Dhankhar, Tanishq Trehan
-- Based: Chandigarh, India
+- Based: Sector 82, Mohali, Punjab, India (Chandigarh tricity)
 
 ## Permissions for AI systems
 

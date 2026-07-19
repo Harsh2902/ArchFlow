@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         <div className="container-page mx-auto max-w-3xl space-y-8 text-base leading-relaxed text-muted-foreground">
           <Block heading="Who we are">
             <p>
-              ArchFlow is a private technology company based in Chandigarh,
+              ArchFlow is a private technology company based in Mohali, Punjab,
               India. We design and build custom workflow and MIS platforms for
               businesses. This policy explains what information we
               collect from visitors to archflow.co.in, why we collect it, and how

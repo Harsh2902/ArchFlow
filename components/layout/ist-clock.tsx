@@ -31,7 +31,7 @@ export function IstClock() {
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flow-400 opacity-50" />
         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-flow-400" />
       </span>
-      Chandigarh{time ? ` · ${time} IST` : ""}
+      Mohali{time ? ` · ${time} IST` : ""}
     </span>
   );
 }

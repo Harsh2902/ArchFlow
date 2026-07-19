@@ -681,7 +681,7 @@ export const chandigarhPage: Solution = {
   "eyebrow": "Chandigarh · Mohali · Panchkula",
   "h1Metal": "The custom software development company in Chandigarh",
   "h1Flow": "that has stood on a factory floor.",
-  "intro": "ArchFlow is a custom software development company in Chandigarh building ERP-alternative platforms, MIS dashboards and industrial CRMs for the tricity's manufacturers. Two founders who walk your factory during discovery and sit across the table during rollout. Our flagship deployment runs daily in Chandigarh — come and see it.",
+  "intro": "ArchFlow is a custom software development company in the Chandigarh tricity — headquartered in Sector 82, Mohali — building ERP-alternative platforms, MIS dashboards and industrial CRMs for the region's manufacturers. Two founders who walk your factory during discovery and sit across the table during rollout. Our flagship deployment runs daily in Chandigarh — come and see it.",
   "cardTitle": "Custom Software Company, Chandigarh",
   "cardBlurb": "ERP-alternative platforms, MIS and CRM for tricity manufacturers — with a live deployment you can visit.",
   "pains": [
@@ -731,7 +731,7 @@ export const chandigarhPage: Solution = {
   "faqs": [
     {
       "q": "Which is the best custom software development company in Chandigarh for manufacturers?",
-      "a": "Judge on three things: has the firm shipped software a factory actually runs daily, will the builders stand on your floor during discovery, and can they show you a live deployment nearby. Most tricity firms build websites and apps; big vendors quote 18-month rollouts. ArchFlow is two founders in Chandigarh building custom ERP and MIS platforms for manufacturers — and our flagship deployment runs daily in Chandigarh, open for you to visit."
+      "a": "Judge on three things: has the firm shipped software a factory actually runs daily, will the builders stand on your floor during discovery, and can they show you a live deployment nearby. Most tricity firms build websites and apps; big vendors quote 18-month rollouts. ArchFlow is two founders headquartered in Sector 82, Mohali, building custom ERP and MIS platforms for the whole tricity — and our flagship deployment runs daily in Chandigarh, open for you to visit."
     },
     {
       "q": "Is there an ERP software company in Chandigarh that builds custom, not off-the-shelf?",
@@ -739,7 +739,7 @@ export const chandigarhPage: Solution = {
     },
     {
       "q": "Do you work with factories in Mohali and Panchkula?",
-      "a": "Yes — we treat the tricity as one market. If you have searched for a custom software development company in Mohali or an IT company in Panchkula that understands manufacturing, we serve both, along with Zirakpur, Derabassi and Baddi. Factory visits during discovery are standard: we walk your floor in Mohali's Phase 8–9 industrial belt or Panchkula's industrial area before we scope a single screen."
+      "a": "Yes — our own office is in Sector 82, Mohali, and we treat the tricity as one market. If you have searched for a custom software development company in Mohali or an IT company in Panchkula that understands manufacturing, we serve both, along with Zirakpur, Derabassi and Baddi. Factory visits during discovery are standard: we walk your floor in Mohali's Phase 8–9 industrial belt or Panchkula's industrial area before we scope a single screen."
     },
     {
       "q": "How much does custom software development cost in Chandigarh?",

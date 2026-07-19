@@ -6,7 +6,7 @@ export const site = {
   url: "https://archflow.co.in",
   email: "harsh@archflow.co.in",
   phone: "+91 79880 19331",
-  address: "Chandigarh, India",
+  address: "Sector 82, Mohali, Punjab, India",
   nav: [
     { label: "Work", href: "/work" },
     { label: "Solutions", href: "/solutions" },

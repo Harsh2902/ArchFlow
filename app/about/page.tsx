@@ -10,7 +10,7 @@ import { founders } from "@/lib/founders";
 export const metadata: Metadata = {
   title: "About ArchFlow — Founders, story, principles",
   description:
-    "ArchFlow is a 2-founder company building custom workflow and ERP platforms for Indian industrial businesses. Founded by Harsh Dhankhar (engineering) and Tanishq Trehan (industry). Based in Chandigarh.",
+    "ArchFlow is a 2-founder company building custom workflow and ERP platforms for Indian industrial businesses. Founded by Harsh Dhankhar (engineering) and Tanishq Trehan (industry). Based in Mohali, Chandigarh tricity.",
   alternates: { canonical: "/about" },
   ...pageOg(
     "About ArchFlow",
@@ -157,7 +157,7 @@ export default function AboutPage() {
           <Reveal className="surface mx-auto flex max-w-3xl flex-col items-center gap-4 p-10 text-center sm:p-12">
             <MapPin className="h-6 w-6 text-flow-400" />
             <h2 className="heading-display text-[28px] sm:text-[36px]">
-              Based in Chandigarh.
+              Based in Mohali, in the tricity.
               <br />
               Building for Indian industry.
             </h2>

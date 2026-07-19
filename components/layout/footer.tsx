@@ -92,7 +92,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-foreground/[0.06] pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>
             &copy; {new Date().getFullYear()} ArchFlow. Made with care in
-            Chandigarh.
+            Mohali.
           </p>
           <div className="flex gap-6">
             <Link
