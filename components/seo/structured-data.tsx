@@ -79,6 +79,12 @@ export const organizationSchema = {
   areaServed: [
     { "@type": "Country", name: "India" },
     { "@type": "AdministrativeArea", name: "Chandigarh" },
+    { "@type": "City", name: "Mohali" },
+    { "@type": "City", name: "Panchkula" },
+    { "@type": "City", name: "Zirakpur" },
+    { "@type": "City", name: "Derabassi" },
+    { "@type": "City", name: "Baddi" },
+    { "@type": "AdministrativeArea", name: "Chandigarh Tricity" },
     { "@type": "AdministrativeArea", name: "Punjab" },
     { "@type": "AdministrativeArea", name: "Haryana" },
     { "@type": "AdministrativeArea", name: "Himachal Pradesh" },

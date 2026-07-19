@@ -9,7 +9,8 @@ import {
   Ruler,
   Layers,
   Database,
-  Users
+  Users,
+  LayoutDashboard
 } from "lucide-react";
 import { pageOg } from "@/lib/og";
 import { site } from "@/lib/site";
@@ -39,7 +40,8 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "modular-kitchen-manufacturing-software": Ruler,
   "glass-processing-software": Layers,
   "custom-erp-development": Database,
-  "crm-for-manufacturers": Users
+  "crm-for-manufacturers": Users,
+  "custom-mis-software": LayoutDashboard
 };
 
 export default function SolutionsPage() {

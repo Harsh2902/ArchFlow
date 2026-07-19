@@ -583,9 +583,175 @@ export const solutions: Solution[] = [
         "a": "Treat every dealer as a managed account, not a contact. ArchFlow's dealer management CRM capability gives each dealer and distributor a live record — enquiries they've sent, quotations pending, orders in production, outstanding payments, and performance by territory. Directors see the whole multi-state network on one screen instead of calling state heads for numbers that are a week old."
       }
     ]
-  }
+  },
+{
+  "slug": "custom-mis-software",
+  "keyword": "custom MIS software India",
+  "metaTitle": "Custom MIS Software India | Live Reports, Not Excel",
+  "metaDescription": "Custom MIS software for Indian businesses — live dashboards and automated MIS reports built on your actual workflow, not month-end Excel. Talk to us.",
+  "eyebrow": "Solutions · MIS & Reporting",
+  "h1Metal": "Custom MIS software for Indian businesses",
+  "h1Flow": "where the reports write themselves.",
+  "intro": "ArchFlow builds custom MIS software for Indian businesses that have outgrown Excel. The MIS sits on top of your live workflow — quotation, production, dispatch — so reports and dashboards generate themselves from work already happening. No re-entry, no month-old sheets: numbers that are true and live, on one screen.",
+  "cardTitle": "Custom MIS Software",
+  "cardBlurb": "Live dashboards and automated MIS reports built on your workflow — numbers that are true today.",
+  "pains": [
+    {
+      "title": "One person spends the month building the MIS",
+      "body": "Somewhere in your office sits the MIS person — chasing department heads for sheets, merging formats, fixing formulas. The report lands days into the next month, and when they take leave, the company flies blind. That is a bottleneck, not a system."
+    },
+    {
+      "title": "Every department reports a different number",
+      "body": "Sales says 62 orders dispatched. Dispatch says 58. Accounts has invoiced 51. The monthly review becomes an argument about whose Excel is right, and the real question — why did dispatches slip — never gets asked. Numbers that disagree are worse than no numbers."
+    },
+    {
+      "title": "Directors read last week's business in a PDF",
+      "body": "By the time the MIS PDF reaches the director, the stuck order has been stuck ten days and the dealer's payment has aged another week. Leadership steers a crore-scale operation through the rear-view mirror — and finds out when the customer calls."
+    }
+  ],
+  "modules": [
+    {
+      "title": "Role-scoped live dashboards",
+      "body": "Every role gets its own screen: directors see the whole business, department heads see their queue, coordinators see today's exceptions. Numbers update as work happens — nobody compiles anything, ever."
+    },
+    {
+      "title": "Automated MIS reports",
+      "body": "Daily and weekly digests build themselves from live operations — orders, production, dispatch, collections — and reach leadership on email or WhatsApp, on schedule. The month-end compilation ritual stops existing."
+    },
+    {
+      "title": "KPI drill-down to the order",
+      "body": "Every number opens. Dispatch looks low? Click from the KPI to the state, the dealer, the exact stuck order — which stage it is sitting at, and since when."
+    },
+    {
+      "title": "Exception alerts",
+      "body": "An MIS should interrupt you, not wait to be read. Quotations silent past their follow-up date, orders stuck at one stage too long, payments ageing past terms — flagged the day it happens."
+    },
+    {
+      "title": "Leadership view on mobile",
+      "body": "The director's MIS lives on the phone: today's enquiries, dispatches, collections and stuck points, glanceable between site visits and meetings. No laptop, no calling the office for numbers."
+    },
+    {
+      "title": "Finance MIS with Tally and GST",
+      "body": "Finance reporting aligned with Tally and GST invoicing, tied to the same orders operations tracks. Billing, outstanding and dealer-wise collections reconcile with the factory's numbers because they share one source."
+    }
+  ],
+  "proof": {
+    "title": "The MIS a real factory's directors read daily",
+    "body": "ArchFlow runs the full 14-stage order lifecycle at Pranav Doors & Windows — a premium fenestration manufacturer in Chandigarh with 10 departments, 100+ employees and operations across 5+ states — daily since 2024. Its directors read live numbers, not compiled sheets. First modules were live in weeks one and two, full deployment by week four. Co-founder Tanishq Trehan is a director there."
+  },
+  "faqs": [
+    {
+      "q": "What is MIS software?",
+      "a": "MIS software — management information system software — collects data from a business's daily operations and turns it into the reports and dashboards leadership uses to run the company: sales, production, dispatch, collections, outstanding. In most Indian SMEs, the 'MIS' is actually a person compiling Excel sheets every month. ArchFlow builds the MIS on top of your live workflow instead, so reports generate themselves from work that is already recorded."
+    },
+    {
+      "q": "How much does MIS software cost in India?",
+      "a": "There is no fixed price — ArchFlow scopes every MIS project individually, so the cost depends on which reports leadership needs, how many departments feed them, and whether the underlying workflow moves onto the platform too. Weigh it against what the Excel MIS already costs: a full-time person compiling numbers that arrive stale. Talk to us — you will have a clear scope before any commitment."
+    },
+    {
+      "q": "What is the difference between MIS and ERP?",
+      "a": "An ERP runs the work — orders, production, inventory and accounts move through it as transactions. MIS software reports on the work — dashboards and summaries for decision-makers. In practice, an Indian SME buying 'MIS' needs both halves connected, because reports are only as true as the operational data underneath. ArchFlow builds them as one platform: the workflow generates the transactions, and the MIS layer reads them live, so nothing is compiled or re-entered."
+    },
+    {
+      "q": "Which is the best MIS software for manufacturers?",
+      "a": "The best MIS software for manufacturers is one that reads from live operations instead of asking anyone to enter data. Generic MIS dashboard software fails on factory floors because it needs clean, current data — and a factory run on Excel has neither. ArchFlow is an MIS software company that builds the operational workflow first — enquiry, quotation, production, dispatch — then the MIS on top, so every number a director sees traces to a real order at a real stage."
+    },
+    {
+      "q": "Can MIS reports be generated automatically?",
+      "a": "Yes — if the MIS sits on the system where work actually happens. When quotations, production, dispatch and collections run on one platform, daily and weekly MIS reports compile themselves: a digest in leadership's inbox every morning, dashboards live all day. What cannot be automated is an MIS built on Excel, because someone still has to collect and re-type the sheets. Automating the report means moving the workflow, not just the report."
+    },
+    {
+      "q": "Is there MIS report software that works with Tally?",
+      "a": "Yes. In most Indian businesses the finance MIS lives in Tally and the operations MIS lives in Excel — and the two never agree. ArchFlow builds MIS report software that reads both sides: operational numbers from the live workflow, finance numbers aligned with Tally and GST invoicing, in one set of reports. Sales, dispatch, billing and outstanding finally reconcile, because they come from a single order thread instead of separate sheets."
+    }
+  ]
+}
 ];
 
 export function getSolution(slug: string): Solution | undefined {
   return solutions.find((s) => s.slug === slug);
 }
+
+/** Location page — rendered at /custom-software-company-chandigarh (top-level, not part of the industry hub). */
+export const chandigarhPage: Solution = {
+  "slug": "custom-software-company-chandigarh",
+  "keyword": "custom software development company in Chandigarh",
+  "metaTitle": "Custom Software Development Company in Chandigarh",
+  "metaDescription": "Custom software development company in Chandigarh building ERP-alternative platforms, MIS and CRM for tricity manufacturers. Visit a live deployment.",
+  "eyebrow": "Chandigarh · Mohali · Panchkula",
+  "h1Metal": "The custom software development company in Chandigarh",
+  "h1Flow": "that has stood on a factory floor.",
+  "intro": "ArchFlow is a custom software development company in Chandigarh building ERP-alternative platforms, MIS dashboards and industrial CRMs for the tricity's manufacturers. Two founders who walk your factory during discovery and sit across the table during rollout. Our flagship deployment runs daily in Chandigarh — come and see it.",
+  "cardTitle": "Custom Software Company, Chandigarh",
+  "cardBlurb": "ERP-alternative platforms, MIS and CRM for tricity manufacturers — with a live deployment you can visit.",
+  "pains": [
+    {
+      "title": "The metro agency that never saw your factory",
+      "body": "You hired a team from Gurugram or Bengaluru. Discovery happened over video calls. The software that arrived had never met your store room, your dispatch yard or your billing desk — and it shows. Within months, the floor is quietly back on Excel."
+    },
+    {
+      "title": "Tricity IT firms that build websites, not factories",
+      "body": "Most software companies in the tricity live on websites, apps and outsourced work. Ask them about BOM structures, cutting lists or dispatch challans and the room goes quiet. Industrial software built without industrial understanding demos well — and dies on the floor."
+    },
+    {
+      "title": "The 18-month ERP quotation",
+      "body": "The branded ERP proposal arrives with per-user licences, a consultant bench and an 18-month rollout plan. You need order tracking this quarter, not a transformation programme. Halfway through rollouts like that, staff drift back to the spreadsheets that always worked."
+    }
+  ],
+  "modules": [
+    {
+      "title": "ERP-alternative platforms",
+      "body": "One platform from enquiry to dispatch, shaped to your exact stages. Where an ERP software company in Chandigarh sells modules, we build the workflow your factory already runs — live by week four."
+    },
+    {
+      "title": "MIS dashboards for directors",
+      "body": "Orders by stage, pending advances, department workloads — live on your phone. Built for owners running plants in Mohali's Phase 8–9 belt who are done waiting for month-end Excel."
+    },
+    {
+      "title": "Industrial CRM",
+      "body": "As a CRM software development company in Chandigarh, we model how industrial sales actually run — dealer enquiries, site visits, quotation revisions, and WhatsApp follow-ups that finally get owners and dates."
+    },
+    {
+      "title": "Quotation engines",
+      "body": "Spec-heavy, multi-item quotes priced from your real bill of materials, out the same day the enquiry lands. Discount approvals route to the right person in-app, not through a chat thread."
+    },
+    {
+      "title": "Production and dispatch",
+      "body": "Live job cards from cutting to QC to loading. Challans and e-way details generate off the order, so the gate register and the system finally tell the same story."
+    },
+    {
+      "title": "Multi-state operations",
+      "body": "Dealers in Punjab, projects in Himachal, sites across five states — run from your Chandigarh office. GST invoicing and Tally integration are scoped in from day one, not bolted on."
+    }
+  ],
+  "proof": {
+    "title": "Live in Chandigarh. Come and see it.",
+    "body": "ArchFlow runs daily at Pranav Doors & Windows, a premium fenestration manufacturer in Chandigarh — 10 departments, 100+ employees, operations across 5+ states, the full 14-stage order lifecycle live since 2024. First modules were live in weeks one and two; full deployment by week four. The factory is a short drive from anywhere in the tricity, and we will walk you through it ourselves."
+  },
+  "faqs": [
+    {
+      "q": "Which is the best custom software development company in Chandigarh for manufacturers?",
+      "a": "Judge on three things: has the firm shipped software a factory actually runs daily, will the builders stand on your floor during discovery, and can they show you a live deployment nearby. Most tricity firms build websites and apps; big vendors quote 18-month rollouts. ArchFlow is two founders in Chandigarh building custom ERP and MIS platforms for manufacturers — and our flagship deployment runs daily in Chandigarh, open for you to visit."
+    },
+    {
+      "q": "Is there an ERP software company in Chandigarh that builds custom, not off-the-shelf?",
+      "a": "Yes — that is exactly what ArchFlow is. We build platforms that do an ERP's job — enquiry, quotation, production, dispatch, accounts handoff to Tally — without an ERP's rollout. No module menus, no per-user licences: software shaped to your stages, first module live in one to two weeks, deployed by week four. If Excel is currently your ERP, that is the exact situation we build for."
+    },
+    {
+      "q": "Do you work with factories in Mohali and Panchkula?",
+      "a": "Yes — we treat the tricity as one market. If you have searched for a custom software development company in Mohali or an IT company in Panchkula that understands manufacturing, we serve both, along with Zirakpur, Derabassi and Baddi. Factory visits during discovery are standard: we walk your floor in Mohali's Phase 8–9 industrial belt or Panchkula's industrial area before we scope a single screen."
+    },
+    {
+      "q": "How much does custom software development cost in Chandigarh?",
+      "a": "There is no rate card — every ArchFlow platform is scoped per project, because a quotation engine for a fabricator and a full order-lifecycle platform for a multi-state manufacturer are entirely different builds. You sit with both founders, we map your workflow — usually on your own floor — and you get a clear scope and a firm number before any commitment. Talk to us; scoping costs you one conversation."
+    },
+    {
+      "q": "Can we visit a live deployment before committing?",
+      "a": "Yes, and we encourage it. Pranav Doors & Windows in Chandigarh has run its full 14-stage order lifecycle on ArchFlow daily since 2024, across 10 departments and 100+ employees. You can stand in the departments and watch real orders move. No proof we could put on a website compares to watching a factory in your own city run on the platform."
+    },
+    {
+      "q": "Do you work with businesses outside the Chandigarh tricity?",
+      "a": "Yes. Pranav Doors & Windows itself operates across five-plus states, and ArchFlow runs its dealer networks and site teams wherever they sit. For clients further out, discovery still gets the on-site treatment — we travel to the factory when the work needs it. Chandigarh is our home advantage, not our boundary."
+    }
+  ]
+};

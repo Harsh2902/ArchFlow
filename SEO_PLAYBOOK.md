@@ -43,17 +43,45 @@ confusion with archflow.ai and getarchflow.com.
 | glass processing software India | /solutions/glass-processing-software | Low (by analogy with fabrication) |
 | custom ERP development India | /solutions/custom-erp-development | High — crowded with generic dev agencies; attack via long-tail |
 | CRM for manufacturers India | /solutions/crm-for-manufacturers | High — SaaS players; attack via custom-vs-SaaS angle |
+| custom MIS software India | /solutions/custom-mis-software | **Low** — weakest SERP found; directories hold the top slots |
+| custom software development company in Chandigarh | /custom-software-company-chandigarh | Medium — a Facebook page ranks organically; zero quality local supply |
 
 Each page also targets its long-tail set through FAQs (e.g. "uPVC window
 manufacturing software", "fabrication job card software", "PEB project
 tracking software", "kitchen dealer order management").
 
+### The tricity (local) strategy — pages live 19 Jul 2026
+
+Google-autosuggest harvest (1,000+ real queries, India-localized) showed the
+demand phrasing: people type "custom software development **company in**
+chandigarh", "erp software companies in chandigarh", "crm software
+development company in chandigarh" — while "custom erp chandigarh" itself has
+zero suggest volume (it's covered as a natural mention, not a page).
+
+One strong tricity page — /custom-software-company-chandigarh — targets the
+whole local cluster (Chandigarh + Mohali + Panchkula + Zirakpur + Derabassi +
+Baddi on a single page; separate thin city pages would be doorway spam).
+
+Live SERP recon on the local terms:
+- "custom software development company in chandigarh" — MEDIUM. A Facebook
+  page ranks organically and one domain ranks twice with spam titles =
+  Google has no quality local supply. Our page out-qualities everything
+  except the TechBehemoths directory at #1.
+- "erp software company in chandigarh" — MEDIUM, best local target. Every
+  ranker is a NATIONAL vendor's templated city page with no local presence;
+  the only manufacturing player (BatchMaster) is process-mfg. Discrete
+  manufacturing + genuinely-local + visitable deployment = unanswerable.
+- "software development company mohali" — HIGH, directory-dominated
+  (GoodFirms #2, TechBehemoths, JustDial, Built In). Attack via directory
+  profiles + Google Business Profile local pack, not pure organic.
+
+Local ranking depends more on GBP + citations than any code: the local
+pack sits above organic for these queries in India.
+
 ### Tier 2 — next pages to publish (phase 2, highest ROI first)
 
-1. **"custom MIS software India"** — the weakest SERP found in the live check
-   (IndiaMART directory pages hold three of the top slots). A dedicated
-   /solutions/custom-mis-software page is realistically top-3 within months.
-   MIS is also the exact word Indian SME owners use.
+1. ~~"custom MIS software India"~~ — **DONE, live at
+   /solutions/custom-mis-software** (19 Jul 2026).
 2. **"ERP for door and window manufacturers"** — ZERO Indian results today;
    all ranking vendors are Western and enterprise-priced. With Tanishq a
    director at an actual door factory, no competitor can match the content.
@@ -74,9 +102,18 @@ tracking software", "kitchen dealer order management").
 
 manufacturing software India · ERP alternative India · workflow software for
 factories · production management software India · dealer management software
-· ERP software Chandigarh (add city-page only if GBP traction shows local
-intent) · crm software / erp software (head terms — outcome of everything
-else, not a project of their own).
+· crm software / erp software (head terms — outcome of everything else, not
+a project of their own).
+
+### Phase 3 — vertical pages validated by real autosuggest demand
+
+The a–z autosuggest expansion of "erp software for ___" surfaced real Indian
+vertical demand to build pages for once phase 2 lands (in rough demand
+order): garment/textile manufacturing · packaging (corrugated + flexible) ·
+furniture manufacturing · machine shop / job work · steel manufacturing ·
+printing industry · food manufacturing. Each follows the existing /solutions
+template. (The harvest also validated the live glass page — "erp software
+for glass industry" is a real query.)
 
 ---
 
@@ -115,43 +152,51 @@ Priority order comes from what actually appeared in the live SERPs.
 
 ### Do first (these domains already rank for our keywords)
 
-1. **IndiaMART** — appears in THREE of our target SERPs (sometimes with
-   multiple slots). Create a free seller listing for "ArchFlow — Custom
-   MIS/ERP software development, Chandigarh". Category: Software Development
-   Services / MIS Software.
-2. **SoftwareSuggest** — ranks for "custom MIS software India". Submit
-   ArchFlow as a vendor (free listing available).
-3. **Google Business Profile** — the single strongest local/entity signal.
+1. **IndiaMART** — appears in FOUR of our target SERPs (sometimes with
+   multiple slots), including "erp software company in chandigarh". Create a
+   free seller listing for "ArchFlow — Custom MIS/ERP software development,
+   Chandigarh". Category: Software Development Services / MIS Software.
+2. **TechBehemoths** — ranks #1 for "custom software development company in
+   chandigarh" AND appears in the Mohali SERP. Free listing; a strong
+   profile piggybacks two SERPs we target directly.
+3. **SoftwareSuggest** — ranks for "custom MIS software India" AND "Top 15
+   ERP Software in Chandigarh". Submit ArchFlow as a vendor (free listing).
+4. **GoodFirms** — #2 for "software development company mohali". Free
+   profile; also serves the custom-ERP agency query space.
+5. **Google Business Profile** — the single strongest local/entity signal,
+   and for the Mohali/tricity queries the local pack sits ABOVE organic.
    Category "Software company", Chandigarh address, logo, both founders'
    phone/email, link to archflow.co.in. Ask early clients/partners for
    reviews (real ones only).
-4. **Google Search Console** — verify domain, submit sitemap, then "Request
-   indexing" on: /, /solutions and all 7 solution pages. This is what makes
-   the new pages rank in days instead of weeks.
-5. **Bing Webmaster Tools + Bing Places** — 10 minutes; Bing powers
+6. **Google Search Console** — DONE (verified, sitemap submitted 18 Jul).
+   Ongoing: request indexing on new pages as they ship — next up
+   /custom-software-company-chandigarh and /solutions/custom-mis-software.
+7. **Bing Webmaster Tools + Bing Places** — 10 minutes; Bing powers
    ChatGPT/Copilot answers, which matters for AEO.
 
 ### Do within the month
 
-6. **LinkedIn company page** — you removed social links because none existed;
+8. **LinkedIn company page** — you removed social links because none existed;
    create this one. It is a top-3 entity/citation signal for a B2B company,
    ranks for "ArchFlow" searches, and takes an hour. Add it to `sameAs` in
    the Organization schema once live (tell Claude — one-line change).
-7. **Clutch + GoodFirms** — matter for the "custom ERP development" agency
-   query space. Free profiles; ask Pranav for one verified review — Clutch
-   reviews are the strongest agency trust signal in India B2B.
-8. **JustDial + Sulekha + Dial4Trade** — local citations; Dial4Trade already
-   ranks in the MIS SERP. Keep NAP identical everywhere (see block below).
-9. **Crunchbase** — entity signal AI engines read heavily.
+9. **Clutch** — matters for the "custom ERP development" agency query space
+   (did not appear in the tricity SERPs — month-priority, not day-one). Ask
+   Pranav for one verified review — Clutch reviews are the strongest agency
+   trust signal in India B2B.
+10. **JustDial + Sulekha + Dial4Trade** — local citations; JustDial ranks in
+    the Mohali SERP and Dial4Trade in the MIS SERP. Keep NAP identical
+    everywhere (see block below).
+11. **Crunchbase** — entity signal AI engines read heavily.
 
 ### Ongoing (1–2 per month, quality over volume)
 
-10. **Window & Facade Magazine India** (and similar trade media: Glass
+12. **Window & Facade Magazine India** (and similar trade media: Glass
     Bulletin, Ply Reporter for interiors) — pitch a bylined article by
     Tanishq: "What digitising a 10-department fenestration factory actually
     looks like". Trade backlinks in-vertical are worth 50 directory links.
-11. **Startup directories**: Startup India registration, F6S, BetaList.
-12. **Founder content**: Harsh/Tanishq answering real questions on Quora
+13. **Startup directories**: Startup India registration, F6S, BetaList.
+14. **Founder content**: Harsh/Tanishq answering real questions on Quora
     (a Quora answer is literally #1 for "PEB software India" today) and
     LinkedIn posts. Link to the relevant solution page, not the homepage.
 

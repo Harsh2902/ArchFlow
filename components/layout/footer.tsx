@@ -62,6 +62,14 @@ export function Footer() {
               </li>
               <li className="text-foreground/80">{site.phone}</li>
               <li className="text-foreground/80">{site.address}</li>
+              <li>
+                <Link
+                  href="/custom-software-company-chandigarh"
+                  className="link-underline text-foreground/80 hover:text-flow-300 transition-colors"
+                >
+                  Serving Chandigarh · Mohali · Panchkula
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
