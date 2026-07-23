@@ -1,0 +1,281 @@
+{
+  "cover": {
+    "headline": "Built for the businesses Excel can't keep up with.",
+    "subline": "We build custom workflow, quotation and MIS platforms for Indian manufacturers — one system carrying every order from first enquiry to final installation.",
+    "chips": [
+      "Live daily at Pranav Doors",
+      "Full deployment by week 4",
+      "Built in Mohali, Chandigarh tricity"
+    ],
+    "problemTitle": "When the spreadsheets stop holding.",
+    "problemParas": [
+      "There is a size at which spreadsheets stop working. Not on the day you cross it — a few months later, when three departments are each maintaining their own version of the order book and none of them agree with the challan register.",
+      "Nothing has broken, exactly. Orders still ship. But the office runs on WhatsApp forwards, follow-ups depend on who remembers, and the sales sheet never quite agrees with Tally. The business has outgrown the tools that got it here, and everyone knows it."
+    ],
+    "problemPains": [
+      {
+        "title": "Quotes take days, not hours",
+        "body": "An enquiry lands. Rates sit in one estimator's sheet, sizes come by phone, and the quotation goes out four days and two revisions later. By then the architect has three other numbers on the table."
+      },
+      {
+        "title": "One order, living in ten places",
+        "body": "The measurement sheet is on a site engineer's phone. The approved quote is in email. Production cut from version two. Dispatch loaded what the challan said. Nobody can say where order 214 stands without three calls."
+      },
+      {
+        "title": "Leadership reads month-old numbers",
+        "body": "The MIS arrives days into the next month, merged from four departments' sheets that disagree. By the time a director sees a stuck order, it has been stuck three weeks and the customer has already called."
+      }
+    ]
+  },
+  "who": {
+    "title": "Two founders. Nobody in between.",
+    "lead": "ArchFlow is a two-founder studio in Mohali, founded in 2024. We build one client's platform at a time. No sales team, no account manager, no offshore floor. The person who walks your factory during discovery is the person who writes the code. You call us directly. The answer comes from whoever built it.",
+    "points": [
+      {
+        "title": "Built by people who have stood on a factory floor",
+        "body": "Tanishq has spent two decades inside Indian fenestration. Discovery happens on your floor — the design desk, the dispatch yard, a site measurement — not on a video call. We ask about challans because we have handled them."
+      },
+      {
+        "title": "Custom-built, not configured",
+        "body": "You do not get a catalogue of modules and a consultant to switch them on. We build your stage names, your approval chain, your challan and job-card formats as they exist today. Nobody relearns their own process."
+      },
+      {
+        "title": "Deployed in weeks, not financial years",
+        "body": "At Pranav Doors & Windows the first modules went live in weeks one and two, and the full platform by week four. You start with the module that hurts most, while the rest gets built around you."
+      }
+    ],
+    "founders": [
+      {
+        "name": "Harsh Dhankhar",
+        "role": "Co-founder, Engineering",
+        "bio": "Harsh Dhankhar leads engineering. He designed and built the ArchFlow platform end to end — the data model, the workflow engine, the dashboards running daily at Pranav Doors & Windows. He runs discovery himself, on the floor, and writes the code after. You deal with him throughout."
+      },
+      {
+        "name": "Tanishq Trehan",
+        "role": "Co-founder, Industry & Strategy",
+        "bio": "Tanishq Trehan leads industry and strategy. He is a director at Pranav Doors & Windows and brings two decades inside Indian fenestration — quoting, production, dispatch, installation, service. He keeps ArchFlow honest about what a factory floor actually needs, and what it will never open twice."
+      }
+    ],
+    "hqLine": "Headquartered in Sector 82, Mohali. We work in person across the Chandigarh tricity and Delhi NCR, and remotely with manufacturers anywhere in India."
+  },
+  "build": {
+    "title": "Six platforms, built to order.",
+    "lead": "No two platforms are the same, because no two order books are. Six shapes recur in businesses that have outgrown Excel. Most owners start with whichever one costs them the most time, then add the rest module by module.",
+    "platforms": [
+      {
+        "name": "Quotation & MIS Platforms",
+        "body": "Your catalogue, your pricing logic, your approval limits, inside one quoting engine. Versioned quotes on your letterhead, discounts routed to the right person, and pipeline numbers leadership can read."
+      },
+      {
+        "name": "End-to-End Workflow Systems",
+        "body": "Enquiry to installation on one platform. Departments hand work over with a recorded status change, not a forwarded WhatsApp message. Every drawing, challan and approval sits on the order."
+      },
+      {
+        "name": "Sales CRM, Custom-built",
+        "body": "Industrial sales is site visit, measurement, quote, revision, another visit, order. We build the pipeline around that cycle: territories, BDM mapping, follow-up dates, and honest lost-reason data."
+      },
+      {
+        "name": "Production & Dispatch Coordination",
+        "body": "Confirmed orders become job cards on the floor. Stores, production and dispatch share one screen: vehicles, drivers, gate passes, site acknowledgement. Nobody phones the supervisor to ask what shipped."
+      },
+      {
+        "name": "Multi-location Operations",
+        "body": "Company, region, branch, site: a real hierarchy with data scoped to it. Each office sees its own work, leadership sees all of it. Inter-branch transfers stop living in registers."
+      },
+      {
+        "name": "Leadership MIS Dashboards",
+        "body": "Order book, dispatches due, collections ageing, BDM performance. Designed with you, not shipped as defaults. Every tile opens to the order behind it. Built to read on a phone."
+      }
+    ],
+    "flowTitle": "One order, from first call to service.",
+    "flowLead": "Seven stages, in the order they actually happen. Most owners can name them; few can watch one move. Pranav Doors & Windows has run a fourteen-stage version of this daily since 2024.",
+    "stages": [
+      {
+        "name": "Enquiry",
+        "body": "Every lead gets a source, an owner and a date. Site visits logged from the phone, not remembered later."
+      },
+      {
+        "name": "Quotation",
+        "body": "Priced off your real bill of materials. Every revision kept, discounts approved in the app, PDF ready to send."
+      },
+      {
+        "name": "Order",
+        "body": "A won quote becomes an order in one click. Signed PO, advance received, the customer's full history attached."
+      },
+      {
+        "name": "Production",
+        "body": "Job cards reach the floor from the confirmed order. Status comes back batch by batch, not by phone call."
+      },
+      {
+        "name": "Dispatch",
+        "body": "Loads planned vehicle by vehicle. Challan and gate pass off the same order; site teams know what's coming."
+      },
+      {
+        "name": "Installation",
+        "body": "Checklists, milestones and snags closed from site. Handover signed off in the platform, not in someone's diary."
+      },
+      {
+        "name": "Service",
+        "body": "Complaints and AMC visits sit against the original order. The relationship continues, and so does the record."
+      }
+    ]
+  },
+  "process": {
+    "title": "How an ArchFlow engagement runs",
+    "lead": "Every engagement is scoped to your operation, so timelines vary. The shape holds. We start on your factory floor, build the module that hurts most, and put it in real hands early. No discovery document that sits in a drawer.",
+    "steps": [
+      {
+        "when": "Week 0",
+        "title": "The first conversation",
+        "body": "We come to your factory. We sit with the people doing the work — sales desk, estimation, stores, shop floor, dispatch. We map how an order actually moves today, and where it stalls. No cost, no obligation.",
+        "deliverable": "A written map of your order flow, department by department."
+      },
+      {
+        "when": "Week 1",
+        "title": "Scope and shape",
+        "body": "Together we decide what gets built first — usually the stage bleeding the most time or money. Quotations, often. We agree the fields, the approvals, the reports. Then we scope it. Pricing is scoped per project.",
+        "deliverable": "A build plan naming the first module and its agreed scope."
+      },
+      {
+        "when": "Weeks 1–2",
+        "title": "First module in use",
+        "body": "The first module goes live with real users and real orders. Not a demo. Your team learns it on their own data, and we adjust while they work. At Pranav, quotations were running in week two.",
+        "deliverable": "One department working live on the platform instead of a spreadsheet."
+      },
+      {
+        "when": "Weeks 3–4",
+        "title": "Full rollout across departments",
+        "body": "Module by module, the rest comes on — estimation, procurement, surface finishing, production, dispatch, installation, accounts. We train on-site, on the floor, in the language your team already uses. Pranav was fully live by week four.",
+        "deliverable": "Every department on one platform, with your people trained on it."
+      },
+      {
+        "when": "Ongoing",
+        "title": "After go-live, we stay",
+        "body": "Your business will not stand still, so the platform does not either. New product lines, new states, changes the floor asks for. Two founders, direct line, no ticket queue. Pranav has run on it daily since 2024.",
+        "deliverable": "A platform that keeps changing as your business does."
+      }
+    ],
+    "whyTitle": "What else you could do",
+    "whyLead": "Three comparisons, honestly put. You are probably weighing at least one of them right now. We would rather you decide with clear eyes than be sold to.",
+    "comparisons": [
+      {
+        "option": "Stay on Excel and WhatsApp",
+        "reality": "It works until it doesn't. Files fork, versions disagree, and the answer to \"where is this order\" lives in one person's head. Growth makes it worse, not better.",
+        "archflow": "One live record every department writes to. Enquiry, quotation, order, materials, dispatch, installation — one place, with who did what and when kept permanently. WhatsApp goes back to being conversation."
+      },
+      {
+        "option": "Buy a large off-the-shelf ERP",
+        "reality": "Built for a generic company, not yours. Hundreds of modules, a long implementation, and pressure to change how you work to suit the software. Much of it goes unused.",
+        "archflow": "We build only what your operation runs on — your stages, your approvals, your paperwork. Challans, gate passes, per-series quotations. Nothing generic to configure around. Your workflow stays yours."
+      },
+      {
+        "option": "Hire a general IT or web agency",
+        "reality": "They can build screens. The harder part is knowing why a challan blocks release from finishing, or how one stalled series hides the others. That understanding arrives late.",
+        "archflow": "Two founders, both on your project. One builds it. The other is a director at a fenestration manufacturer, two decades inside the industry. You explain your business once."
+      }
+    ]
+  },
+  "proof": {
+    "title": "Pranav Doors & Windows, live since 2024",
+    "lead": "Pranav Doors & Windows makes premium doors and windows in Chandigarh. Since 2024 the whole company has run its daily work on a platform we built — sales desk, shop floor, site handover.",
+    "stats": [
+      {
+        "value": "10",
+        "label": "Departments on one platform"
+      },
+      {
+        "value": "100+",
+        "label": "Employees working live"
+      },
+      {
+        "value": "5+",
+        "label": "States of operations"
+      },
+      {
+        "value": "14",
+        "label": "Stages in an order's life"
+      }
+    ],
+    "narrative": [
+      "Enquiries lived in notebooks. Quotations lived in Excel, rebuilt each time, on whichever laptop had the latest file. Approvals happened over calls. Factory status sat on a whiteboard. Ten departments each kept honest records, and none of them agreed. When a project ran aluminium and uPVC together, one stalled series hid the progress of everything else.",
+      "Week one we spent on the floor — design desk, dispatch yard, site visits — mapping how the work actually moves before writing code. Week two: quotations, per-series, full cost breakup, every revision kept. Week three: the sales pipeline. Week four: production, dispatch, installation. Full deployment inside a month. Never a big-bang switch.",
+      "Today an order moves through fourteen recorded stages, enquiry to signed handover. Every department has its own screen and its own queue. Drawings, purchase orders, challans and gate passes attach where they happen. The customer follows their own order on a phone. The directors see all of it live, without asking anyone."
+    ],
+    "changes": [
+      "One platform across all ten departments, instead of a register in sales, a sheet in accounts and a whiteboard in the factory.",
+      "Anyone can see where an order stands, and which product series is holding it, without a phone call or a WhatsApp follow-up.",
+      "Quotations are built from the catalogue, not rebuilt in Excel — priced, versioned, and out the same day they are asked for.",
+      "The directors open the pipeline and read today's numbers: every enquiry, the quoted value, the negotiated value, the discount, and who gave it.",
+      "A service question a year later is answered from the record — drawings, revisions, approvals, challans and handover papers stay attached to the original order."
+    ],
+    "visitLine": "The plant is in Chandigarh, a short drive from our office in Mohali. If you would rather watch the platform running on a working shop floor than sit through a demo, say so and we will arrange it."
+  },
+  "close": {
+    "industriesTitle": "Industries we build for",
+    "industriesLead": "We build for made-to-order manufacturers. Nothing sits on a shelf: every job is quoted to a drawing, cut to a site's measurement, and installed. These are the ones we know best.",
+    "industries": [
+      {
+        "name": "Door & Window Manufacturing",
+        "line": "uPVC, aluminium and wooden fenestration OEMs. Quotation, measurement, production, dispatch, installation and service on one platform."
+      },
+      {
+        "name": "Metal & Aluminium Fabrication",
+        "line": "Job-work shops, facade and structural units. BOQs, job cards, client material, RA bills, dispatch, site erection."
+      },
+      {
+        "name": "PEB & Steel Buildings",
+        "line": "Long project cycles held together: tonne-based estimates, drawing approvals, fabrication, truckload dispatch, erection, milestone billing."
+      },
+      {
+        "name": "Modular Kitchens & Interiors",
+        "line": "Kitchen, wardrobe and furniture factories. Dealer orders, versioned site measurements, cutting lists, installation and handover sign-off."
+      },
+      {
+        "name": "Glass Processing",
+        "line": "Toughening, lamination and DGU lines. Sqm-rate quoting, batch and rack tracking, breakage and remakes, dispatch sequencing."
+      },
+      {
+        "name": "Custom ERP",
+        "line": "The ERP alternative for mid-size manufacturers. Your stages, your documents, built in weeks not months."
+      },
+      {
+        "name": "CRM for Manufacturers",
+        "line": "Industrial sales as it happens: site visits, quotation revisions, dealer networks, follow-ups with owners and dates."
+      },
+      {
+        "name": "Custom MIS",
+        "line": "Live dashboards and automated reports built on real operations, so nobody compiles a sheet at month-end."
+      }
+    ],
+    "industriesNote": "The platform is custom-built every time, so an unlisted industry is fine. If work runs enquiry to quotation to production to dispatch, we can build for it.",
+    "faqs": [
+      {
+        "q": "How long before our team is actually using it?",
+        "a": "Your first module is live in one to two weeks, and full deployment lands by week four. We start with whatever hurts most — usually quotation or order tracking — put it in real hands, then build the rest around a team already working on the platform. That was the sequence at Pranav Doors & Windows."
+      },
+      {
+        "q": "What does it cost, and how do you scope it?",
+        "a": "Every platform is scoped per project — there is no rate card, because a single quotation engine and a full order-lifecycle platform are different builds. We map your workflow first, usually standing on your own floor, then give you a clear scope and a firm number before any commitment."
+      },
+      {
+        "q": "What happens to our existing Tally and Excel data?",
+        "a": "It comes with you. Your live data — customers, dealers, rates, open orders, pending quotations — is brought onto the platform during rollout, in your own formats. Tally stays where it is for accounts; order and invoice data flows into it instead of being typed twice."
+      },
+      {
+        "q": "Do you work outside the Chandigarh tricity?",
+        "a": "Yes. Our office is in Sector 82, Mohali, and the tricity is home — but the platform we run daily already serves dealers, sites and teams across five-plus states. For clients further out, discovery still happens on your floor; we travel when the work needs it."
+      },
+      {
+        "q": "Who supports the platform after go-live?",
+        "a": "We do — the same two people who built it. There is no ticket queue or account manager between you and the engineer. Businesses change: new product lines, new states, new departments. We keep building as you grow, and the support arrangement is agreed in writing before we start."
+      },
+      {
+        "q": "Do we own what you build for us?",
+        "a": "Yes — the platform is built for your business, not licensed to you a seat at a time. Ownership, access to your own data, and what happens if we ever part ways are scoped and agreed in writing before we start. Nothing about it should surprise you later."
+      }
+    ],
+    "closeTitle": "If Excel is still running the business.",
+    "closeBody": "You know where orders get stuck. You know which report always arrives a week late. The next step is one conversation with the two people who will design and build the platform — no sales layer, and an honest answer either way.",
+    "closeAction": "Book a 30-minute call with a founder."
+  }
+}

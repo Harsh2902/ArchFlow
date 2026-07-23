@@ -14,3 +14,7 @@ build
 # TypeScript build cache
 *.tsbuildinfo
 next-env.d.ts.timestamp-*
+
+# Brochure build artifacts (regenerate with: node brochure/build.js)
+brochure/brochure.html
+brochure/*.pdf
