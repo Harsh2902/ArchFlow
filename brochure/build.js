@@ -1,21 +1,23 @@
 /**
- * ArchFlow company brochure — print build.
+ * ArchFlow meeting booklet — print build.
  *
- * Generates an A4, print-ready HTML file from content.json, then Chrome
- * (headless) prints it to PDF. Fonts and logos are embedded as data URIs
- * so the PDF is self-contained and renders identically everywhere.
+ * Generates a 12-page A5 booklet from content.json and prints it to PDF
+ * via headless Chrome. Fonts and logos are embedded as data URIs, so the
+ * PDF is self-contained and renders identically at any print shop.
  *
- *   node brochure/build.js
+ *   node brochure/build.js [outputPath.pdf]
  *
- * Assets are read from the repo; regenerate assets.json with
- * `node brochure/assets.js` if the logo or fonts change.
+ * Format notes: A5 (148x210mm), 12 pages — a multiple of 4, so it can be
+ * saddle-stitched (printed 2-up on A4, folded, stapled). Page order is
+ * sequential reading order; the press handles imposition.
+ *
+ * Regenerate embedded assets with `node brochure/assets.js`.
  */
 
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 
-const ROOT = path.join(__dirname, "..");
 const OUT_DIR = __dirname;
 const content = JSON.parse(
   fs.readFileSync(path.join(OUT_DIR, "content.json"), "utf8")
@@ -25,18 +27,9 @@ const assets = JSON.parse(
 );
 
 const esc = (s) =>
-  String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/** Renders text with the final sentence-fragment accented in flow blue. */
-const accent = (text, tail) =>
-  tail
-    ? `${esc(text)} <span class="accent">${esc(tail)}</span>`
-    : esc(text);
-
-const { cover, who, build, process: proc, proof, close } = content;
+const { cover, build, process: proc, proof } = content;
 
 /* ── page furniture ──────────────────────────────────────────────── */
 
@@ -46,18 +39,31 @@ const head = (eyebrow) => `
     <span class="ph-eyebrow">${esc(eyebrow)}</span>
   </header>`;
 
-const foot = (n) => `
-  <footer class="pf">
-    <span>archflow.co.in</span>
-    <span>${n}</span>
-  </footer>`;
+const foot = (n) => `<footer class="pf"><span>${n}</span></footer>`;
 
-const page = (n, eyebrow, body, cls = "") => `
-<section class="page ${cls}">
-  ${eyebrow ? head(eyebrow) : ""}
+const page = (n, eyebrow, body) => `
+<section class="page">
+  ${head(eyebrow)}
   <div class="page-body">${body}</div>
-  ${n ? foot(n) : ""}
+  ${foot(n)}
 </section>`;
+
+const platformCard = (p, i) => `
+  <article class="card">
+    <span class="card-n">${String(i + 1).padStart(2, "0")}</span>
+    <h3 class="h4">${esc(p.name)}</h3>
+    <p class="body-sm">${esc(p.body)}</p>
+  </article>`;
+
+const stepCard = (s) => `
+  <article class="step">
+    <span class="step-when">${esc(s.when)}</span>
+    <div>
+      <h3 class="h4">${esc(s.title)}</h3>
+      <p class="body-sm">${esc(s.body)}</p>
+      <p class="step-deliver"><span>You get</span> ${esc(s.deliverable)}</p>
+    </div>
+  </article>`;
 
 /* ── pages ───────────────────────────────────────────────────────── */
 
@@ -83,9 +89,7 @@ const p2 = page(
   "The problem",
   `
   <h2 class="h2">${esc(cover.problemTitle)}</h2>
-  <div class="lede-2col">
-    ${cover.problemParas.map((p) => `<p class="lede">${esc(p)}</p>`).join("")}
-  </div>
+  ${cover.problemParas.map((p) => `<p class="lede">${esc(p)}</p>`).join("")}
   <div class="stack">
     ${cover.problemPains
       .map(
@@ -93,8 +97,8 @@ const p2 = page(
       <article class="pain">
         <span class="pain-n">${String(i + 1).padStart(2, "0")}</span>
         <div>
-          <h3 class="h3">${esc(p.title)}</h3>
-          <p class="body">${esc(p.body)}</p>
+          <h3 class="h4">${esc(p.title)}</h3>
+          <p class="body-sm">${esc(p.body)}</p>
         </div>
       </article>`
       )
@@ -104,57 +108,23 @@ const p2 = page(
 
 const p3 = page(
   "03",
-  "Who we are",
+  "What we build",
   `
-  <h2 class="h2">${esc(who.title)}</h2>
-  <p class="lede lede-wide">${esc(who.lead)}</p>
-  <div class="grid-3">
-    ${who.points
-      .map(
-        (p) => `
-      <article class="card">
-        <h3 class="h4">${esc(p.title)}</h3>
-        <p class="body-sm">${esc(p.body)}</p>
-      </article>`
-      )
-      .join("")}
-  </div>
-  <div class="founders">
-    ${who.founders
-      .map(
-        (f) => `
-      <article class="founder">
-        <div class="founder-top">
-          <span class="mono">${esc(f.name.charAt(0))}</span>
-          <div>
-            <h3 class="h4">${esc(f.name)}</h3>
-            <p class="role">${esc(f.role)}</p>
-          </div>
-        </div>
-        <p class="body-sm">${esc(f.bio)}</p>
-      </article>`
-      )
-      .join("")}
-  </div>
-  <p class="hq">${esc(who.hqLine)}</p>`
+  <h2 class="h2">${esc(build.title)}</h2>
+  <p class="lede">${esc(build.lead)}</p>
+  <div class="stack">
+    ${build.platforms.slice(0, 3).map(platformCard).join("")}
+  </div>`
 );
 
 const p4 = page(
   "04",
   "What we build",
   `
-  <h2 class="h2">${esc(build.title)}</h2>
-  <p class="lede lede-wide">${esc(build.lead)}</p>
-  <div class="grid-2">
+  <div class="stack stack-top">
     ${build.platforms
-      .map(
-        (p, i) => `
-      <article class="card card-num">
-        <span class="card-n">${String(i + 1).padStart(2, "0")}</span>
-        <h3 class="h4">${esc(p.name)}</h3>
-        <p class="body-sm">${esc(p.body)}</p>
-      </article>`
-      )
+      .slice(3)
+      .map((p, i) => platformCard(p, i + 3))
       .join("")}
   </div>`
 );
@@ -164,7 +134,7 @@ const p5 = page(
   "The order lifecycle",
   `
   <h2 class="h2">${esc(build.flowTitle)}</h2>
-  <p class="lede lede-wide">${esc(build.flowLead)}</p>
+  <p class="lede">${esc(build.flowLead)}</p>
   <ol class="flow">
     ${build.stages
       .map(
@@ -172,8 +142,8 @@ const p5 = page(
       <li class="flow-step">
         <span class="flow-dot">${i + 1}</span>
         <div class="flow-text">
-          <h3 class="h4">${esc(s.name)}</h3>
-          <p class="body-sm">${esc(s.body)}</p>
+          <h3 class="h5">${esc(s.name)}</h3>
+          <p class="body-xs">${esc(s.body)}</p>
         </div>
       </li>`
       )
@@ -186,17 +156,43 @@ const p6 = page(
   "How we work",
   `
   <h2 class="h2">${esc(proc.title)}</h2>
-  <p class="lede lede-wide">${esc(proc.lead)}</p>
-  <div class="steps">
-    ${proc.steps
+  <p class="lede">${esc(proc.lead)}</p>
+  <div class="stack">
+    ${proc.steps.slice(0, 3).map(stepCard).join("")}
+  </div>`
+);
+
+const p7 = page(
+  "07",
+  "How we work",
+  `
+  <div class="stack stack-top">
+    ${proc.steps.slice(3).map(stepCard).join("")}
+  </div>
+  <p class="note">${esc(proc.note)}</p>`
+);
+
+const p8 = page(
+  "08",
+  "Why ArchFlow",
+  `
+  <h2 class="h2">${esc(proc.whyTitle)}</h2>
+  <p class="lede">${esc(proc.whyLead)}</p>
+  <div class="stack">
+    ${proc.comparisons
       .map(
-        (s) => `
-      <article class="step">
-        <span class="step-when">${esc(s.when)}</span>
-        <div class="step-main">
-          <h3 class="h4">${esc(s.title)}</h3>
-          <p class="body-sm">${esc(s.body)}</p>
-          <p class="step-deliver"><span>You get</span> ${esc(s.deliverable)}</p>
+        (c) => `
+      <article class="cmp">
+        <h3 class="h4">${esc(c.option)}</h3>
+        <div class="cmp-cols">
+          <div class="cmp-them">
+            <span class="cmp-label">Usually</span>
+            <p>${esc(c.reality)}</p>
+          </div>
+          <div class="cmp-us">
+            <span class="cmp-label">With ArchFlow</span>
+            <p>${esc(c.archflow)}</p>
+          </div>
         </div>
       </article>`
       )
@@ -204,37 +200,12 @@ const p6 = page(
   </div>`
 );
 
-const p7 = page(
-  "07",
-  "Why ArchFlow",
-  `
-  <h2 class="h2">${esc(proc.whyTitle)}</h2>
-  <p class="lede lede-wide">${esc(proc.whyLead)}</p>
-  <div class="compare">
-    <div class="compare-head">
-      <span></span>
-      <span class="ch-them">What usually happens</span>
-      <span class="ch-us">With ArchFlow</span>
-    </div>
-    ${proc.comparisons
-      .map(
-        (c) => `
-      <div class="compare-row">
-        <span class="c-option">${esc(c.option)}</span>
-        <span class="c-them">${esc(c.reality)}</span>
-        <span class="c-us">${esc(c.archflow)}</span>
-      </div>`
-      )
-      .join("")}
-  </div>`
-);
-
-const p8 = page(
-  "08",
+const p9 = page(
+  "09",
   "The proof",
   `
   <h2 class="h2">${esc(proof.title)}</h2>
-  <p class="lede lede-wide">${esc(proof.lead)}</p>
+  <p class="lede">${esc(proof.lead)}</p>
   <div class="stat-band">
     ${proof.stats
       .map(
@@ -246,82 +217,54 @@ const p8 = page(
       )
       .join("")}
   </div>
-  <div class="proof-cols">
-    <div class="proof-narr">
-      ${proof.narrative.map((p) => `<p class="body">${esc(p)}</p>`).join("")}
-    </div>
-    <aside class="proof-changes">
-      <h3 class="h4">What changed</h3>
-      <ul>
-        ${proof.changes.map((c) => `<li>${esc(c)}</li>`).join("")}
-      </ul>
-    </aside>
-  </div>
-  <p class="visit">${esc(proof.visitLine)}</p>`
-);
-
-const p9 = page(
-  "09",
-  "Industries",
-  `
-  <h2 class="h2">${esc(close.industriesTitle)}</h2>
-  <p class="lede lede-wide">${esc(close.industriesLead)}</p>
-  <div class="grid-2 tight">
-    ${close.industries
-      .map(
-        (v) => `
-      <article class="vert">
-        <h3 class="h4">${esc(v.name)}</h3>
-        <p class="body-sm">${esc(v.line)}</p>
-      </article>`
-      )
-      .join("")}
-  </div>
-  <p class="note">${esc(close.industriesNote)}</p>`
+  ${proof.narrative.map((p) => `<p class="body">${esc(p)}</p>`).join("")}`
 );
 
 const p10 = page(
   "10",
-  "Questions",
+  "The proof",
   `
-  <h2 class="h2">Before you decide.</h2>
-  <div class="faqs">
-    ${close.faqs
-      .map(
-        (f) => `
-      <article class="faq">
-        <h3 class="h4">${esc(f.q)}</h3>
-        <p class="body-sm">${esc(f.a)}</p>
-      </article>`
-      )
-      .join("")}
+  <div class="stack-top">
+    <h2 class="h3">What changed</h2>
+    <ul class="changes">
+      ${proof.changes.map((c) => `<li>${esc(c)}</li>`).join("")}
+    </ul>
+    <p class="visit">${esc(proof.visitLine)}</p>
   </div>`
 );
 
-const p11 = `
+const p11 = page(
+  "11",
+  "Industries",
+  `
+  <h2 class="h2">${esc(proof.industriesTitle)}</h2>
+  <p class="lede">${esc(proof.industriesLead)}</p>
+  <div class="verts">
+    ${proof.industries
+      .map(
+        (v) => `
+      <article class="vert">
+        <h3 class="h5">${esc(v.name)}</h3>
+        <p class="body-xs">${esc(v.line)}</p>
+      </article>`
+      )
+      .join("")}
+  </div>
+  <p class="note">${esc(proof.industriesNote)}</p>`
+);
+
+const p12 = `
 <section class="page back">
   <div class="cover-glow"></div>
   <div class="back-inner">
-    <h2 class="back-h">${esc(close.closeTitle)}</h2>
-    <p class="back-body">${esc(close.closeBody)}</p>
-    <p class="back-action">${esc(close.closeAction)}</p>
+    <h2 class="back-h">${esc(proof.closeTitle)}</h2>
+    <p class="back-body">${esc(proof.closeBody)}</p>
+    <p class="back-action">${esc(proof.closeAction)}</p>
     <div class="back-contact">
-      <div>
-        <span class="bc-label">Email</span>
-        <span class="bc-value">harsh@archflow.co.in</span>
-      </div>
-      <div>
-        <span class="bc-label">Phone</span>
-        <span class="bc-value">+91 79880 19331</span>
-      </div>
-      <div>
-        <span class="bc-label">Web</span>
-        <span class="bc-value">archflow.co.in</span>
-      </div>
-      <div>
-        <span class="bc-label">Office</span>
-        <span class="bc-value">Sector 82, Mohali, Punjab</span>
-      </div>
+      <div><span class="bc-label">Email</span><span class="bc-value">harsh@archflow.co.in</span></div>
+      <div><span class="bc-label">Phone</span><span class="bc-value">+91 79880 19331</span></div>
+      <div><span class="bc-label">Web</span><span class="bc-value">archflow.co.in</span></div>
+      <div><span class="bc-label">Office</span><span class="bc-value">Sector 82, Mohali</span></div>
     </div>
   </div>
   <img class="back-logo" src="${assets.logoFull}" alt="ArchFlow" />
@@ -333,256 +276,167 @@ const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>ArchFlow — Company Brochure</title>
+<title>ArchFlow — Booklet</title>
 <style>
-@font-face {
-  font-family: 'Manrope'; src: url('${assets.manrope}') format('woff2');
-  font-weight: 200 800; font-display: block;
-}
-@font-face {
-  font-family: 'InterVar'; src: url('${assets.inter}') format('woff2');
-  font-weight: 100 900; font-display: block;
-}
+@font-face { font-family:'Manrope'; src:url('${assets.manrope}') format('woff2');
+  font-weight:200 800; font-display:block; }
+@font-face { font-family:'InterVar'; src:url('${assets.inter}') format('woff2');
+  font-weight:100 900; font-display:block; }
 
 :root {
-  --ink: #0b0d14;
-  --ink-soft: #3d4557;
-  --muted: #6b7386;
-  --line: #e3e6ec;
-  --line-soft: #eef0f4;
-  --paper: #ffffff;
-  --paper-2: #f7f8fa;
-  --flow: #4353f0;
-  --flow-dark: #3340d4;
-  --flow-light: #eef0fe;
-  --dark: #05060a;
+  --ink:#0b0d14; --ink-soft:#3d4557; --muted:#666e82;
+  --line:#e3e6ec; --line-soft:#eef0f4;
+  --paper:#ffffff; --paper-2:#f7f8fa;
+  --flow:#4353f0; --flow-dark:#3340d4; --flow-light:#eef0fe;
+  --dark:#05060a;
 }
+* { margin:0; padding:0; box-sizing:border-box;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html { font-size:9.4pt; }
+body { font-family:'InterVar',system-ui,sans-serif; color:var(--ink);
+  background:var(--paper); -webkit-font-smoothing:antialiased; }
 
-* { margin: 0; padding: 0; box-sizing: border-box;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-html { font-size: 10.5pt; }
-body {
-  font-family: 'InterVar', system-ui, sans-serif;
-  color: var(--ink); background: var(--paper);
-  -webkit-font-smoothing: antialiased;
-}
-
-@page { size: A4; margin: 0; }
-
-.page {
-  position: relative; width: 210mm; height: 297mm;
-  overflow: hidden; background: var(--paper);
-  page-break-after: always; break-after: page;
-}
-.page:last-child { page-break-after: auto; break-after: auto; }
-.page-body { padding: 26mm 20mm 22mm; }
+@page { size: A5; margin: 0; }
+.page { position:relative; width:148mm; height:210mm; overflow:hidden;
+  background:var(--paper); page-break-after:always; break-after:page; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+.page-body { padding:20mm 14mm 15mm; }
 
 /* running heads */
-.ph {
-  position: absolute; top: 12mm; left: 20mm; right: 20mm;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 7.5pt; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--muted); border-bottom: 0.4pt solid var(--line);
-  padding-bottom: 3mm;
-}
-.ph-brand { display: flex; align-items: center; gap: 2.2mm;
-  font-family: 'Manrope'; font-weight: 800; letter-spacing: .02em;
-  text-transform: none; font-size: 9pt; color: var(--ink); }
-.ph-brand img { width: 4.6mm; height: 4.6mm; border-radius: 1mm; }
-.ph-eyebrow { color: var(--flow); font-weight: 600; }
-.pf {
-  position: absolute; bottom: 12mm; left: 20mm; right: 20mm;
-  display: flex; justify-content: space-between;
-  font-size: 7.5pt; color: var(--muted);
-  border-top: 0.4pt solid var(--line); padding-top: 3mm;
-}
+.ph { position:absolute; top:9mm; left:14mm; right:14mm;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:6.4pt; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted); border-bottom:0.4pt solid var(--line); padding-bottom:2.2mm; }
+.ph-brand { display:flex; align-items:center; gap:1.8mm; font-family:'Manrope';
+  font-weight:800; font-size:7.6pt; letter-spacing:.01em; text-transform:none;
+  color:var(--ink); }
+.ph-brand img { width:3.6mm; height:3.6mm; border-radius:.8mm; }
+.ph-eyebrow { color:var(--flow); font-weight:600; }
+.pf { position:absolute; bottom:9mm; right:14mm; font-size:7pt;
+  color:var(--muted); font-family:'Manrope'; font-weight:700; }
 
-/* type */
-.h2 { font-family: 'Manrope'; font-weight: 800; font-size: 25pt;
-  line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 5mm; }
-.h3 { font-family: 'Manrope'; font-weight: 800; font-size: 12pt;
-  letter-spacing: -0.01em; margin-bottom: 1.6mm; }
-.h4 { font-family: 'Manrope'; font-weight: 800; font-size: 10.5pt;
-  letter-spacing: -0.01em; margin-bottom: 1.6mm; }
-.accent { color: var(--flow); }
-.lede { font-size: 11pt; line-height: 1.55; color: var(--ink-soft); }
-.lede-wide { max-width: 150mm; margin-bottom: 7mm; }
-.lede-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm;
-  margin-bottom: 10mm; }
-.body { font-size: 9.6pt; line-height: 1.6; color: var(--ink-soft); }
-.body-sm { font-size: 9pt; line-height: 1.55; color: var(--muted); }
+/* type scale */
+.h2 { font-family:'Manrope'; font-weight:800; font-size:17pt; line-height:1.08;
+  letter-spacing:-0.025em; margin-bottom:3.5mm; }
+.h3 { font-family:'Manrope'; font-weight:800; font-size:12pt;
+  letter-spacing:-0.015em; margin-bottom:3mm; }
+.h4 { font-family:'Manrope'; font-weight:800; font-size:9.4pt;
+  letter-spacing:-0.01em; margin-bottom:1.2mm; }
+.h5 { font-family:'Manrope'; font-weight:800; font-size:8.6pt;
+  letter-spacing:-0.01em; margin-bottom:0.8mm; }
+.lede { font-size:9pt; line-height:1.5; color:var(--ink-soft); margin-bottom:6mm; }
+.body { font-size:8.6pt; line-height:1.55; color:var(--ink-soft); margin-bottom:3.5mm; }
+.body-sm { font-size:8.2pt; line-height:1.5; color:var(--muted); }
+.body-xs { font-size:7.8pt; line-height:1.45; color:var(--muted); }
 
 /* cover */
-.cover { background: var(--dark); color: #fff; }
-.cover-glow {
-  position: absolute; inset: 0;
+.cover { background:var(--dark); color:#fff; }
+.cover-glow { position:absolute; inset:0;
   background:
-    radial-gradient(60% 45% at 78% 12%, rgba(88,101,242,0.30), transparent 70%),
-    radial-gradient(55% 40% at 12% 88%, rgba(51,64,212,0.24), transparent 70%);
-}
-.cover-inner { position: relative; padding: 42mm 22mm 0; }
-.cover-mark { width: 20mm; height: 20mm; border-radius: 4mm; margin-bottom: 14mm; }
-.cover-h1 {
-  font-family: 'Manrope'; font-weight: 800; font-size: 42pt;
-  line-height: 1.03; letter-spacing: -0.035em; max-width: 160mm;
-}
-.cover-sub {
-  margin-top: 9mm; max-width: 128mm; font-size: 12pt; line-height: 1.55;
-  color: rgba(255,255,255,0.72);
-}
-.chips { margin-top: 16mm; display: flex; flex-wrap: wrap; gap: 3mm; }
-.chip {
-  border: 0.5pt solid rgba(138,150,255,0.45);
-  background: rgba(88,101,242,0.14);
-  color: #c9cfff; border-radius: 20mm;
-  padding: 2.2mm 5mm; font-size: 8.4pt; font-weight: 600;
-}
-.cover-foot {
-  position: absolute; bottom: 16mm; left: 22mm; right: 22mm;
-  display: flex; justify-content: space-between;
-  font-size: 8pt; letter-spacing: .12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.42);
-  border-top: 0.5pt solid rgba(255,255,255,0.12); padding-top: 4mm;
-}
+    radial-gradient(62% 45% at 80% 12%, rgba(88,101,242,0.32), transparent 70%),
+    radial-gradient(55% 40% at 10% 88%, rgba(51,64,212,0.26), transparent 70%); }
+.cover-inner { position:relative; padding:30mm 16mm 0; }
+.cover-mark { width:15mm; height:15mm; border-radius:3mm; margin-bottom:10mm; }
+.cover-h1 { font-family:'Manrope'; font-weight:800; font-size:27pt;
+  line-height:1.05; letter-spacing:-0.035em; }
+.cover-sub { margin-top:6mm; max-width:100mm; font-size:9.6pt; line-height:1.5;
+  color:rgba(255,255,255,0.72); }
+.chips { margin-top:11mm; display:flex; flex-wrap:wrap; gap:2mm; }
+.chip { border:0.5pt solid rgba(138,150,255,0.45); background:rgba(88,101,242,0.14);
+  color:#c9cfff; border-radius:20mm; padding:1.6mm 3.6mm; font-size:7pt; font-weight:600; }
+.cover-foot { position:absolute; bottom:12mm; left:16mm; right:16mm;
+  display:flex; justify-content:space-between; font-size:6.6pt;
+  letter-spacing:.11em; text-transform:uppercase; color:rgba(255,255,255,0.42);
+  border-top:0.5pt solid rgba(255,255,255,0.12); padding-top:3mm; }
 
-/* problem */
-.stack { display: flex; flex-direction: column; gap: 5mm; }
-.pain {
-  display: grid; grid-template-columns: 14mm 1fr; align-items: start;
-  border: 0.5pt solid var(--line); border-radius: 3mm;
-  padding: 6mm 6mm 6mm 4mm; background: var(--paper-2);
-}
-.pain-n { font-family: 'Manrope'; font-weight: 800; font-size: 13pt;
-  color: var(--flow); }
-
-/* cards */
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm;
-  margin-bottom: 10mm; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5mm; }
-.grid-2.tight { gap: 3.5mm; }
-.card { border: 0.5pt solid var(--line); border-radius: 3mm;
-  padding: 5.5mm; background: var(--paper-2); }
-.card-num { position: relative; padding-top: 7mm; }
-.card-n { position: absolute; top: 4.5mm; right: 5.5mm;
-  font-family: 'Manrope'; font-weight: 800; font-size: 9pt; color: #c3c8d4; }
-
-/* founders */
-.founders { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm;
-  margin-bottom: 7mm; }
-.founder { border: 0.5pt solid var(--line); border-left: 1.6pt solid var(--flow);
-  border-radius: 3mm; padding: 6mm; }
-.founder-top { display: flex; gap: 4mm; align-items: center; margin-bottom: 3.5mm; }
-.mono {
-  width: 11mm; height: 11mm; flex: none; border-radius: 50%;
-  background: var(--flow-light); color: var(--flow);
-  font-family: 'Manrope'; font-weight: 800; font-size: 13pt;
-  display: flex; align-items: center; justify-content: center;
-}
-.role { font-size: 8.4pt; color: var(--flow); font-weight: 600; }
-.hq { font-size: 9pt; color: var(--muted); border-top: 0.5pt solid var(--line);
-  padding-top: 4mm; }
+/* shared blocks */
+.stack { display:flex; flex-direction:column; gap:3.2mm; }
+.stack-top { margin-top:2mm; display:flex; flex-direction:column; gap:3.2mm; }
+.pain { display:grid; grid-template-columns:9mm 1fr; align-items:start;
+  border:0.5pt solid var(--line); border-radius:2.4mm; padding:4mm 4mm 4mm 3mm;
+  background:var(--paper-2); }
+.pain-n { font-family:'Manrope'; font-weight:800; font-size:10pt; color:var(--flow); }
+.card { position:relative; border:0.5pt solid var(--line); border-radius:2.4mm;
+  padding:4.2mm 4.2mm 4.2mm; background:var(--paper-2); }
+.card-n { position:absolute; top:3.4mm; right:4.2mm; font-family:'Manrope';
+  font-weight:800; font-size:7.6pt; color:#c3c8d4; }
 
 /* flow */
-.flow { list-style: none; position: relative; }
-.flow::before {
-  content: ''; position: absolute; left: 5.5mm; top: 6mm; bottom: 6mm;
-  width: 0.6pt; background: linear-gradient(180deg, var(--flow), #c9cfff);
-}
-.flow-step { position: relative; display: grid;
-  grid-template-columns: 16mm 1fr; align-items: start; padding: 3.6mm 0; }
-.flow-dot {
-  width: 11mm; height: 11mm; border-radius: 50%; background: var(--flow);
-  color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 10pt;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 0 1.6mm #fff;
-}
-.flow-text { padding-top: 1mm; }
+.flow { list-style:none; position:relative; }
+.flow::before { content:''; position:absolute; left:4mm; top:4mm; bottom:4mm;
+  width:0.6pt; background:linear-gradient(180deg,var(--flow),#c9cfff); }
+.flow-step { position:relative; display:grid; grid-template-columns:11.5mm 1fr;
+  align-items:start; padding:2.3mm 0; }
+.flow-dot { width:8mm; height:8mm; border-radius:50%; background:var(--flow);
+  color:#fff; font-family:'Manrope'; font-weight:800; font-size:8pt;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 0 1.2mm #fff; }
+.flow-text { padding-top:0.4mm; }
 
 /* steps */
-.steps { display: flex; flex-direction: column; gap: 3.2mm; }
-.step { display: grid; grid-template-columns: 26mm 1fr; gap: 5mm;
-  border: 0.5pt solid var(--line); border-radius: 3mm; padding: 4.6mm 5mm;
-  background: var(--paper-2); }
-.step-when { font-family: 'Manrope'; font-weight: 800; font-size: 9.5pt;
-  color: var(--flow); letter-spacing: -0.01em; }
-.step-deliver { margin-top: 2.2mm; font-size: 8.4pt; color: var(--ink-soft); }
-.step-deliver span { display: inline-block; background: var(--flow-light);
-  color: var(--flow-dark); font-weight: 700; border-radius: 1.4mm;
-  padding: 0.6mm 2mm; margin-right: 2mm; font-size: 7.6pt;
-  text-transform: uppercase; letter-spacing: .08em; }
+.step { display:grid; grid-template-columns:19mm 1fr; gap:3mm;
+  border:0.5pt solid var(--line); border-radius:2.4mm; padding:4mm;
+  background:var(--paper-2); }
+.step-when { font-family:'Manrope'; font-weight:800; font-size:8.4pt;
+  color:var(--flow); }
+.step-deliver { margin-top:2mm; font-size:7.6pt; color:var(--ink-soft); }
+.step-deliver span { display:inline-block; background:var(--flow-light);
+  color:var(--flow-dark); font-weight:700; border-radius:1mm; padding:0.4mm 1.6mm;
+  margin-right:1.6mm; font-size:6.6pt; text-transform:uppercase; letter-spacing:.07em; }
 
-/* compare */
-.compare { border: 0.5pt solid var(--line); border-radius: 3mm; overflow: hidden; }
-.compare-head, .compare-row {
-  display: grid; grid-template-columns: 42mm 1fr 1fr;
-}
-.compare-head { background: var(--dark); color: #fff; font-size: 8pt;
-  text-transform: uppercase; letter-spacing: .12em; }
-.compare-head span { padding: 4mm 5mm; }
-.ch-us { color: #a5b0ff; }
-.compare-row { border-top: 0.5pt solid var(--line); }
-.compare-row span { padding: 6mm 5mm; font-size: 9pt; line-height: 1.55; }
-.c-option { font-family: 'Manrope'; font-weight: 800; font-size: 10pt;
-  background: var(--paper-2); }
-.c-them { color: var(--muted); }
-.c-us { color: var(--ink); background: var(--flow-light); font-weight: 500; }
+/* comparisons */
+.cmp { border:0.5pt solid var(--line); border-radius:2.4mm; overflow:hidden; }
+.cmp .h4 { padding:3.4mm 4mm 0; margin-bottom:2.4mm; }
+.cmp-cols { display:grid; grid-template-columns:1fr 1fr; }
+.cmp-them, .cmp-us { padding:0 4mm 4mm; }
+.cmp-us { background:var(--flow-light); padding-top:3.4mm; margin-top:-3.4mm; }
+.cmp-label { display:block; font-size:6.4pt; text-transform:uppercase;
+  letter-spacing:.11em; margin-bottom:1.2mm; font-weight:700; color:var(--muted); }
+.cmp-us .cmp-label { color:var(--flow-dark); }
+.cmp-them p { font-size:7.8pt; line-height:1.45; color:var(--muted); }
+.cmp-us p { font-size:7.8pt; line-height:1.45; color:var(--ink); }
 
 /* proof */
-.stat-band {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  background: var(--dark); border-radius: 3mm; padding: 6mm 5mm;
-  margin-bottom: 7mm;
-}
-.stat { text-align: center; }
-.stat-v { display: block; font-family: 'Manrope'; font-weight: 800;
-  font-size: 22pt; color: #fff; letter-spacing: -0.03em; }
-.stat-l { display: block; margin-top: 1.5mm; font-size: 7.6pt;
-  text-transform: uppercase; letter-spacing: .1em; color: #8f97ad; }
-.proof-cols { display: grid; grid-template-columns: 1.35fr 1fr; gap: 7mm; }
-.proof-narr { display: flex; flex-direction: column; gap: 4mm; }
-.proof-changes { border: 0.5pt solid var(--line); border-radius: 3mm;
-  padding: 6mm; background: var(--paper-2); }
-.proof-changes ul { list-style: none; margin-top: 3mm; }
-.proof-changes li { position: relative; padding-left: 6mm; font-size: 8.8pt;
-  line-height: 1.5; color: var(--ink-soft); margin-bottom: 3mm; }
-.proof-changes li::before {
-  content: ''; position: absolute; left: 0; top: 1.6mm;
-  width: 2.6mm; height: 2.6mm; border-radius: 50%; background: var(--flow);
-}
-.visit { margin-top: 6mm; padding: 5mm 6mm; border-radius: 3mm;
-  background: var(--flow-light); color: var(--flow-dark);
-  font-size: 9.4pt; font-weight: 600; line-height: 1.5; }
+.stat-band { display:grid; grid-template-columns:repeat(4,1fr);
+  background:var(--dark); border-radius:2.4mm; padding:4.5mm 3mm; margin-bottom:6mm; }
+.stat { text-align:center; }
+.stat-v { display:block; font-family:'Manrope'; font-weight:800; font-size:15pt;
+  color:#fff; letter-spacing:-0.03em; }
+.stat-l { display:block; margin-top:1mm; font-size:6pt; text-transform:uppercase;
+  letter-spacing:.08em; color:#8f97ad; line-height:1.3; }
+.changes { list-style:none; }
+.changes li { position:relative; padding-left:5mm; font-size:8.2pt; line-height:1.5;
+  color:var(--ink-soft); margin-bottom:3.4mm; }
+.changes li::before { content:''; position:absolute; left:0; top:1.5mm;
+  width:2.2mm; height:2.2mm; border-radius:50%; background:var(--flow); }
+.visit { margin-top:5mm; padding:4mm; border-radius:2.4mm; background:var(--flow-light);
+  color:var(--flow-dark); font-size:8.2pt; font-weight:600; line-height:1.45; }
 
-/* industries + faq */
-.vert { border-left: 1.4pt solid var(--flow); padding: 1mm 0 1mm 5mm; }
-.note { margin-top: 9mm; font-size: 9pt; color: var(--muted);
-  border-top: 0.5pt solid var(--line); padding-top: 4mm; }
-.faqs { display: flex; flex-direction: column; gap: 6mm; }
-.faq { border-bottom: 0.5pt solid var(--line-soft); padding-bottom: 5mm; }
+/* industries */
+.verts { display:grid; grid-template-columns:1fr 1fr; gap:3.4mm 4mm; }
+.vert { border-left:1.2pt solid var(--flow); padding:0.5mm 0 0.5mm 3.4mm; }
+.note { margin-top:6mm; font-size:7.8pt; color:var(--muted);
+  border-top:0.5pt solid var(--line); padding-top:3mm; line-height:1.45; }
 
 /* back cover */
-.back { background: var(--dark); color: #fff; }
-.back-inner { position: relative; padding: 40mm 22mm 0; }
-.back-h { font-family: 'Manrope'; font-weight: 800; font-size: 30pt;
-  line-height: 1.08; letter-spacing: -0.03em; max-width: 150mm; }
-.back-body { margin-top: 7mm; max-width: 130mm; font-size: 11pt;
-  line-height: 1.6; color: rgba(255,255,255,0.72); }
-.back-action { margin-top: 6mm; display: inline-block;
-  background: var(--flow); color: #fff; font-weight: 700; font-size: 10pt;
-  padding: 3.5mm 7mm; border-radius: 20mm; }
-.back-contact { margin-top: 16mm; display: grid;
-  grid-template-columns: 1fr 1fr; gap: 6mm 8mm; max-width: 140mm;
-  border-top: 0.5pt solid rgba(255,255,255,0.14); padding-top: 8mm; }
-.bc-label { display: block; font-size: 7.6pt; text-transform: uppercase;
-  letter-spacing: .12em; color: #8f97ad; margin-bottom: 1.2mm; }
-.bc-value { display: block; font-size: 10.5pt; color: #fff; font-weight: 600; }
-.back-logo { position: absolute; bottom: 14mm; left: 22mm; width: 62mm;
-  border-radius: 2mm; }
+.back { background:var(--dark); color:#fff; }
+.back-inner { position:relative; padding:30mm 16mm 0; }
+.back-h { font-family:'Manrope'; font-weight:800; font-size:20pt; line-height:1.1;
+  letter-spacing:-0.03em; }
+.back-body { margin-top:5mm; font-size:9.2pt; line-height:1.55;
+  color:rgba(255,255,255,0.72); }
+.back-action { margin-top:5mm; display:inline-block; background:var(--flow);
+  color:#fff; font-weight:700; font-size:8.6pt; padding:2.6mm 5mm; border-radius:20mm; }
+.back-contact { margin-top:11mm; display:grid; grid-template-columns:1fr 1fr;
+  gap:4.5mm 5mm; border-top:0.5pt solid rgba(255,255,255,0.14); padding-top:6mm; }
+.bc-label { display:block; font-size:6.4pt; text-transform:uppercase;
+  letter-spacing:.11em; color:#8f97ad; margin-bottom:0.9mm; }
+.bc-value { display:block; font-size:8.8pt; color:#fff; font-weight:600; }
+.back-logo { position:absolute; bottom:11mm; left:16mm; width:46mm; border-radius:1.6mm; }
 </style>
 </head>
 <body>
-${p1}${p2}${p3}${p4}${p5}${p6}${p7}${p8}${p9}${p10}${p11}
+${p1}${p2}${p3}${p4}${p5}${p6}${p7}${p8}${p9}${p10}${p11}${p12}
 </body>
 </html>`;
 
@@ -590,12 +444,10 @@ const htmlPath = path.join(OUT_DIR, "brochure.html");
 fs.writeFileSync(htmlPath, html);
 console.log("HTML written:", Math.round(html.length / 1024) + "KB");
 
-/* ── print ───────────────────────────────────────────────────────── */
-
 const CHROME =
   process.env.CHROME_PATH ||
   "C:/Program Files/Google/Chrome/Application/chrome.exe";
-const pdfPath = process.argv[2] || path.join(OUT_DIR, "ArchFlow-Brochure.pdf");
+const pdfPath = process.argv[2] || path.join(OUT_DIR, "ArchFlow-Booklet.pdf");
 
 execFileSync(
   CHROME,
@@ -610,5 +462,8 @@ execFileSync(
   { stdio: "inherit", timeout: 120000 }
 );
 
-const size = fs.statSync(pdfPath).size;
-console.log("PDF written:", pdfPath, Math.round(size / 1024) + "KB");
+console.log(
+  "PDF written:",
+  pdfPath,
+  Math.round(fs.statSync(pdfPath).size / 1024) + "KB"
+);
